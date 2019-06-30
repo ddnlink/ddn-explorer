@@ -30,6 +30,7 @@ $ yarn test
 # Build and deploy
 $ yarn build
 ```
+> Open http://localhost:8000 to view it in the browser.
 
 ## Framework
 

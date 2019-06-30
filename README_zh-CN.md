@@ -1,22 +1,31 @@
 [English](./README.md) | 简体中文
 
+## DDN 区块链浏览器
+区块链浏览器是用于展示DDN区块链上的数据和状态的一个前端应用，
+该项目采用Antd 和react框架 [umijs](https://umijs.org/) 生成
 
-## 说明
-该项目为区块链浏览器，采用 [umijs](https://umijs.org/) 框架生成
+## 快速启动
 
-## 运行脚本
+```bash
+# 克隆代码到本地
+$ git clone git@github.com:ddnlink/ddn-explorer.git
+$ cd ddn-explorer
 
-#### clone代码
-`git clone git@git.ebookchain.net:ddn/ddnExplore.git`
+# 安装依赖
+$ yarn
 
-#### 安装
-`yarn`
+# 运行app
+$ yarn start
 
-#### 启动
-`yarn start`
+# 测试
+$ yarn test
 
-#### 编译
-`yarn build`
+# 编译及部署
+$ yarn build
+
+```
+> 在浏览器中打开 http://localhost:8000 查看.
+
 
 ## 项目架构
 
@@ -68,3 +77,11 @@
 - moment              时间处理
 - qrcode              二维码
 - qs                  字符串与对象解析
+
+## 贡献者
+
+在此感谢所有参与该项目的贡献者. [[Contribute](CONTRIBUTING.md)]. <a href="https://github.com/ddnlink/ddn-explorer/graphs/contributors"><img src="https://opencollective.com/ddnlink/ddn-explorer/contributors.svg?width=890&button=false" /></a>
+
+## 协议
+
+[MIT](https://github.com/ddnlink/ddn-explorer/blob/master/LICENSE)
