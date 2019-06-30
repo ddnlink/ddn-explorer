@@ -1,0 +1,230 @@
+
+// icon 图标
+
+.icon-wrap {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 50px;
+  height: 50px;
+  margin: auto;
+  color: #69ca62;
+  box-shadow: inset 0 0 0 1px rgba(105, 202, 98, 0.5);
+  &::before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    content: '';
+    z-index: -1;
+    margin: -5%;
+    box-shadow: inset 0 0 0 2px;
+    animation: clipMe 8s linear infinite;
+  }
+  &::after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    content: '';
+    z-index: -1;
+    margin: -5%;
+    box-shadow: inset 0 0 0 2px;
+    animation: clipMe 8s linear infinite;
+  }
+}
+.iconWrap::before {
+  animation-delay: -4s;
+}
+
+@keyframes clipMe {
+  0%, 100% {
+    clip: rect(0px, 60.0px, 2px, 0px);
+  }
+  25% {
+    clip: rect(0px, 2px, 60.0px, 0px);
+  }
+  50% {
+    clip: rect(58.0px, 60.0px, 60.0px, 0px);
+  }
+  75% {
+    clip: rect(0px, 60.0px, 60.0px, 58.0px);
+  }
+}
+
+/*翻页动画*/
+
+@keyframes flipTop {
+  0% {
+      transform: perspective(400px) rotateX(0deg);
+  }
+
+  100% {
+      transform: perspective(400px) rotateX(-90deg);
+  }
+}
+
+@keyframes flipBottom {
+  0% {
+      -webkit-transform: perspective(400px) rotateX(90deg);
+  }
+
+  100% {
+      -webkit-transform: perspective(400px) rotateX(0deg);
+  }
+}
+
+
+.dataStatistics {
+  color: #fedec2;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 100px;
+  font-weight: bold;
+  line-height: 110px;
+  height: 110px;
+  text-align: center;
+  display: inline-block;
+  margin: 20px auto;
+}
+
+.dataStatistics .seperator {
+  vertical-align: top;
+  margin: 0 -20px;
+  display: inline;
+}
+
+.dataStatistics .seconds,
+.dataStatistics .minutes,
+.dataStatistics .hours,
+.dataStatistics .days {
+  height: 100%;
+  display: inline;
+}
+
+.dataStatistics .digit_set {
+  float: left;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  border: 1px solid #9e9e9e;
+  width: 80px;
+  height: 100%;
+  display: inline-block;
+  position: relative;
+  margin: 0 10px;
+}
+
+.dataStatistics .digit {
+  position: absolute;
+  height: 100%;
+}
+
+.dataStatistics .digit>div {
+  position: absolute;
+  left: 0;
+  overflow: hidden;
+  height: 50%;
+  padding: 0 12px;
+}
+
+.dataStatistics .digit>div.digit_top,
+.dataStatistics .digit>div.shadow_top {
+  width: 80px;
+  background-color: #e38538;
+  border-bottom: 1px solid #e38538;
+  box-sizing: border-box;
+  top: 0;
+  z-index: 0;
+  border-radius: 10px 10px 0 0;
+}
+
+.dataStatistics .digit>div.digit_top:before,
+.dataStatistics .digit>div.shadow_top:before {
+  content: "";
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.dataStatistics .digit>div.shadow_top {
+  width: 80px;
+  opacity: 0;
+  -webkit-transition: opacity 0.3s ease-in;
+}
+
+.dataStatistics .digit>div.digit_bottom,
+.dataStatistics .digit>div.shadow_bottom {
+  background-color: #e38538;
+  bottom: 0;
+  z-index: 0;
+  border-radius: 0 0 10px 10px;
+}
+
+.dataStatistics .digit>div.digit_bottom .digit_wrap,
+.dataStatistics .digit>div.shadow_bottom .digit_wrap {
+  display: block;
+  margin-top: -95%;
+}
+
+.dataStatistics .digit>div.digit_bottom:before,
+.dataStatistics .digit>div.shadow_bottom:before {
+  content: "";
+  border-radius: 0 0 10px 10px;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.digit_wrap {
+  line-height: 110px;
+  display: block;
+  overflow: hidden;
+}
+
+.dataStatistics .digit>div.shadow_bottom {
+  opacity: 0;
+  -webkit-transition: opacity 0.3s ease-in;
+}
+
+.dataStatistics .digit.previous .digit_top,
+.dataStatistics .digit.previous .shadow_top {
+  opacity: 1;
+  z-index: 2;
+  -webkit-transform-origin: 50% 100%;
+  -webkit-animation: flipTop 0.3s ease-in both;
+  -moz-transform-origin: 50% 100%;
+  -moz-animation: flipTop 0.3s ease-in both;
+  -ms-transform-origin: 50% 100%;
+  -ms-animation: flipTop 0.3s ease-in both;
+  transform-origin: 50% 100%;
+  animation: flipTop 0.3s ease-in both;
+}
+
+.dataStatistics .digit.previous .digit_bottom,
+.dataStatistics .digit.previous .shadow_bottom {
+  z-index: 1;
+  opacity: 1;
+}
+
+.dataStatistics .digit.active .digit_top {
+  z-index: 1;
+}
+
+.dataStatistics .digit.active .digit_bottom {
+  z-index: 2;
+  -webkit-transform-origin: 50% 0%;
+  -webkit-animation: flipBottom 0.3s 0.3s ease-out both;
+  -moz-transform-origin: 50% 0%;
+  -moz-animation: flipBottom 0.3s 0.3s ease-out both;
+  -ms-transform-origin: 50% 0%;
+  -ms-animation: flipBottom 0.3s 0.3s ease-out both;
+  transform-origin: 50% 0%;
+  animation: flipBottom 0.3s 0.3s ease-out both;
+}

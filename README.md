@@ -1,44 +1,71 @@
-## DDN EXPLORE 1.0
 
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
-## Folder Structure
+English | [简体中文](./README_zh-CN.md)
 
+# DDN Explorer
+
+DDN Explorer is an front-end application for presenting the information and activity on the DDN blockchain.
+It is built upon Ant Design and react framework [UmiJS ](https://umijs.org/) 
+
+
+
+
+
+## Getting Started
+
+```bash
+# clone appliction code
+$ git clone git@github.com:ddnlink/ddn-explorer.git
+$ cd ddn-explorer
+
+# install deps
+$ yarn
+
+# runing app
+$ yarn start
+
+# test app
+$ yarn test
+
+# Build and deploy
+$ yarn build
 ```
-my-app/
-├──  doc/
-│   ├──modules.md
-├──  src/
-│   ├── App.js
-│   ├── index.js
-├──  node_modules/
-├──  public/
-├──  index.html
-├──  favicon.ico
-├──  README.md
-├──  package.json
+
+## Framework
+
+```bash
+├── dist/                          // built static files
+├── mock/                          // mock
+├── config/
+    ├── config.js                  // umi config file
+└── src/                           // 
+    |── assets/                    // static resources
+    ├── layouts/index.js           // default layout
+    |── locales/                   // multi language
+    |── models/                     
+    |── service/                  
+    ├── pages/                     // main pages
+        ├── .umi/                  
+        ├── .umi-production/       
+        ├── document.ejs           
+        ├── 404.js                 
+        ├── page1.js               
+        ├── page1.test.js          
+        └── page2.js               
+    |── styles/                    // global css
+    |── utils/                     
+    ├── global.css                 
+    ├── global.js                  
+    ├── app.js                     
+├── .umirc.js                      
+├── .env                          
+└── package.json
 ```
-## Quick Start
-First, clone the code from github:
 
-`$ git  clone  https://github.com/ddnlink/ddn-explore.git`
+## Contributors
 
-install the modules
+This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)]. <a href="https://github.com/ddnlink/ddn-explorer/graphs/contributors"><img src="https://opencollective.com/ddnlink/ddn-explorer/contributors.svg?width=890&button=false" /></a>
 
- `$ npm install`
+## License
 
-Runs the app in the development mode
-
-`$ npm start`
-
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
-
-
-Launches the test runner in the interactive watch mode.<br>
-`$ npm test`
-
-Builds the app for production to the `build` folder.<br>
-`$ npm run build`
+[MIT](https://github.com/ddnlink/ddn-explorer/blob/master/LICENSE)
