@@ -97,7 +97,7 @@ class AppFooter extends Component {
       });
     }
   };
-  getPeers = (params = { ip: '' }) => {
+  getPeers = (params = { ip: '120.77.211.219:8001' }) => {
     this.props.dispatch({
       type: 'peers/getPeersList',
       payload: {
@@ -226,7 +226,7 @@ class AppFooter extends Component {
             {localStorage.getItem('tokenName') === 'EOK' && (
               <div>区块链备案: 京网信备11010519864491550014号</div>
             )}
-            {localStorage.getItem('tokenName')} Explorer ©2018 Created by DDN Team
+            Copyright ©2018 Powered by DDN FOUNDATION
           </div>
         </div>
       </Footer >

@@ -1,5 +1,5 @@
 const curToken = 'ddn' // eok, sail, lims
-const net = 'mainnet'  // mainnet, testnet
+const net = 'testnet'  // mainnet, testnet
 
 const tokenConfig = {
   ddn: {
@@ -13,10 +13,10 @@ const tokenConfig = {
     },
     testnet: {
       nethash: "0ab796cd",
-      beginEpochTime: new Date(Date.UTC(2017, 10, 20, 4, 0, 0, 0)),
+      beginEpochTime: new Date(Date.UTC(2020, 0, 12, 14, 28, 0, 0)),
       peer: {
         port: 8001,
-        address: "47.92.0.84"
+        address: "120.77.211.219"
       },
     }
   },
@@ -43,7 +43,7 @@ const config = {
   openPages: ['/home'],
   serverUrl: `http://${tokenConfig[curToken][net].peer.address}:${tokenConfig[curToken][net].peer.port}`,
   token: tokenConfig[curToken][net],
-  peerAddress:"peer.ebookchain.org",
+  peerAddress:"120.77.211.219:8001",
   coinName :localStorage.getItem("tokenName")
 }
 
