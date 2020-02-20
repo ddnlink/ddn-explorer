@@ -282,6 +282,12 @@ class AppHeader extends Component {
               <Menu.Item key="6" className={styles['Menus_Item']}>
                 <NavLink to="/delegates">{formatMessage({ id: "menu.delegate" })}</NavLink>
               </Menu.Item>
+              <Menu.Item key="8" className={styles.Menus_Item}>
+                <NavLink to="/aobs">
+                  {formatMessage({ id: "menu.aob" })}
+                </NavLink>
+              </Menu.Item> 
+
               {/* <Menu.Item key="15">交易记录</Menu.Item> */}
             </Menu>
             {/* <Menu.Item key="17">关联交易</Menu.Item> */}
