@@ -67,6 +67,9 @@ $ yarn build
 
 This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)]. <a href="https://github.com/ddnlink/ddn-explorer/graphs/contributors"><img src="https://opencollective.com/ddnlink/ddn-explorer/contributors.svg?width=890&button=false" /></a>
 
+New Contributors join in DDN on Github: "rickblitivy".
+From Win7.
+
 ## License
 
 [MIT](https://github.com/ddnlink/ddn-explorer/blob/master/LICENSE)
