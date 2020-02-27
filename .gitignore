@@ -10,7 +10,7 @@
 # production
 /dist
 /deploy
-config/deploy
+/config/deploy
 
 # misc
 .DS_Store
