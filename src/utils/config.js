@@ -1,5 +1,5 @@
 const curToken = 'ddn' // eok, sail, lims
-const net = 'mainnet'  // mainnet, testnet
+const net = 'testnet'  // mainnet, testnet
 
 const tokenConfig = {
   ddn: {
@@ -38,13 +38,13 @@ const tokenConfig = {
 }
 
 const config = {
-  name: 'DDN区块链浏览器',
+  name: 'DDN 区块链浏览器',
   prefix: 'ddn20190522',
   openPages: ['/home'],
   serverUrl: `http://${tokenConfig[curToken][net].peer.address}:${tokenConfig[curToken][net].peer.port}`,
   token: tokenConfig[curToken][net],
-  peerAddress:"120.77.211.219:8001",
-  coinName :localStorage.getItem("tokenName")
+  peerAddress: `${tokenConfig[curToken][net].peer.address}:${tokenConfig[curToken][net].peer.port}`,
+  coinName: localStorage.getItem("tokenName")
 }
 
 export default config
