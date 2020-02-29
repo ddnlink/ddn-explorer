@@ -1,23 +1,24 @@
-.pageWrap{
+.pageWrap {
     margin: 0 auto;
     padding: 20px 80px;
     max-width: 1380px;
-    width:100%;
+    width: 100%;
     height: 100%;
-  }
+}
+
 .address {
-    width : 70%;
+    width: 70%;
     margin: 0 auto;
 }
 
 .nav {
-    font-size  : 25px;
+    font-size: 25px;
     font-weight: bold;
-    height     : 50px;
-    width      : 100%;
+    height: 50px;
+    width: 100%;
     ;
     line-height: 50px;
-    background : #e9e9e9;
+    background: #e9e9e9;
 
     .nav_h {
         color: #108ee9;
@@ -25,60 +26,89 @@
 
 }
 
+tr:nth-child(odd) {
+    background: #F7FAFF;
+}
+
+tr:nth-child(even) {
+    background: #FFFFFF;
+}
+
+
 .accountHead {
-    display    : flex;
+    display: flex;
     align-items: center;
-    height     : auto;
-    width      : 100%;
+    height: auto;
+    width: 100%;
 
     .accountForm {
         flex: 1;
 
+        tr {
+            height: 70px;
+        }
+
         .accountTable {
-            border-left : none;
+            border-left: none;
             border-right: none;
-            font-size   : 12px;
+            font-size: 12px;
 
             .col_one {
-                height      : 40px;
-                text-indent : 1em;
-                border-left : none;
+                height: 40px;
+                border-left: none;
                 border-right: none;
+
+                width: 15%;
+                text-indent: 1em;
+                font-family: Microsoft YaHei;
+                font-size: 16px;
+                font-weight: bold;
+                font-style: normal;
+                line-height: 22px;
+                color: rgba(0, 22, 42, 0.6);
+                align-items: center;
+                text-align: left;
             }
 
             .col_two {
-                position      : relative;
-                text-align    : right;
-                line-height   : 40px;
+                //position: relative;
+                line-height: 40px;
                 /* text-indent: 1em; */
-                border-left   : none;
-                border-right  : none;
+                border-left: none;
+                border-right: none;
+
+                width: 85%;
+                text-align: left;
+                text-indent: 1em;
+                padding-right: 10px;
+                font-size: 16px;
+                word-break: break-all;
 
                 .unit {
-                    margin     : 0 10px 0 20px;
+                    margin: 0 10px 0 20px;
                     font-weight: 600;
                 }
 
                 div img {
-                    width     : 32px;
-                    height    : 32px;
+                    width: 32px;
+                    height: 32px;
                     margin-top: 9px;
                 }
             }
+        }
 
-            tr td {
-                border-collapse: collapse;
-            }
+        tr td {
+            border-collapse: collapse;
         }
     }
 }
 
 .accountScan {
-    height      : 200px;
-    max-width   : 200px;
-    min-width   : 180px;
-    text-align  : center;
-    padding     : 10px 10px 0;
+    height: 200px;
+    max-width: 200px;
+    min-width: 180px;
+    text-align: center;
+    padding: 10px 10px 0;
     margin-right: 10px;
 
     .qrImg {
@@ -87,48 +117,63 @@
     }
 
     .qrdesc {
-        min-width : 180px;
-        max-width : 200px;
-        font-size : 14px;
+        min-width: 180px;
+        max-width: 200px;
+        font-size: 14px;
         margin-top: -15px;
     }
 }
 
 .iconButton {
-    width      : 40px;
-    height     : 40px;
-    padding    : 10px;
+    width: 40px;
+    height: 40px;
+    padding: 10px;
     margin-left: 20px;
-    font-size  : 16px;
-    cursor     : pointer;
+    font-size: 16px;
+    cursor: pointer;
+
+    color: #108EE9;
+    border-radius: 0.2px;
 }
 
 .trans_title {
-    margin : 20px 0;
-    width  : 100%;
+    margin: 20px 0;
+    width: 100%;
     display: flex;
 
     .radioGroup {
-        width    : 100%;
-        display  : flex;
+        width: 100%;
+        display: flex;
         font-size: 12px;
 
         .radio {
-            flex       : 1;
-            text-align : center;
-            height     : 40px;
+            flex: 1;
+            text-align: center;
+            height: 40px;
             line-height: 40px;
-            background : #f5f5f5;
+            background: #f5f5f5;
         }
     }
 }
 
 .trans_t {
-    flex        : 1;
-    background  : #e9e9e9;
-    font-size   : 12px;
-    height      : 40px;
-    line-height : 40px;
+    flex: 1;
+    background: #e9e9e9;
+    font-size: 12px;
+    height: 40px;
+    line-height: 40px;
     border-right: 1px solid white;
-    text-align  : center;
+    text-align: center;
+}
+
+.cardText {
+    font-family: Microsoft YaHei;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 26px;
+    align-items: center;
+
+    /* themeblack */
+    color: #00162A;
 }

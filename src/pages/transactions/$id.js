@@ -3,7 +3,7 @@ import { formatMessage } from 'umi-plugin-locale';
 import utils_slots from "../../utils/slots"
 import styles from "./id.less";
 import moment from "moment"
-import { message, Card } from 'antd'
+import { message, Card,Icon} from 'antd'
 import { connect } from 'dva';
 import Cnf from "../../utils/config"
 @connect(({ transaction }) => ({
@@ -52,10 +52,12 @@ class TransactionDetial extends Component {
     }
     return (
       <div className={styles.pageWrap}>
-        <Card title={<div style={{marginLeft:"20%"}}>
-          <span>{formatMessage({ id: "trs.trs_detail" })}</span>
-          <span> # {data.transaction.id}</span>
-        </div>}>
+        <Card title={
+          <div className={styles.cardText}>
+            <Icon className={styles['icon']} type="transaction" />
+            {formatMessage({ id: "trs.trs_detail" })}
+          </div>
+        }>
           <div className={styles["content"]}>
             <div className={styles["content_d"]}>
               <span className={styles["col_one"]}>{formatMessage({ id: "trs.height" })}</span>

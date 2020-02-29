@@ -1,19 +1,101 @@
 import React, { Component } from 'react';
 import { Table ,message} from 'antd';
-import 'whatwg-fetch'
+import 'whatwg-fetch';
 import qs from 'qs'
 // import {I18n} from 'react-i18nify'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import { formatMessage } from 'umi-plugin-locale';
-import './TransactionHistory.less'
-import Cnf from "../../utils/config"
-import moment from "moment"
-import { connect } from 'dva'
-import utils_slots from "../../utils/slots"
-import LimitText from "../../component/LimitText"
+import Styles from './TransactionHistory.less';
+import Cnf from "../../utils/config";
+import moment from "moment";
+import { connect } from 'dva';
+import utils_slots from "../../utils/slots";
+import LimitText from "../../component/LimitText";
+//import { style } from 'd3';
 // let Cnf = {}
 // Cnf.coinName = 'EOK'
-const columns = (self) => [
+const columns = self => [
+  {
+    title: formatMessage({ id: "trs.id" }),
+    dataIndex: "id",
+    ellipsis:true,
+    sorter: false,
+    width: "14%",
+    render: text => <LimitText title={text} link="/transactions/" />
+  },
+  {
+    title: formatMessage({ id: "trs.type" }),
+    dataIndex: "type",
+    sorter: false,
+    width: "9%",
+    render: text => formatMessage({ id: "types." + text })
+  },
+  {
+    title: formatMessage({ id: "trs.senderId" }),
+    dataIndex: "senderId",
+    ellipsis:true,
+    sorter: false,
+    width: "15%",
+    render: text => <LimitText link="/accounts/" title={text} target="_blank" />
+  },
+  {
+    title: formatMessage({ id: "trs.recipientId" }),
+    dataIndex: "recipientId",
+    ellipsis:true,
+    sorter: false,
+    width: "15%",
+    render: (text) => {
+      let str = text;
+      if (str) {
+        let arr = str.split("|");
+        return (
+          <div>
+            {arr.map((item, index) => <div key={index}><LimitText target="_blank" title={item} link="/accounts/" /></div>)}
+          </div>
+        )
+      } else {
+        return (<span></span>)
+      }
+    }
+  },
+  {
+    title: formatMessage({ id: "trs.amount" }) + `(${Cnf.coinName})`,
+    dataIndex: "amount",
+    sorter: false,
+    width: "12%",
+    render: text => `${text / 100000000.0}`
+  },
+  {
+    title: formatMessage({ id: "trs.fee" }) + `(${Cnf.coinName})`,
+    dataIndex: "fee",
+    sorter: false,
+    width: "11%",
+    render: text => `${text / 100000000.0}`
+  },
+  {
+    title: formatMessage({ id: "trs.height" }),
+    dataIndex: "height",
+    sorter: false,
+    width: "9%",
+    render: text => (
+      <Link to={"/blocks/" + text} target="_blank">
+        {text}
+      </Link>
+    )
+  },
+  {
+    title: formatMessage({ id: "trs.timestamp" }),
+    dataIndex: "timestamp",
+    width: "12%",
+    render: text => {
+      let timeStamp = new Date().getTime();
+      let leftTime = timeStamp - utils_slots.getRealTime(Number(text));
+      return utils_slots.formatDuring(leftTime);
+    },
+  }
+];
+
+/*const columns = (self) => [
   {
     title: formatMessage({ id: 'trs.id' }),
     dataIndex: 'id',
@@ -77,7 +159,7 @@ const columns = (self) => [
     width: "15%",
     render: text => moment(utils_slots.getRealTime(Number(text))).format('YYYY-MM-DD HH:mm:ss')
   }
-];
+];*/
 
 @connect(({ transaction }) => ({
   transaction
@@ -239,6 +321,13 @@ const columns = (self) => [
         pagination={pagination}
         loading={this.state.loading}
         onChange={this.handleTableChange}
+        rowClassName={(record,index)=>{
+          if(index%2==0){
+            return Styles.tabRowD;
+          }
+          return Styles.tabRowS;
+        }
+      }
       />
     );
   }

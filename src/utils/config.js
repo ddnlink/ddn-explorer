@@ -1,5 +1,5 @@
 const curToken = 'ddn' // eok, sail, lims
-const net = 'testnet'  // mainnet, testnet
+const net = 'mainnet'  // mainnet, testnet
 
 const tokenConfig = {
   ddn: {

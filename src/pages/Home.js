@@ -18,24 +18,27 @@ import HeightCount from '../component/HeightCount'
 let beginEpochTime = utils_slots.beginEpochTime();
 let initTimestamp = beginEpochTime.valueOf();
 console.log(initTimestamp, '**********6666');
+
 const transColumns = self => [
   {
     title: formatMessage({ id: "trs.id" }),
     dataIndex: "id",
+    ellipsis:true,
     sorter: false,
-    width: "15%",
+    width: "14%",
     render: text => <LimitText title={text} link="/transactions/" />
   },
   {
     title: formatMessage({ id: "trs.type" }),
     dataIndex: "type",
     sorter: false,
-    width: "8%",
+    width: "9%",
     render: text => formatMessage({ id: "types." + text })
   },
   {
     title: formatMessage({ id: "trs.senderId" }),
     dataIndex: "senderId",
+    ellipsis:true,
     sorter: false,
     width: "15%",
     render: text => <LimitText link="/accounts/" title={text} target="_blank" />
@@ -43,6 +46,7 @@ const transColumns = self => [
   {
     title: formatMessage({ id: "trs.recipientId" }),
     dataIndex: "recipientId",
+    ellipsis:true,
     sorter: false,
     width: "15%",
     render: (text) => {
@@ -63,21 +67,21 @@ const transColumns = self => [
     title: formatMessage({ id: "trs.amount" }) + `(${Cnf.coinName})`,
     dataIndex: "amount",
     sorter: false,
-    width: "6%",
+    width: "12%",
     render: text => `${text / 100000000.0}`
   },
   {
     title: formatMessage({ id: "trs.fee" }) + `(${Cnf.coinName})`,
     dataIndex: "fee",
     sorter: false,
-    width: "6%",
+    width: "11%",
     render: text => `${text / 100000000.0}`
   },
   {
     title: formatMessage({ id: "trs.height" }),
     dataIndex: "height",
     sorter: false,
-    width: "10%",
+    width: "9%",
     render: text => (
       <Link to={"/blocks/" + text} target="_blank">
         {text}
@@ -100,6 +104,7 @@ const blockColumns = self => [
   {
     title: formatMessage({ id: "block.id" }),
     dataIndex: "id",
+    ellipsis:true,
     sorter: false,
     width: "15%",
     render: text => <LimitText title={text} />
@@ -108,7 +113,7 @@ const blockColumns = self => [
     title: formatMessage({ id: "block.height" }),
     dataIndex: "height",
     sorter: false,
-    width: "10%",
+    width: "9%",
     render: (text) => {
       return (
         <Link to={"/blocks/" + text} target="_blank">
@@ -121,13 +126,13 @@ const blockColumns = self => [
     title: formatMessage({ id: "block.numberOfTransactions" }),
     dataIndex: "numberOfTransactions",
     sorter: false,
-    width: "10%"
+    width: "8%"
   },
   {
     title: formatMessage({ id: "block.reward" }) + `(${Cnf.coinName})`,
     dataIndex: "reward",
     sorter: false,
-    width: "10%",
+    width: "13%",
     render: (text, record, index) => {
       return Math.floor(Number(record.reward) / 100000000)
     }
@@ -136,7 +141,7 @@ const blockColumns = self => [
     title: formatMessage({ id: "block.totalAmount" }) + `(${Cnf.coinName})`,
     dataIndex: "totalAmount",
     sorter: false,
-    width: "10%",
+    width: "12%",
     render: text => {
       return Math.floor(Number(text) / 100000000)
     }
@@ -145,20 +150,21 @@ const blockColumns = self => [
     title: formatMessage({ id: "block.totalFee" }) + `(${Cnf.coinName})`,
     dataIndex: "totalFee",
     sorter: false,
-    width: "10%",
+    width: "12%",
     render: text => `${text / 100000000.0}`
   },
   {
-    title: formatMessage({ id: "block.generatorId"}),
+    title: formatMessage({ id: "block.generatorId" }),
     dataIndex: "generatorId",
+    ellipsis:true,
     sorter: false,
-    width: "15%",
+    width: "16%",
     render: text => <LimitText link="/accounts/" title={text} target="_blank" length={15} />
   },
   {
     title: formatMessage({ id: "block.timestamp" }),
     dataIndex: "timestamp",
-    width: "15%",
+    width: "12%",
     render: text => {
       let timeStamp = new Date().getTime();
       let leftTime = timeStamp - utils_slots.getRealTime(Number(text));
@@ -173,6 +179,7 @@ const blockColumns = self => [
   global,
   peers,
 }))
+
 class Home extends Component {
   state = {
     blockLoading: false,
@@ -381,7 +388,7 @@ class Home extends Component {
             <div className={styles['pannel']}>
               <Icon className={styles['icon']} type="user" />
               <div className={styles['ptitle']}>{formatMessage({ id: 'home.tokenAmount' })}</div>
-              <div className={styles['number']}>{global.status.supply/100000000}</div>
+              <div className={styles['number']}>{global.status.supply / 100000000}</div>
             </div>
             <div className={styles.pannel}>
               <div className='icon-wrap'>
@@ -419,17 +426,25 @@ class Home extends Component {
               </div>
             </div>
           </Card>
+
           <div style={{ minHeight: '500px' }}>
+
             <div className={styles['lastest']} >
               <Card
-                title={<div><Icon className={styles['icon']} type="transaction" />{formatMessage({ id: 'home.latest_transactions' })}</div>}
-                actions={[
-                  <div>
+                title={
+                  <div className={styles.cardText}>
+                    <Icon className={styles['icon']} type="transaction" />
+                    {formatMessage({ id: 'home.latest_transactions' })}
+                  </div>
+                }
+                extra={
+                  <div className={styles['moreText']} >
                     <Link onClick={this.more.bind(this, '3')} to="/transactions">
-                      + {formatMessage({ id: 'home.more' })}
+                      查看{formatMessage({ id: 'home.more' })}
                     </Link>
-                  </div>,
-                ]}
+                    <Icon style={{ marginTop: '1px' }} type="right" />
+                  </div>
+                }
               >
                 <Table
                   columns={transColumns(this)}
@@ -438,21 +453,34 @@ class Home extends Component {
                   rowKey={record => record.id}
                   dataSource={transaction.data.latestTrans.transactions}
                   loading={tansLoading}
-                  rowClassName={this.rowClassName}
+                  rowClassName={(record,index)=>{
+                    if(index%2!=0){
+                    return styles.tabRowS;
+                    }
+                    return styles.tabRowD;
+                    }
+                  }
                   style={{ minHeight: '294px' }}
                 />
               </Card>
             </div>
+
             <div className={styles['lastest']} id="ddd" >
               <Card
-                title={<div><Icon className={styles['icon']} type="codepen" />{formatMessage({ id: 'home.latest_blocks' })}</div>} // {formatMessage({ id: 'home.latest_blocks' })}
-                actions={[
-                  <div className={styles['tableTitleR']}>
-                    <Link to="/blocks" onClick={this.more.bind(this, '2')}>
-                      + {formatMessage({ id: 'home.more' })}
+                title={
+                  <div className={styles.cardText}>
+                    <Icon className={styles['icon']} type="codepen" />
+                    {formatMessage({ id: 'home.latest_blocks' })}
+                  </div>
+                }
+                extra={
+                  <div className={styles['moreText']} >
+                    <Link onClick={this.more.bind(this, '2')} to="/blocks">
+                      查看{formatMessage({ id: 'home.more' })}
                     </Link>
-                  </div>,
-                ]}
+                    <Icon style={{ marginTop: '1px' }} type="right" />
+                  </div>
+                }
               >
                 <Table
                   columns={blockColumns(this)}
@@ -461,11 +489,12 @@ class Home extends Component {
                   rowKey={record => record.height}
                   dataSource={block.data.latestBlocks.blocks}
                   loading={blockLoading}
-                  rowClassName={this.rowClassName}
+                  rowClassName={styles.tabRow}
                   style={{ minHeight: '294px' }}
                 />
               </Card>
             </div>
+
           </div>
           {/* <div
             className={styles['lastest']}
