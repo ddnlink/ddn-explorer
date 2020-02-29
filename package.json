@@ -1,9 +1,31 @@
 {
-  "private": true,
+  "name": "ddn-explorer",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ddnlink/ddn-explorer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ddnlink/ddn-explorer/issues"
+  },
+  "homepage": "https://github.com/ddnlink/ddn-explorer#readme",
+  "keywords": [
+    "ddn",
+    "blockchain",
+    "bitcoin",
+    "node.js",
+    "web",
+    "server",
+    "explorer",
+    "crypto",
+    "cryptography",
+    "encryption"
+  ],
+  "author": "DDN <support@ddn.link>",
+  "license": "MIT",
   "scripts": {
     "start": "umi dev",
     "build": "umi build",
-    "deploy": "npx fly prod:prod --flightplan ./deploy/flightplan.js",
     "test": "umi test",
     "lint": "eslint --ext .js src mock tests",
     "precommit": "lint-staged"
