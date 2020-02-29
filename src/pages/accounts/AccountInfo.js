@@ -146,6 +146,18 @@ class AccountInfo extends Component {
                   </td>
                 </tr>
                 <tr>
+                  <td className={styles["col_one"]}>{formatMessage({ id: 'account.aaa' })}</td>
+                  <td className={styles["col_two"]}>
+                    <span className={styles["unit"]}>{data.account.lockHeight}</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td className={styles["col_one"]}>{formatMessage({ id: 'account.bbb' })}</td>
+                  <td className={styles["col_two"]}>
+                    <span className={styles["unit"]}>{data.account.lockHeight}</span>
+                  </td>
+                </tr>
+                <tr>
                   <td className={styles["col_one"]}>{formatMessage({ id: 'account.publicKey' })}</td>
                   <td className={styles["col_two"]}>
                     <span id="publicKeyCopy">{data.account.publicKey}</span>

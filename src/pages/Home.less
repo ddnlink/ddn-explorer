@@ -2,27 +2,32 @@
   flex: 10;
   width: 100%;
   border-radius: 5px;
+
   .banner {
     // background-color: @primary-color;
     height: 320px;
     position: relative;
     flex: 3;
-    .bgImageWrap{
+
+    .bgImageWrap {
       width: 100%;
       height: 320px;
       background-color: @light-primary-color;
-      .bgImage{
+
+      .bgImage {
         width: 100%;
         height: 320px;
       }
     }
-    .height{
+
+    .height {
       position: absolute;
       top: 0;
       width: 100%;
       /* margin: 0 auto; */
       padding: 30px;
       text-align: center;
+
       .heightTitle {
         height: 40px;
         width: 300px;
@@ -32,41 +37,47 @@
         border-radius: 20px;
         background-color: #fdefda;
       }
+
       .heightCard {
         font-size: 24px;
         margin-left: 20px;
       }
     }
   }
+
   .subBanner {
     width: 100%;
     height: 140px;
     background-color: @transparent-primary-color;
     color: @dark-primary-color;
-    .subWrap{
+
+    .subWrap {
       margin: 0 auto;
       display: flex;
       justify-content: center;
     }
   }
-  .pageWrap{
+
+  .pageWrap {
     padding: 20px 80px;
     max-width: 1360px;
     margin: 0 auto;
   }
+
   .chartWrap {
     width: 100%;
     display: flex;
     height: 380px;
-    .pieWrap{
+
+    .pieWrap {
       padding: 20px 0;
     }
+
     .Curved {
       width: 100%;
       padding: 10px;
     }
   }
-
 
   .icon {
     margin-right: 10px;
@@ -76,6 +87,52 @@
     border-radius: 20px;
     padding: 10px;
     font-size: 20px;
+  }
+
+  .cardText {
+    font-family: Microsoft YaHei;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 26px;
+    align-items: center;
+
+    /* themeblack */
+    color: #00162A;
+  }
+
+  .moreText {
+    font-family: Microsoft YaHei;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 21px;
+    display: flex;
+    align-items: center;
+
+    /* Theme-color */
+    color: #108EE9;
+  }
+
+  .tabRowS {
+    font-family: Microsoft YaHei;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 22px;
+    align-items: center;
+    color: #00162A;
+    background: #F7FAFF;
+  }
+
+  .tabRowD {
+    font-family: Microsoft YaHei;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 22px;
+    align-items: center;
+    color: #00162A;
   }
 
   /*********************/
@@ -95,6 +152,7 @@
     height: 100px;
     border-top: 5px solid @dark-primary-color;
     box-shadow: 2px 1px 3px #607D8B;
+
     .ptitle {
       font-size: 24px;
     }
@@ -118,16 +176,38 @@
 .ant-card-actions {
   margin-top: 50px;
 }
+
+:global(.ant-table-thead>tr>th) {
+  font-family: Microsoft YaHei;
+  font-size: 16px;
+  font-weight: bold;
+  font-style: normal;
+  line-height: 22px;
+  height: 70px;
+
+  text-align: left;
+  background: #F2F4F5;
+  border-bottom: 1px solid #e8e8e8;
+  transition: background 0.3s ease;
+  align-items: center;
+  color: rgba(0, 22, 42, 0.6);
+}
+
+:global(.ant-table-row) {
+  height: 70px;
+}
+
 .title_main {
   font-size: @font-size-base;
   color: @text-color;
 }
+
 .text_secondary {
   font-size: @font-size-secondary;
   color: @text-color-secondary;
 }
+
 .flipNumberStyle {
   font-size: large;
   color: @text-color-secondary;
 }
-
