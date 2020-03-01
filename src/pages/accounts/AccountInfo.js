@@ -146,15 +146,15 @@ class AccountInfo extends Component {
                   </td>
                 </tr>
                 <tr>
-                  <td className={styles["col_one"]}>{formatMessage({ id: 'account.aaa' })}</td>
+                  <td className={styles["col_one"]}>{formatMessage({ id: 'account.balance' })}</td>
                   <td className={styles["col_two"]}>
-                    <span className={styles["unit"]}>{data.account.lockHeight}</span>
+                    <span className={styles["unit"]}>{data.account.balance}</span>
                   </td>
                 </tr>
                 <tr>
-                  <td className={styles["col_one"]}>{formatMessage({ id: 'account.bbb' })}</td>
+                  <td className={styles["col_one"]}>{formatMessage({ id: 'account.unconfirmedBalance' })}</td>
                   <td className={styles["col_two"]}>
-                    <span className={styles["unit"]}>{data.account.lockHeight}</span>
+                    <span className={styles["unit"]}>{data.account.unconfirmedBalance}</span>
                   </td>
                 </tr>
                 <tr>

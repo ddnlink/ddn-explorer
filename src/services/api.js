@@ -82,6 +82,12 @@ export async function queryAsset(params) {
   return request(`/api/aob/balances/${params.address}`);
 }
 
+/**获取aob资产列表 */
+export async function queryAobs(params) {
+  console.log('这是资产列表', params.queryStatus);
+  return request(`/api/aobasset/list${params}`);
+}
+
 /**获取账户列表 */
 export async function queryAccountsList(params) {
   return request(`/api/accounts/top?${stringify(params)}`);

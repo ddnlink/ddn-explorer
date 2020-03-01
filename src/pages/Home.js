@@ -23,7 +23,7 @@ const transColumns = self => [
   {
     title: formatMessage({ id: "trs.id" }),
     dataIndex: "id",
-    ellipsis:true,
+    ellipsis: true,
     sorter: false,
     width: "14%",
     render: text => <LimitText title={text} link="/transactions/" />
@@ -38,7 +38,7 @@ const transColumns = self => [
   {
     title: formatMessage({ id: "trs.senderId" }),
     dataIndex: "senderId",
-    ellipsis:true,
+    ellipsis: true,
     sorter: false,
     width: "15%",
     render: text => <LimitText link="/accounts/" title={text} target="_blank" />
@@ -46,7 +46,7 @@ const transColumns = self => [
   {
     title: formatMessage({ id: "trs.recipientId" }),
     dataIndex: "recipientId",
-    ellipsis:true,
+    ellipsis: true,
     sorter: false,
     width: "15%",
     render: (text) => {
@@ -104,7 +104,7 @@ const blockColumns = self => [
   {
     title: formatMessage({ id: "block.id" }),
     dataIndex: "id",
-    ellipsis:true,
+    ellipsis: true,
     sorter: false,
     width: "15%",
     render: text => <LimitText title={text} />
@@ -156,7 +156,7 @@ const blockColumns = self => [
   {
     title: formatMessage({ id: "block.generatorId" }),
     dataIndex: "generatorId",
-    ellipsis:true,
+    ellipsis: true,
     sorter: false,
     width: "16%",
     render: text => <LimitText link="/accounts/" title={text} target="_blank" length={15} />
@@ -173,11 +173,12 @@ const blockColumns = self => [
   }
 ];
 
-@connect(({ global, peers, block, transaction }) => ({
+@connect(({ global, peers, block, transaction, aob }) => ({
   block,
   transaction,
   global,
   peers,
+  aob,
 }))
 
 class Home extends Component {
@@ -198,6 +199,7 @@ class Home extends Component {
     this.getAccountsNum();
     this.getTimeData();
     this.getPeers();
+    this.getAobs();
     // this.getCurveData(); //获取一周内的交易记录
     // this.getPercentByType(); // 获取存证类型占比图
     // this.generateBackImg()
@@ -292,6 +294,24 @@ class Home extends Component {
       },
     });
   };
+  getAobs = async (params = {}) => {
+    this.setState({ blockLoading: true });
+    this.props.dispatch({
+      type: 'aob/getAobsList',
+      payload: {
+        ...params,
+      },
+      callback: res => {
+        if (res.success !== true) {
+          message.error(res.error);
+        }
+        this.setState({
+          blockLoading: false,
+        });
+      },
+    });
+  };
+
   /**求过去一周的数据 */
   getCurveData = async (params = {}) => {
     this.props.dispatch({
@@ -453,12 +473,12 @@ class Home extends Component {
                   rowKey={record => record.id}
                   dataSource={transaction.data.latestTrans.transactions}
                   loading={tansLoading}
-                  rowClassName={(record,index)=>{
-                    if(index%2!=0){
-                    return styles.tabRowS;
+                  rowClassName={(record, index) => {
+                    if (index % 2 == 0) {
+                      return styles.tabRow;
                     }
-                    return styles.tabRowD;
-                    }
+                    return styles.tabRowB;
+                  }
                   }
                   style={{ minHeight: '294px' }}
                 />
@@ -489,7 +509,14 @@ class Home extends Component {
                   rowKey={record => record.height}
                   dataSource={block.data.latestBlocks.blocks}
                   loading={blockLoading}
-                  rowClassName={styles.tabRow}
+                  rowClassName={(record, index) => {
+                    if (index % 2 == 0) {
+                      console.log("Index的值：" + { index });
+                      return styles.tabRow;
+                    }
+                    return styles.tabRowB;
+                  }
+                  }
                   style={{ minHeight: '294px' }}
                 />
               </Card>
