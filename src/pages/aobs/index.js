@@ -8,52 +8,57 @@ import { connect } from 'dva';
 import Cnf from "../../utils/config"
 import utils_slots from "../../utils/slots";
 import LimitText from '../../component/LimitText';
-import moment from "moment"
+import moment from "moment";
 
 const columns = self => [
     {
-        title: formatMessage({ id: "aob.name" }),
+        title: formatMessage({ id: "资产名称" }),
         dataIndex: "name",
         sorter: false,
-        width: "10%",
+        width: "18%",
         render: (text, record, index) => {
             return (
-                <Link to={"/aobs/" + text} target="_blank">
+                <Link to={'/aobs/:aobInfo?documentQuery=${this.props.location.query.documentQuery}'}>{text}</Link>
+                /*<Link to={{
+                    pathname: '/aobs/:aobInfo',
+                    query: 'DDN',
+                }} target="_blank" >
                     {text}
-                </Link>
+                </Link >*/
             );
         }
     },
     {
-        title: formatMessage({ id: "aob.numberOfTransactions" }),
-        dataIndex: "fxs",
+        title: formatMessage({ id: "发行商" }),
+        dataIndex: "issuer_name",
         sorter: false,
-        width: "9%"
+        width: "17%"
     },
     {
-        title: formatMessage({ id: "aob.confirmations" }),
-        dataIndex: "fxsx",
+        title: formatMessage({ id: "发行上限" }),
+        dataIndex: "maximum",
         sorter: false,
-        width: "9%"
+        width: "18%",
+        render: text => <LimitText link="/accounts/" title={text} length={15} target="_blank" />
     },
     {
-        title: formatMessage({ id: "aob.generatorId" }),
-        dataIndex: "yfx",
+        title: formatMessage({ id: "已发行" }),
+        dataIndex: "quantity",
         ellipsis: true,
         sorter: false,
         width: "17%",
         render: text => <LimitText link="/accounts/" title={text} length={15} target="_blank" />
     },
     {
-        title: formatMessage({ id: "aob.confirmations" }),
-        dataIndex: "jd",
+        title: formatMessage({ id: "精度" }),
+        dataIndex: "precision",
         sorter: false,
-        width: "9%"
+        width: "16%"
     },
     {
-        title: formatMessage({ id: "aob.timestamp" }),
+        title: formatMessage({ id: "发行时间" }),
         dataIndex: "timestamp",
-        width: "18%",
+        width: "14%",
         render: text =>
             `${moment(utils_slots.getRealTime(Number(text))).format('YYYY-MM-DD HH:mm:ss')}`
     }
@@ -61,28 +66,58 @@ const columns = self => [
 
 const data = [
     {
-        name: "1",
-        fxs: "4234",
-        fxsx: "435",
-        yfx: "646",
-        jd: "56",
-        timestam: "653",
+        name: "EOK",
+        issuer_name: "EOK官方发行商",
+        maximum: "10000000000",
+        quantity: "50000000",
+        precision: "19.9",
+        timestam: "2020-03-02 1800234453",
     },
     {
-        name: "2",
-        fxs: "3532",
-        fxsx: "656",
-        yfx: "75",
-        jd: "865",
-        timestam: "345",
+        name: "DDN",
+        issuer_name: "DDN区块链中国",
+        maximum: "1000000000000",
+        quantity: "3000000000",
+        precision: "19.9",
+        timestam: "2020-03-02 1800234453",
     },
+    {
+        name: "BTC",
+        issuer_name: "BTC中国",
+        maximum: "21000000",
+        quantity: "15000000",
+        precision: "1.9",
+        timestam: "2020-03-02 1800234453",
+    },
+    {
+        name: "ETH",
+        issuer_name: "ETH官方发行商",
+        maximum: "3000000000",
+        quantity: "2330000000",
+        precision: "8.9",
+        timestam: "2020-03-02 1800234453",
+
+    },
+    {
+        name: "RMB",
+        issuer_name: "中国人民银行",
+        maximum: "999999999999999999999999999999999999999",
+        quantity: "99999999999999999999999990000000",
+        precision: "0.9",
+        timestam: "2020-03-02 1800234453",
+    }
 ];
 
-@connect(({ aob }) => ({
-    aob
+@connect(({ aob, global }) => ({
+    aob,
+    global
 }))
 
 class AobView extends Component {
+    constructor(...args) {
+        super(...args);
+    }
+
     state = {
 
         loading: false,
@@ -90,29 +125,34 @@ class AobView extends Component {
     };
 
     componentDidMount() {
-        this.getBlocks({ offset: 0, limit: 10, orderBy: "height:desc" });
+        //this.getAobs({ offset: 0, limit: 10, orderBy: "aob:desc" });
+        console.log("八戒死了！");
     }
 
     handleTableChange = (pagination, filters, sorter) => {
-        this.getBlocks({
+        this.getAobs({
             current: pagination.current,
             limit: pagination.pageSize,
             offset: (pagination.current - 1) * pagination.pageSize,
-            orderBy: "height:desc"
+            orderBy: "aob:desc"
         });
+        console.log("悟空来也！");
+
     };
 
-    getBlocks = async (params = {}) => {
+    getAobs = async (params = {}) => {
         this.setState({ loading: true });
         this.props.dispatch({
-            type: 'block/getBlocksList',
+            type: 'aob/getAobsList',
             payload: {
                 ...params
             },
             callback: (res) => {
                 if (res.success !== true) {
                     message.error(res.error)
+                } else {
                 }
+
                 this.setState({
                     loading: false,
                 });
@@ -122,24 +162,25 @@ class AobView extends Component {
 
     render() {
         const { aob } = this.props;
-        //const data = aob.data.latestBlocks.aob
-        //const pagination =aob.data.pagination;
+        console.log(aob);
+        //const data = aob.data.dataSource;
+        const pagination = aob.data.pagination;
 
         return (
-            <div>
+            <div className={styles.aobTable}>
                 <Card>
                     <Table
                         columns={columns(this)}
-                        rowKey={record => record.height}
+                        rowKey={record => record.name}
                         dataSource={data}
-                        //pagination={pagination}
+                        pagination={pagination}
                         loading={this.state.loading}
                         onChange={this.handleTableChange}
                         rowClassName={(record, index) => {
                             if (index % 2 != 0) {
-                                return styles.rowStyleB;
+                                return styles.row_StyleB;
                             }
-                            return styles.rowStyle;
+                            return styles.row_Style;
                         }
                         }
                     />

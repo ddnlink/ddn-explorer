@@ -284,7 +284,7 @@ class AppHeader extends Component {
               </Menu.Item>
               <Menu.Item key="8" className={styles.Menus_Item}>
                 <NavLink to="/aobs">
-                  {formatMessage({ id: "menu.aob" })}
+                  数字{formatMessage({ id: "menu.aob" })}
                 </NavLink>
               </Menu.Item> 
 

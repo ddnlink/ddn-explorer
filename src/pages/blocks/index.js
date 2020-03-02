@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Table, message, Card,Icon } from "antd";
+import { Table, message, Card, Icon } from "antd";
 import "whatwg-fetch";
 import { Link } from "react-router-dom";
 import moment from "moment"
@@ -65,7 +65,7 @@ const columns = self => [
   {
     title: formatMessage({ id: "block.generatorId" }),
     dataIndex: "generatorId",
-    ellipsis:true,
+    ellipsis: true,
     sorter: false,
     width: "17%",
     render: text => <LimitText link="/accounts/" title={text} length={15} target="_blank" />
@@ -134,12 +134,8 @@ class BlockView extends Component {
             pagination={pagination}
             loading={this.state.loading}
             onChange={this.handleTableChange}
-            rowClassName={(record,index)=>{
-              if(index%2!=0){
-                return styles.rowStyleB;
-              }
-              return styles.rowStyle;
-            }
+            rowClassName={(record, index) => 
+              index % 2 === 0 ? styles.tabRow : styles.tabRowB
             }
           />
         </Card>
