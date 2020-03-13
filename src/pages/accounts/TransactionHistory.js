@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table ,message} from 'antd';
+import { Table, message } from 'antd';
 import 'whatwg-fetch';
 import qs from 'qs'
 // import {I18n} from 'react-i18nify'
@@ -18,7 +18,7 @@ const columns = self => [
   {
     title: formatMessage({ id: "trs.id" }),
     dataIndex: "id",
-    ellipsis:true,
+    ellipsis: true,
     sorter: false,
     width: "14%",
     render: text => <LimitText title={text} link="/transactions/" />
@@ -33,7 +33,7 @@ const columns = self => [
   {
     title: formatMessage({ id: "trs.senderId" }),
     dataIndex: "senderId",
-    ellipsis:true,
+    ellipsis: true,
     sorter: false,
     width: "15%",
     render: text => <LimitText link="/accounts/" title={text} target="_blank" />
@@ -41,7 +41,7 @@ const columns = self => [
   {
     title: formatMessage({ id: "trs.recipientId" }),
     dataIndex: "recipientId",
-    ellipsis:true,
+    ellipsis: true,
     sorter: false,
     width: "15%",
     render: (text) => {
@@ -164,7 +164,7 @@ const columns = self => [
 @connect(({ transaction }) => ({
   transaction
 }))
- class TransactionHistory extends Component {
+class TransactionHistory extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -260,11 +260,11 @@ const columns = self => [
   }
   getBlocks = async (params = {}) => {
     //这里调用的接口为49...,上面调用的是perr....
-  let type=''
-       if (this.state.searchAddress) {
-      type='transaction/getTransByUser'
+    let type = ''
+    if (this.state.searchAddress) {
+      type = 'transaction/getTransByUser'
     } else {
-      type='transaction/getLatestTrans'
+      type = 'transaction/getLatestTrans'
     }
     this.setState({ loading: true });
     this.props.dispatch({
@@ -285,14 +285,14 @@ const columns = self => [
   };
 
   getCurrencyBlocks = async (query, role, currency) => {
-    let params={}
-    params.role=role
-    params.currency=currency
-    params.address=this.props.params.address
-    params.query=query
+    let params = {}
+    params.role = role
+    params.currency = currency
+    params.address = this.props.params.address
+    params.query = query
     this.setState({ loading: true });
     this.props.dispatch({
-      type:'transaction/getTransByMyAddress',
+      type: 'transaction/getTransByMyAddress',
       payload: {
         ...params
       },
@@ -309,10 +309,10 @@ const columns = self => [
   }
 
   render() {
-    const {transaction}=this.props
-    const data=transaction.data.latestTrans.transactions
-    const pagination=transaction.data.pagination
-    console.log('55555555555555',transaction,data,pagination)
+    const { transaction } = this.props
+    const data = transaction.data.latestTrans.transactions
+    const pagination = transaction.data.pagination
+    console.log('55555555555555', transaction, data, pagination)
     return (
       <Table
         columns={columns(this)}
@@ -321,13 +321,13 @@ const columns = self => [
         pagination={pagination}
         loading={this.state.loading}
         onChange={this.handleTableChange}
-        rowClassName={(record,index)=>{
-          if(index%2==0){
-            return Styles.tabRowD;
+        rowClassName={(record, index) => {
+          if (index % 2 == 0) {
+            return Styles.tabRow;
           }
-          return Styles.tabRowS;
+          return Styles.tabRowB;
         }
-      }
+        }
       />
     );
   }
