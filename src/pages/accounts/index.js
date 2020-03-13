@@ -36,7 +36,7 @@ const columns = (self) => [{
     dataIndex: 'publicKey',
     width: '30%',
     render: (text) => {
-        return <div>{text.slice(0,20) + '...'}</div>
+        return <div>{text && text.slice(0,20) + '...'}</div>
     }
 }, {
     title: formatMessage({ id: 'account.percent' }),

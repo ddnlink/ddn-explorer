@@ -35,8 +35,10 @@ const columns = (self) => [{
   sorter: false,
   width: '14%',
   render: (text) =>{ 
-    var str=text;
-    var arr=str.split('|');
+    let arr = []
+    if(text){
+      arr=text.split('|');
+    }
     return <div>
       {
         arr.map((item, index) => { return <div key={index}><LimitText link="/accounts/" target="_blank" title={item} length={15} /></div> })
