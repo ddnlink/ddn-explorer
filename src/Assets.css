@@ -1,0 +1,27 @@
+.detail-content {
+  width: 1000px;
+  margin: 0 auto;
+  padding: 30px 0 30px 0;
+}
+.cert-info {
+  width: 700px;
+  height: 987px;
+  background: white;
+  padding: 20px;
+  background-image: url('assets/images/cert_back.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.cert-item-lab {
+  margin-left: 100px;
+  color: #999999;
+  font-size: 14px;
+}
+.cert-item-data {
+  margin: 2px 0px 20px 100px;
+  color: #666666;
+  font-size: 14px;
+}
+.inline-div {
+  display: inline;
+}
