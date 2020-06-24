@@ -12,6 +12,7 @@
 /dist
 /deploy
 /config/deploy
+/build
 
 # misc
 .DS_Store

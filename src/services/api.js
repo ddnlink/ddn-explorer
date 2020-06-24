@@ -56,6 +56,7 @@ export async function queryTransactions(params) {
   return request(`/api/transactions?${stringify(params)}`);
 }
 
+// fixme: 该接口已经取消
 /**根据用户获取交易列表 */
 export async function queryTransactionsByUser(params) {
   return request(`/api/getTransactionsByUser?${stringify(params)}`);
@@ -66,16 +67,20 @@ export async function queryTransactionsByMy(params) {
   const query = params.query
   return request(`/api/aob/transactions/my/${params.address}/${params.currency}?${stringify(query)}`);
 }
+// fixme end
+
 
 /**获取单个交易的详细信息 */
 export async function queryTransactionsGet(params) {
   return request(`/api/transactions/get?${stringify(params)}`);
 }
+
 /**获取账户信息 */
 export async function queryAccountDetail(params) {
   return request(`/api/accounts?${stringify(params)}`);
 }
 
+// fixme: 这是获取的什么呢？资产余额
 /**获取asset资产 */
 export async function queryAsset(params) {
   console.log('这是地址', params.address)
@@ -85,7 +90,7 @@ export async function queryAsset(params) {
 /**获取aob资产列表 */
 export async function queryAobs(params) {
   console.log('这是资产列表', params.queryStatus);
-  return request(`/api/aobasset/list${params}`);
+  return request(`/api/aob/assets/${params}`);
 }
 
 /**获取账户列表 */

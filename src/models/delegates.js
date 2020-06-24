@@ -15,7 +15,7 @@ export default {
     
         *getDelegates({ payload, callback }, { call, put }) {
             const response = yield call(queryDelegates, payload)
-            console.log('委托人列表', response.totalCount)
+            // console.log('委托人列表', response.totalCount)
             if (response.success === true) {
                 yield put({
                     type: 'delegates',

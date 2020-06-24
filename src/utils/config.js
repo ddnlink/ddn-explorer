@@ -11,12 +11,13 @@ const tokenConfig = {
         address: "peer.ddn.link"
       }
     },
+    // testnet.ddn.link
     testnet: {
       nethash: "0ab796cd",
-      beginEpochTime: new Date(Date.UTC(2020, 0, 12, 14, 28, 0, 0)),
+      beginEpochTime: new Date(Date.UTC(2017, 10, 20, 12, 20, 20, 20)), // 请修改为与节点一致的对应时间
       peer: {
         port: 8001,
-        address: "120.77.211.219"
+        address: "120.77.211.219" // "localhost" //
       },
     }
   },

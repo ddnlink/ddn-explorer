@@ -17,7 +17,7 @@ import HeightCount from '../component/HeightCount'
 // import Lizi from '../component/Lizi';
 let beginEpochTime = utils_slots.beginEpochTime();
 let initTimestamp = beginEpochTime.valueOf();
-console.log(initTimestamp, '**********6666');
+// console.log(initTimestamp, '**********6666');
 
 const transColumns = self => [
   {
@@ -139,7 +139,7 @@ const blockColumns = self => [
   },
   {
     title: formatMessage({ id: "block.totalAmount" }) + `(${Cnf.coinName})`,
-    dataIndex: "totalAmount",
+    dataIndex: "total_amount",
     sorter: false,
     width: "12%",
     render: text => {
@@ -148,14 +148,14 @@ const blockColumns = self => [
   },
   {
     title: formatMessage({ id: "block.totalFee" }) + `(${Cnf.coinName})`,
-    dataIndex: "totalFee",
+    dataIndex: "total_fee",
     sorter: false,
     width: "12%",
     render: text => `${text / 100000000.0}`
   },
   {
     title: formatMessage({ id: "block.generatorId" }),
-    dataIndex: "generatorId",
+    dataIndex: "generator_id",
     ellipsis: true,
     sorter: false,
     width: "16%",
@@ -218,7 +218,7 @@ class Home extends Component {
     });
   };
   getStatus = async () => {
-    console.log('请求getsSSttatuss');
+    // console.log('请求getsSSttatuss');
     this.props.dispatch({
       type: 'global/getStatus',
       callback: res => {
@@ -237,7 +237,7 @@ class Home extends Component {
     this.props.dispatch({
       type: 'block/queryAccountSum',
       callback: res => {
-        console.log('******************status', res);
+        // console.log('******************status', res);
         if (res.success !== true) {
           message.error(res.error);
         }
@@ -327,7 +327,7 @@ class Home extends Component {
     });
     // let url = `http://127.0.0.1:8001/api/transactions/spell`
     // const response = await fetch(url, {
-    //   method: 'get',
+    //   method: 'get', 
     //   headers: {
     //     "Content-Type": "application/json"
     //   },
@@ -430,22 +430,21 @@ class Home extends Component {
           </div>
         </div>
         <div className={styles.pageWrap}>
-          <Card>
-            <div className={styles.chartWrap}>
-              <div className={styles.Curved} style={{ textAlign: 'center' }}>
-                <div className={styles['title_main']}>
-                  {formatMessage({ id: 'home.aweek_title' })}
-                </div>
-                {curveData.length === 0 ? (
+          {curveData.length !== 0 && 
+            <Card>
+              <div className={styles.chartWrap}>
+                <div className={styles.Curved} style={{ textAlign: 'center' }}>
+                  <div className={styles['title_main']}>
+                    {formatMessage({ id: 'home.aweek_title' })}
+                  </div>
+
                   <div className={styles['text_secondary']} style={{ marginTop: '132px' }}>
                     {formatMessage({ id: 'home.no_data' })}
                   </div>
-                ) : (
-                    <Curved data={curveData} />
-                  )}
+                </div>
               </div>
-            </div>
-          </Card>
+            </Card>
+          }
 
           <div style={{ minHeight: '500px' }}>
 

@@ -7,10 +7,6 @@ English | [简体中文](./README_zh-CN.md)
 DDN Explorer is an front-end application for presenting the information and activity on the DDN blockchain.
 It is built upon Ant Design and react framework [UmiJS ](https://umijs.org/) 
 
-
-
-
-
 ## Getting Started
 
 ```bash

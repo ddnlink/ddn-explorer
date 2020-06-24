@@ -47,7 +47,7 @@ const columns = self => [
   },
   {
     title: formatMessage({ id: "block.totalAmount" }) + `(${Cnf.coinName})`,
-    dataIndex: "totalAmount",
+    dataIndex: "total_amount",
     sorter: false,
     width: "12%",
     render: text => {
@@ -56,7 +56,7 @@ const columns = self => [
   },
   {
     title: formatMessage({ id: "block.totalFee" }) + `(${Cnf.coinName})`,
-    dataIndex: "totalFee",
+    dataIndex: "total_fee",
     sorter: false,
     width: "12%",
     render: text => `${text / 100000000.0}`
@@ -64,7 +64,7 @@ const columns = self => [
 
   {
     title: formatMessage({ id: "block.generatorId" }),
-    dataIndex: "generatorId",
+    dataIndex: "generator_id",
     ellipsis: true,
     sorter: false,
     width: "17%",
