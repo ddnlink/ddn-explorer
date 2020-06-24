@@ -6,7 +6,7 @@ import { connect } from 'dva';
 import { formatMessage } from 'umi-plugin-locale';
 import GeoPattern from 'geopattern';
 import moment from 'moment';
-import Cnf from '../utils/config';
+import Cnf from '../config';
 import styles from './Home.less';
 import utils_slots from '../utils/slots';
 import LimitText from '../component/LimitText';
@@ -17,7 +17,6 @@ import HeightCount from '../component/HeightCount'
 // import Lizi from '../component/Lizi';
 let beginEpochTime = utils_slots.beginEpochTime();
 let initTimestamp = beginEpochTime.valueOf();
-// console.log(initTimestamp, '**********6666');
 
 const transColumns = self => [
   {

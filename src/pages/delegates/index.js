@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Table, message, Card } from 'antd';
 import 'whatwg-fetch'
 import { Link } from 'react-router-dom'
-import Cnf from "../../utils/config"
+import Cnf from "../../config"
 import { formatMessage } from 'umi-plugin-locale';
 import { connect } from 'dva'
 import styles from './index.less'

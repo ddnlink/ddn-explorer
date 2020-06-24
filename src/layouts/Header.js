@@ -4,7 +4,7 @@ import { Row, Col, Button, Input, Layout, Menu, Select, Icon, Dropdown } from "a
 import { formatMessage, setLocale, getLocale, FormattedMessage } from 'umi-plugin-locale';
 import moment from 'moment'
 import styles from "./css/Header.less"
-import config from "../utils/config"
+import config from "../config"
 import utils_crypto from "../utils/crypto"
 import { getTokenName } from "../utils/token"
 import en_US from "@/assets/images/lang/en_US.png"

@@ -3,7 +3,7 @@ import { Icon, message, Tabs, Card } from "antd"
 import copy from "copy-to-clipboard"
 import QRCode from 'qrcode'
 import { formatMessage } from 'umi-plugin-locale';
-import Cnf from "../../utils/config"
+import Cnf from "../../config"
 import styles from './address.less'
 import { connect } from 'dva'
 @connect(({ accounts }) => ({

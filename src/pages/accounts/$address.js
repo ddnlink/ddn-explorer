@@ -6,7 +6,7 @@ import TransactionHistory from "./TransactionHistory"
 import AccountInfo from "./AccountInfo"
 import { Radio, Card } from 'antd'
 import { connect } from 'dva'
-import Cnf from "../../utils/config"
+import Cnf from "../../config"
 
 const tabList = [
   {

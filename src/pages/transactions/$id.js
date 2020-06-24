@@ -5,7 +5,7 @@ import styles from "./id.less";
 import moment from "moment"
 import { message, Card,Icon} from 'antd'
 import { connect } from 'dva';
-import Cnf from "../../utils/config"
+import Cnf from "../../config"
 @connect(({ transaction }) => ({
   transaction
 }))

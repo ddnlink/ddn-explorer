@@ -6,7 +6,7 @@ import { Table, message, Card } from 'antd';
 import 'whatwg-fetch'
 import { formatMessage } from 'umi-plugin-locale';
 import { Link } from "react-router-dom"
-import Cnf from "../../utils/config"
+import Cnf from "../../config"
 import { connect } from 'dva';
 import styles from './index.less'
 

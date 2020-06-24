@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import moment from "moment"
 import { formatMessage } from 'umi-plugin-locale';
 import { connect } from 'dva';
-import Cnf from "../../utils/config"
+import Cnf from "../../config"
 import utils_slots from "../../utils/slots";
 import LimitText from '../../component/LimitText';
 

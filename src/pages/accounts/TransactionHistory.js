@@ -6,7 +6,7 @@ import qs from 'qs'
 import { Link } from 'react-router-dom';
 import { formatMessage } from 'umi-plugin-locale';
 import Styles from './TransactionHistory.less';
-import Cnf from "../../utils/config";
+import Cnf from "../../config";
 import moment from "moment";
 import { connect } from 'dva';
 import utils_slots from "../../utils/slots";

@@ -1,7 +1,7 @@
 import fetch from 'dva/fetch';
 import { notification } from 'antd';
 import router from "umi/router";
-import config from "./config";
+import config from "../config";
 const {  serverUrl } = config;
 const codeMessage = {
   200: '服务器成功返回请求的数据。',

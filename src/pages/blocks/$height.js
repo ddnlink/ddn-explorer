@@ -3,7 +3,7 @@ import { message, Card,Icon } from 'antd'
 import moment from "moment"
 import { Link } from "react-router-dom";
 import { formatMessage } from 'umi-plugin-locale';
-import Cnf from "../../utils/config"
+import Cnf from "../../config"
 import utils_slots from "../../utils/slots"
 import styles from "./height.less"
 import { connect } from 'dva';

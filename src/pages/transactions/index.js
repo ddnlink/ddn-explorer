@@ -4,7 +4,7 @@ import 'whatwg-fetch'
 import { Link } from 'react-router-dom'
 import { formatMessage } from 'umi-plugin-locale';
 import { connect } from 'dva';
-import Cnf from "../../utils/config"
+import Cnf from "../../config"
 import utils_slots from "../../utils/slots"
 import LimitText from '../../component/LimitText'
 import moment from "moment"
