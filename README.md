@@ -5,7 +5,7 @@ English | [简体中文](./README_zh-CN.md)
 # DDN Explorer
 
 DDN Explorer is an front-end application for presenting the information and activity on the DDN blockchain.
-It is built upon Ant Design and react framework [UmiJS ](https://umijs.org/) 
+It is built upon Ant Design and react framework [UmiJS ](https://umijs.org/)  and deploy to ddnlink.github.io,
 
 ## Getting Started
 
@@ -27,11 +27,13 @@ $ yarn test
 $ yarn build
 ```
 > Open http://localhost:8000 to view it in the browser.
+```
 
 ## Framework
 
 ```bash
 ├── dist/                          // built static files
+├── docs/                          // forks from dist and deploy to github.com
 ├── mock/                          // mock
 ├── config/
     ├── config.js                  // umi config file
@@ -62,9 +64,6 @@ $ yarn build
 ## Contributors
 
 This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)]. <a href="https://github.com/ddnlink/ddn-explorer/graphs/contributors"><img src="https://opencollective.com/ddnlink/ddn-explorer/contributors.svg?width=890&button=false" /></a>
-
-New Contributors join in DDN on Github: "rickblitivy".
-From Win7.
 
 ## License
 

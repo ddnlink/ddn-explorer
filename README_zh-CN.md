@@ -3,6 +3,7 @@
 ## DDN 区块链浏览器
 区块链浏览器是用于展示DDN区块链上的数据和状态的一个前端应用，
 该项目采用Antd 和react框架 [umijs](https://umijs.org/) 生成
+并部署在 ddnlink.github.io 上，站点文件 docs
 
 ## 快速启动
 
@@ -25,12 +26,13 @@ $ yarn build
 
 ```
 > 在浏览器中打开 http://localhost:8000 查看.
-
+```
 
 ## 项目架构
 
 ```
 ├── dist/                          // 默认的 build 输出目录
+├── docs/                          // forks from dist and deploy to github.com
 ├── mock/                          // mock 文件所在目录，基于 express
 ├── config/
     ├── config.js                  // umi 配置，同 .umirc.js，二选一
