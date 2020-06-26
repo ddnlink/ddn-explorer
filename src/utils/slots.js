@@ -12,7 +12,7 @@ function getEpochTime(time) {
 function beginEpochTime() {
   // var d = new Date(Date.UTC(2017, 11, 20, 4, 0, 0, 0))
   // var d = new Date(Date.UTC(2017, 10, 20, 12, 20, 20, 20));
-  return config.token.beginEpochTime;
+  return config.net.beginEpochTime;
 }
 
 var interval = 10,

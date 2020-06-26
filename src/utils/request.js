@@ -2,7 +2,7 @@ import fetch from 'dva/fetch';
 import { notification } from 'antd';
 import router from "umi/router";
 import config from "../config";
-const {  serverUrl } = config;
+const {  apiUrl } = config;
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
   201: '新建或修改数据成功。',
@@ -44,7 +44,7 @@ function checkStatus(response) {
  */
 export default function request(url, options) {
   if(!url.startsWith('http')){
-    url = serverUrl+url;
+    url = apiUrl+url;
   }
   const defaultOptions = {
     // credentials: 'include',
