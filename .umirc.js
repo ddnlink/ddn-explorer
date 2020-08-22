@@ -8,7 +8,7 @@ export default {
       antd: true,
       dva: true,
       dynamicImport: { webpackChunkName: true },
-      title: 'DDN Explore',
+      title: 'HBL Explore',
       dll: false,
       locale: {
         enable: true,

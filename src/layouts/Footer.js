@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Popover, Button, Input, Layout, message } from 'antd';
-import { formatMessage } from 'umi-plugin-locale';
+import { Layout, message } from 'antd';
 // import utils_crypto from "../utils/crypto"
 import { getTokenName } from '../utils/token';
 import styles from './css/Footer.less';
@@ -82,7 +81,7 @@ class AppFooter extends Component {
       this.hide();
     }
   };
-  onPressEnter = async e => {
+  onPressEnter = async () => {
     const { inputValue } = this.state;
     if (inputValue) {
       await localStorage.setItem('secrecy', false);
@@ -97,7 +96,7 @@ class AppFooter extends Component {
       });
     }
   };
-  getPeers = (params = { ip: '120.77.211.219:8001' }) => {
+  getPeers = (params = { ip: '106.15.227.133:8001' }) => {
     this.props.dispatch({
       type: 'peers/getPeersList',
       payload: {
@@ -117,7 +116,6 @@ class AppFooter extends Component {
     let mainWidth = '100%';
     // mainWidth = '1080px'
     console.log('**********', localStorage.getItem('servicePeer'));
-    const { show, inputValue } = this.state;
     const { peers } = this.props;
     // eslint-disable-next-line no-unused-vars
     let peersData;
@@ -226,7 +224,9 @@ class AppFooter extends Component {
             {localStorage.getItem('tokenName') === 'EOK' && (
               <div>区块链备案: 京网信备11010519864491550014号</div>
             )}
-            Copyright ©2018 Powered by DDN FOUNDATION
+            <p>中共诸城市委主办</p>
+            <p>利姆斯（北京）区块链技术有限公司提供技术支持</p>
+            
           </div>
         </div>
       </Footer >

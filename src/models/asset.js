@@ -1,6 +1,6 @@
 
 import {
-    queryEvidenceList,
+    // queryEvidenceList,
     queryEvidenceCert,
 } from '../services/api'
 const DefaultCert = {

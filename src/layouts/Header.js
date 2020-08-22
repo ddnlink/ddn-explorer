@@ -210,11 +210,11 @@ class AppHeader extends Component {
 
   render() {
     let mainWidth = '100%'
-    const { peers, show, inputValue } = this.state
+    // const { peers, show, inputValue } = this.state
     // if (mainWidth < 980) {
     //   mainWidth = 980; //手机上看,网页全显示,按980像素缩放
     // }
-    console.log('****************7777', localStorage.getItem("servicePeer"),this.props.global.selectId)
+    // console.log('****************7777', localStorage.getItem("servicePeer"),this.props.global.selectId)
     const current=this.props.global.selectId
     console.log('clientWidth', document.documentElement.clientWidth, 'bodyWidth', document.body.clientWidth)
     if (document.documentElement.clientWidth <= 1080) {
@@ -282,11 +282,11 @@ class AppHeader extends Component {
               <Menu.Item key="6" className={styles['Menus_Item']}>
                 <NavLink to="/delegates">{formatMessage({ id: "menu.delegate" })}</NavLink>
               </Menu.Item>
-              <Menu.Item key="8" className={styles.Menus_Item}>
+              {/* <Menu.Item key="8" className={styles.Menus_Item}>
                 <NavLink to="/aobs">
                   数字{formatMessage({ id: "menu.aob" })}
                 </NavLink>
-              </Menu.Item> 
+              </Menu.Item>  */}
 
               {/* <Menu.Item key="15">交易记录</Menu.Item> */}
             </Menu>

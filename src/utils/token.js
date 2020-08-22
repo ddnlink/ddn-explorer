@@ -16,11 +16,11 @@ async function getPeerInfo () {
         if (data.success) {
             await localStorage.setItem("tokenName", data.tokenName)
         } else {
-            await localStorage.setItem("tokenName", "DDN")
+            await localStorage.setItem("tokenName", "HBL")
         }
     }catch(err){
         console.log("err", err)
-        await localStorage.setItem("tokenName", "DDN")
+        await localStorage.setItem("tokenName", "HBL")
     }
 }
 getPeerInfo ()

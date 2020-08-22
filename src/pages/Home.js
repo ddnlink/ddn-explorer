@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import qs from 'qs';
 import { Link } from 'react-router-dom';
-import { Table, message, Input, Select, Row, Col, Card, Icon, Empty } from 'antd';
+import { Table, message, Card, Icon } from 'antd';
 import { connect } from 'dva';
 import { formatMessage } from 'umi-plugin-locale';
 import GeoPattern from 'geopattern';
@@ -10,15 +9,13 @@ import Cnf from '../config';
 import styles from './Home.less';
 import utils_slots from '../utils/slots';
 import LimitText from '../component/LimitText';
-import Curved from '../component/Curve';
 import CountDown from '../component/CountDown';
 import HeightCount from '../component/HeightCount'
 // import Donut from '../component/Donut';
 // import Lizi from '../component/Lizi';
 let beginEpochTime = utils_slots.beginEpochTime();
-let initTimestamp = beginEpochTime.valueOf();
 
-const transColumns = self => [
+const transColumns = () => [
   {
     title: formatMessage({ id: "trs.id" }),
     dataIndex: "id",
@@ -99,7 +96,7 @@ const transColumns = self => [
   }
 ];
 
-const blockColumns = self => [
+const blockColumns = () => [
   {
     title: formatMessage({ id: "block.id" }),
     dataIndex: "id",
@@ -132,7 +129,7 @@ const blockColumns = self => [
     dataIndex: "reward",
     sorter: false,
     width: "13%",
-    render: (text, record, index) => {
+    render: (text, record) => {
       return Math.floor(Number(record.reward) / 100000000)
     }
   },
@@ -374,14 +371,13 @@ class Home extends Component {
     this.setState({ backgroundImg: bgImgUrl })
   }
   render() {
-    const { tansLoading, blockLoading, duration, backgroundImg } = this.state;
+    const { tansLoading, blockLoading, duration } = this.state;
     const { block, transaction, peers, global } = this.props;
     let count;
     JSON.stringify(peers.peersData.peers) !== '{}'
       ? (count = peers.peersData.peers.totalCount[0] ? peers.peersData.peers.totalCount[0] : 0)
       : (count = 0);
     let currentHeight = global.status.height;
-    const typePercent = transaction.PercentByType;
     const curveData = transaction.curveData;
     return (
       <div className={styles.homePage}>

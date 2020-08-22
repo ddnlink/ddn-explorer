@@ -1,9 +1,8 @@
 [English](./README.md) | 简体中文
 
 ## DDN 区块链浏览器
-区块链浏览器是用于展示DDN区块链上的数据和状态的一个前端应用，
-该项目采用Antd 和react框架 [umijs](https://umijs.org/) 生成
-并部署在 ddnlink.github.io 上，站点文件 docs
+
+区块链浏览器是用于展示DDN区块链上的数据和状态的一个前端应用，该项目采用Antd 和react框架生成
 
 ## 快速启动
 
@@ -26,6 +25,22 @@ $ yarn build
 
 ```
 > 在浏览器中打开 http://localhost:8000 查看.
+```
+
+## 部署
+
+**仅仅管理员才能操作**
+
+构建工程
+
+```
+$ yarn build
+```
+
+拷贝 `dist` 到 `docs`, 注意 `CNAME`、`404.html`、`index.html` 等文件，以便解决下面的问题1 
+
+```
+$ mv dist docs
 ```
 
 ## 项目架构
@@ -63,13 +78,14 @@ $ yarn build
 
 ## 采用的第三方库
 
-#### umi内置
+### umi内置
 - antd                组件库
 - react-i18nify       多语言
 - react-loadable      按需加载
 - react-router-dom    路由
 - webpack-bundle-analyzer  查看模块大小
-#### 增加
+
+### 增加
 - antv                视图库
 - bizcharts           react视图库
 - jquery              js工具
@@ -79,6 +95,17 @@ $ yarn build
 - moment              时间处理
 - qrcode              二维码
 - qs                  字符串与对象解析
+
+## 问题
+
+1. 单页应用在gh-pages动态路由刷新后404解决
+
+注意保留： docs/404.html 和 docs/index.html
+
+参考：
+<https://segmentfault.com/a/1190000012951274>
+
+
 
 ## 贡献者
 

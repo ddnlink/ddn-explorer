@@ -5,7 +5,7 @@ import {
     queryTransactionsGet,
     queryTransactionsByUser,
     queryTransactionsByMy,
-    queryPercentByType,
+    // queryPercentByType,
 } from '../services/api'
 
 const DefaultEvidence = {
@@ -173,17 +173,17 @@ export default {
         /**获取交易类型占比 */
         *getPercentByType({ payload, callback }, { call, put }) {
             console.log('获取交易类型占比', payload)
-            const response = yield call(queryPercentByType, payload);
-            if (response.success === true) {
-                yield put({
-                    type: 'PercentByType',
-                    payload: {
-                        PercentByType: response.data
-                    }
-                });
-            } else {
-            }
-            callback(response)
+            // const response = yield call(queryPercentByType, payload);
+            // if (response.success === true) {
+            //     yield put({
+            //         type: 'PercentByType',
+            //         payload: {
+            //             PercentByType: response.data
+            //         }
+            //     });
+            // } else {
+            // }
+            // callback(response)
         },
        
 
