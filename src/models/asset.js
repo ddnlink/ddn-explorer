@@ -92,21 +92,22 @@ export default {
         /**获取资产列表 */
         *getEvidenceList({ payload, callback }, { call, put }) {
             console.log('获取交易类型占比', payload)
-            // const response = yield call(queryEvidenceList, payload);
-            // if (response.success === true && response.data.total > 0) {
-            //     yield put({
-            //         type: 'evidenceList',
-            //         payload: {
-            //             evidenceData: {
-            //                 evidenceList: response.data.rows,
-            //                 pagination: {
-            //                     current: payload.current,
-            //                     total: response.data.total
-            //                 }
-            //             },
-            //         }
-            //     });
-            // } else {
+            const response = yield call(queryEvidenceList, payload);
+            console.log('p=============',response)
+            if (response.success === true && response.result.total > 0) {
+                yield put({
+                    type: 'evidenceList',
+                    payload: {
+                        evidenceData: {
+                            evidenceList: response.result.rows,
+                            pagination: {
+                                current: payload.current,
+                                total: response.result.total
+                            }
+                        },
+                    }
+                });
+            } else {
                 console.log("add DefaultEvidence")
                 yield put({
                     type: 'evidenceList',
@@ -114,16 +115,16 @@ export default {
                         evidenceData: DefaultEvidence,
                     }
                 });
-            // }
-            // callback(response)
+            }
+            callback(response)
         },
         *getCertificate({ payload, callback }, { call, put }) {
             const response = yield call(queryEvidenceCert, payload.hash)
-            if (response.success === true && response.data) {
+            if (response.success === true && response.result) {
                 yield put({
                     type: 'certificate',
                     payload: {
-                        certificate: response.data
+                        certificate: response.result
                     },
                 });
             } else {
@@ -138,7 +139,8 @@ export default {
         }
     },
     reducers: {
-        evidenceList(state, { payload }) {
+      evidenceList(state, { payload }) {
+          console.log('payload.evidenceData',payload.evidenceData)
             return {
                 ...state,
                 evidenceListData: payload.evidenceData

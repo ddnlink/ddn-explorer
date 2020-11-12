@@ -62,6 +62,7 @@ class Assets extends React.Component {
 
 	_loadDetailInfo = async () => {
 		var params = this.props.match.params.id;
+		console.log('ppppppppppp',params)
 		// console.log('ipid: ' + ipid)
 		/*	var url = `http://47.92.0.84:8001/api/evidence/list/${ipid}`
 			let self = this;
@@ -75,17 +76,16 @@ class Assets extends React.Component {
 			const result = await response.json()*/
 		this.props.dispatch({
 			type: 'assert/getCertificate',
-			payload: {
-				...params
-			},
+			payload: {hash:params},
 			callback: (res) => {
 				console.log('certificate',res)
 				if (res.success !== true) {
 					message.error(res.error)
 				} else {
 					var QRCode = require('qrcode');
-					var qrUrl = 'http://testnet.ebookchain.org/transactions/' + res.data.list[0].transactionId
+					var qrUrl = 'http://localhost:8001/transactions/' + res.result.transactionId
 					QRCode.toDataURL(qrUrl, function (err, imgUrl) {
+            console.log('error',err)
 						document.getElementById("imgQrCode").src = imgUrl;
 					});
 				}
@@ -145,7 +145,8 @@ class Assets extends React.Component {
 	render() {
 		// const { data, address } = this.state;
 		const { certificate } = this.props
-		const { address } = certificate;
+    const { address } = certificate;
+    console.log('title',certificate)
 		var timeStr = "";
 		var sizeStr = "";
 		var userUrlStr = "";

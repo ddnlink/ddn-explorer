@@ -102,3 +102,13 @@ export async function queryAccountsList(params) {
 export async function queryAweekTran(params) {
   return request(`/api/transactions/spell?${stringify(params)}`);
 }
+/**get evidence asset by hash */
+export async function queryEvidenceCert(params) {
+  console.log('00000000000',params)
+  return request(`/api/evidences/hash/${params}`);
+}
+/**get evidence asset list*/
+export async function queryEvidenceList(params) {
+  console.log('00000000000',params)
+  return request(`/api/evidences/all`);
+}

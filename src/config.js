@@ -32,7 +32,7 @@ const config = {
     beginEpochTime: new Date(Date.UTC(2017, 10, 20, 12, 20, 20, 20)), // 请修改为与节点一致的对应时间
     peer: {
       port: 8001,
-      address: "106.15.227.133" // "localhost" // 120.77.211.219 网速慢
+      address: "localhost" // "localhost" // 120.77.211.219 网速慢
     },
   }
 
