@@ -9,7 +9,7 @@ const config = {
   name: 'DDN 区块链浏览器',
   prefix: 'ddn20190522',
   openPages: ['/home'],
-  coinName: localStorage.getItem("tokenName"),
+  coinName: localStorage.getItem("tokenName")||"DDN",
 
   // 关于区块链基本配置
   token: {
