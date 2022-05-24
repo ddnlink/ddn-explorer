@@ -53,7 +53,7 @@ class Assets extends React.Component {
 	}
 
 	componentWillMount() {
-		document.title = 'Ebooker Ident';
+		document.title = 'LIMSChain存证';
 	}
 
 	componentDidMount() {
@@ -79,12 +79,13 @@ class Assets extends React.Component {
 				...params
 			},
 			callback: (res) => {
-				console.log('certificate',res)
+				// console.log('certificate',res)
 				if (res.success !== true) {
 					message.error(res.error)
 				} else {
 					var QRCode = require('qrcode');
-					var qrUrl = 'http://testnet.ebookchain.org/transactions/' + res.data.list[0].transactionId
+					var qrUrl = 'http://testnet.ddn.net/transactions/b879c99732343aa351efdcb68cd6821645edd0056933093ca09d1f8a3252b026'
+          console.log('qrURl: ', qrUrl);
 					QRCode.toDataURL(qrUrl, function (err, imgUrl) {
 						document.getElementById("imgQrCode").src = imgUrl;
 					});
@@ -112,14 +113,11 @@ class Assets extends React.Component {
 		copyDom.width(targetDom.width() + "px");
 		copyDom.height(targetDom.height() + "px");
 		$('body').append(copyDom);
-		console.log("$('body')", $('body'))
-		console.log('************', copyDom)
 
 		html2canvas(copyDom, {
 			useCORS: true,
 			logging: true,
 			onrendered: function (canvas) {
-				console.log('******************jinru onrender')
 				var url = canvas.toDataURL();
 
 				var curDate = new Date();

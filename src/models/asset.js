@@ -13,7 +13,11 @@ const DefaultCert = {
     "tags": "test, article",
     "url": "dat://helloworld/index.html",
     "message": "TEST",
-    "extend": ""
+    "extend": "",
+    size: '141345',
+    "ipid": "IPID12404323413",
+    title: '委托检测报告存证',
+    author: 'LIMSChain',
 }
 const DefaultEvidence = {
     "evidenceList": [
@@ -27,7 +31,8 @@ const DefaultEvidence = {
             "tags": "test, article",
             "url": "dat://helloworld/index.html",
             "message": "TEST",
-            "extend": ""
+            "extend": "",
+            "ipid": "IPID12404323413",
         }, {
             "transaction_id": "b879c99732343aa351efdcb68cd6821645edd0056933093ca09d1f8a3252b025",
             "address": 'TFRDKQYukVYiMqE5c3fFvqvqd27Yv4Thhj',
@@ -38,7 +43,8 @@ const DefaultEvidence = {
             "tags": "test, article",
             "url": "dat://helloworld/index.html",
             "message": "TEST",
-            "extend": ""
+            "extend": "",
+            "ipid": "IPID12404323413",
         }, {
             "transaction_id": "b879c99732343aa351efdcb68cd6821645edd0056933093ca09d1f8a3252b026",
             "address": 'TFRDKQYukVYiMqE5c3fFvqvqd27Yv4Thhj',
@@ -49,7 +55,8 @@ const DefaultEvidence = {
             "tags": "test, article",
             "url": "dat://helloworld/index.html",
             "message": "TEST",
-            "extend": ""
+            "extend": "",
+            "ipid": "IPID12404323413",
         }, {
             "transaction_id": "b879c99732343aa351efdcb68cd6821645edd0056933093ca09d1f8a3252b027",
             "address": 'TFRDKQYukVYiMqE5c3fFvqvqd27Yv4Thhj',
@@ -60,7 +67,8 @@ const DefaultEvidence = {
             "tags": "test, article",
             "url": "dat://helloworld/index.html",
             "message": "TEST",
-            "extend": ""
+            "extend": "",
+            "ipid": "IPID12404323413",
         }, {
             "transaction_id": "b879c99732343aa351efdcb68cd6821645edd0056933093ca09d1f8a3252b028",
             "address": 'TFRDKQYukVYiMqE5c3fFvqvqd27Yv4Thhj',
@@ -71,7 +79,8 @@ const DefaultEvidence = {
             "tags": "test, article",
             "url": "dat://helloworld/index.html",
             "message": "TEST",
-            "extend": ""
+            "extend": "",
+            "ipid": "IPID12404323413",
         }
     ],
     "pagenation": {
@@ -118,23 +127,23 @@ export default {
             // callback(response)
         },
         *getCertificate({ payload, callback }, { call, put }) {
-            const response = yield call(queryEvidenceCert, payload.hash)
-            if (response.success === true && response.data) {
-                yield put({
-                    type: 'certificate',
-                    payload: {
-                        certificate: response.data
-                    },
-                });
-            } else {
+            // const response = yield call(queryEvidenceCert, payload.hash)
+            // if (response.success === true && response.data) {
+            //     yield put({
+            //         type: 'certificate',
+            //         payload: {
+            //             certificate: response.data
+            //         },
+            //     });
+            // } else {
                 yield put({
                     type: 'certificate',
                     payload: {
                         certificate: DefaultCert
                     },
                 });
-            }
-            callback(response)
+            // }
+            callback({success: true})
         }
     },
     reducers: {
