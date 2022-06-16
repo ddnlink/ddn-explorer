@@ -34,7 +34,7 @@ width: '15%',
 render: (text, record, index) =>{ return record.asset.recipientId}
 },
 {
-title: '转出数量',
+title: '转出金额',
 sorter: false,
 width: '15%',
 render: (text, record, index) =>{  
@@ -245,13 +245,13 @@ class SearchAccountView extends Component {
     <div>
       <Row type="flex" justify="space-between">
         <Col span={4}>
-       当前剩余：<span style={{color:"red"}}>{this.state.data1}</span>
+       当前余额：<span style={{color:"red"}}>{this.state.data1}</span>
        </Col>
        <Col span={4}>
-       转出数量：<span style={{color:"red"}}>{this.state.data2}</span>
+       转出金额：<span style={{color:"red"}}>{this.state.data2}</span>
        </Col>
        <Col span={4}>
-       转入数量：<span style={{color:"red"}}>{this.state.dataE1}</span>
+       转入金额：<span style={{color:"red"}}>{this.state.dataE1}</span>
        </Col>
        <Col span={4}>
        是否进入过交换市场：<span style={{color:"red"}}>{this.state.status}</span>

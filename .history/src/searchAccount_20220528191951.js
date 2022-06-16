@@ -10,13 +10,13 @@ const ButtonGroup = Button.Group;
 
 
 const columns = [{
-  title: '交换ID',
+  title: '交易ID',
   dataIndex: 'id',
   sorter: false,
   width: '15%',
 }, 
 {
-  title: '交换类型',
+  title: '交易类型',
   dataIndex: 'type',
   sorter: false,
   width: '5%',
@@ -34,7 +34,7 @@ width: '15%',
 render: (text, record, index) =>{ return record.asset.recipientId}
 },
 {
-title: '转出数量',
+title: '转出金额',
 sorter: false,
 width: '15%',
 render: (text, record, index) =>{  
@@ -45,7 +45,7 @@ render: (text, record, index) =>{
       }}
 },
 {
-title: '交换备注',
+title: '交易备注',
 sorter: false,
 width: '15%',
 render: (text, record, index) =>{ return record.asset.remarks}
@@ -245,16 +245,16 @@ class SearchAccountView extends Component {
     <div>
       <Row type="flex" justify="space-between">
         <Col span={4}>
-       当前剩余：<span style={{color:"red"}}>{this.state.data1}</span>
+       当前余额：<span style={{color:"red"}}>{this.state.data1}</span>
        </Col>
        <Col span={4}>
-       转出数量：<span style={{color:"red"}}>{this.state.data2}</span>
+       转出金额：<span style={{color:"red"}}>{this.state.data2}</span>
        </Col>
        <Col span={4}>
-       转入数量：<span style={{color:"red"}}>{this.state.dataE1}</span>
+       转入金额：<span style={{color:"red"}}>{this.state.dataE1}</span>
        </Col>
        <Col span={4}>
-       是否进入过交换市场：<span style={{color:"red"}}>{this.state.status}</span>
+       是否进入过交易市场：<span style={{color:"red"}}>{this.state.status}</span>
        </Col>
     <ButtonGroup>
       <Button  type={this.state.data === this.state.dataE ? "primary" : ""} onClick={this.TurnIn}><Icon type="left" />转入</Button>

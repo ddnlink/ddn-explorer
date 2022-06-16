@@ -19,7 +19,7 @@ if(!localStorage.getItem("servicePeer")){
 
 
 if (window.location.hostname.toLowerCase().startsWith("mainnet.ddn.link") && !localStorage.getItem("setPeer")) {
-  localStorage.setItem("servicePeer", "http://47.94.144.216:8000");
+  localStorage.setItem("servicePeer", "peer.ddn.link:8000");
   getTokenName()
 }
 
@@ -197,9 +197,9 @@ class App extends Component {
                 <Menu.Item key="6" className="Menus_Item">
                   <NavLink to="/delegates">{I18n.t("menu.delegate")}</NavLink>
                 </Menu.Item>
-                {/* <Menu.Item key="15">交换记录</Menu.Item> */}
+                {/* <Menu.Item key="15">交易记录</Menu.Item> */}
               </Menu>
-              {/* <Menu.Item key="17">关联交换</Menu.Item> */}
+              {/* <Menu.Item key="17">关联交易</Menu.Item> */}
             </Col>
             <Col span={7}>
               <Input
@@ -247,7 +247,7 @@ class App extends Component {
         >
           {this.props.children}
         </Content>}
-        {/* <Footer style={{ textAlign: "center", width: mainWidth }}>
+        <Footer style={{ textAlign: "center", width: mainWidth }}>
           <p
             onClick={this.clickHideSelect}
           >
@@ -306,7 +306,7 @@ class App extends Component {
             </div>
           }
           {localStorage.getItem("tokenName")} Explorer ©2018 Created by DDN Team
-        </Footer> */}
+        </Footer>
       </Layout>
     );
   }

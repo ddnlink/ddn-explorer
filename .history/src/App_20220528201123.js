@@ -197,9 +197,9 @@ class App extends Component {
                 <Menu.Item key="6" className="Menus_Item">
                   <NavLink to="/delegates">{I18n.t("menu.delegate")}</NavLink>
                 </Menu.Item>
-                {/* <Menu.Item key="15">交换记录</Menu.Item> */}
+                {/* <Menu.Item key="15">交易记录</Menu.Item> */}
               </Menu>
-              {/* <Menu.Item key="17">关联交换</Menu.Item> */}
+              {/* <Menu.Item key="17">关联交易</Menu.Item> */}
             </Col>
             <Col span={7}>
               <Input
@@ -247,8 +247,8 @@ class App extends Component {
         >
           {this.props.children}
         </Content>}
-        {/* <Footer style={{ textAlign: "center", width: mainWidth }}>
-          <p
+        <Footer style={{ textAlign: "center", width: mainWidth }}>
+          {/* <p
             onClick={this.clickHideSelect}
           >
             {I18n.t("node.currentIP")}
@@ -299,14 +299,14 @@ class App extends Component {
                 }
               </Button>
             </Popover>
-          </p>
-          {localStorage.getItem("tokenName") === 'EOK' && 
+          </p> */}
+          {/* {localStorage.getItem("tokenName") === 'EOK' && 
             <div>
               区块链备案: 京网信备11010519864491550014号
             </div>
           }
-          {localStorage.getItem("tokenName")} Explorer ©2018 Created by DDN Team
-        </Footer> */}
+          {localStorage.getItem("tokenName")} Explorer ©2018 Created by DDN Team */}
+        </Footer>
       </Layout>
     );
   }

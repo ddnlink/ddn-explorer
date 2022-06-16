@@ -283,8 +283,8 @@ I18n.setTranslations({
       },
       account: {
         address: '地址',
-        balance: '剩余',
-        unconfirmedBalance: '未确认剩余',
+        balance: '余额',
+        unconfirmedBalance: '未确认余额',
         publicKey: '公钥',
         all: "全部",
         recipient: "接收",

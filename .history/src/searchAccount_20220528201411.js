@@ -245,7 +245,7 @@ class SearchAccountView extends Component {
     <div>
       <Row type="flex" justify="space-between">
         <Col span={4}>
-       当前剩余：<span style={{color:"red"}}>{this.state.data1}</span>
+       当前余额：<span style={{color:"red"}}>{this.state.data1}</span>
        </Col>
        <Col span={4}>
        转出数量：<span style={{color:"red"}}>{this.state.data2}</span>

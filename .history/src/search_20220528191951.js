@@ -213,7 +213,7 @@ class SearchView extends Component {
         showHeader={false}
         pagination={false}
       />
-      {utils_crypto.isAddress(this.state.searchText) ? <Row>    <Button  type="primary" onClick={()=>{this.getUserTrs({limit: 10, offset: 0, orderBy: "t_timestamp:desc"})}}>交换记录</Button>
+      {utils_crypto.isAddress(this.state.searchText) ? <Row>    <Button  type="primary" onClick={()=>{this.getUserTrs({limit: 10, offset: 0, orderBy: "t_timestamp:desc"})}}>交易记录</Button>
 </Row>:null }
       {this.state.trs && this.state.trs.length > 0 ? (
         <div>

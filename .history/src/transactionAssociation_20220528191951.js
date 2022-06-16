@@ -10,7 +10,7 @@ const ButtonGroup = Button.Group;
 
 const columns = [
   {
-    title: "交换ID",
+    title: "交易ID",
     dataIndex: "id",
     width: "15%"
   },
@@ -21,7 +21,7 @@ const columns = [
   },
 
   {
-    title: "转出数量",
+    title: "转出金额",
     width: "15%",
 
     render: (text, record, index) => {
@@ -33,7 +33,7 @@ const columns = [
     }
   },
   {
-    title: "交换备注",
+    title: "交易备注",
     width: "15%",
     render: (text, record, index) => {
       return record.asset.remarks;
@@ -61,7 +61,7 @@ const columns = [
       if (record.middleAccount) {
         return record.middleAccount;
       } else {
-        return "0或1级交换没有中转账户";
+        return "0或1级交易没有中转账户";
       }
     }
   }

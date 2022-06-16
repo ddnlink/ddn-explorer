@@ -111,7 +111,7 @@ class AOBTransaction extends Component {
     console.log("this.state.data", this.state.data)
     return (
       <div>
-        <h3>交换记录</h3>
+        <h3>交易记录</h3>
         <Table columns={columns(this)}
           bordered
           rowKey={record => record.id}

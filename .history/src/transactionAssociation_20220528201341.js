@@ -21,7 +21,7 @@ const columns = [
   },
 
   {
-    title: "转出数量",
+    title: "转出金额",
     width: "15%",
 
     render: (text, record, index) => {

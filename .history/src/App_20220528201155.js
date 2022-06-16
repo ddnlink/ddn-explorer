@@ -197,9 +197,9 @@ class App extends Component {
                 <Menu.Item key="6" className="Menus_Item">
                   <NavLink to="/delegates">{I18n.t("menu.delegate")}</NavLink>
                 </Menu.Item>
-                {/* <Menu.Item key="15">交换记录</Menu.Item> */}
+                {/* <Menu.Item key="15">交易记录</Menu.Item> */}
               </Menu>
-              {/* <Menu.Item key="17">关联交换</Menu.Item> */}
+              {/* <Menu.Item key="17">关联交易</Menu.Item> */}
             </Col>
             <Col span={7}>
               <Input

@@ -143,7 +143,7 @@ export default class TransactionDetial extends Component {
         </div>
         {data.transaction.asset.article &&
         <div className="footer">
-          <div className="left">交换内容</div>
+          <div className="left">交易内容</div>
           <div className="right">
             <div className="right_content">
               <span className="col_one">文件名称:</span>

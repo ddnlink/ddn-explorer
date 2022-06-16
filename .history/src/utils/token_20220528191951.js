@@ -1,7 +1,7 @@
 async function getPeerInfo () {
     let url = `http://${localStorage.getItem(
         "servicePeer"
-    ) || "47.94.144.216:8000"}/api/network`;
+    ) || "peer.ebookchain.org"}/api/network`;
     try{
         const response = await fetch(url, {
             method: "get",
