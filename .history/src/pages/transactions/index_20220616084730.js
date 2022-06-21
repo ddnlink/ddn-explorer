@@ -61,7 +61,7 @@ const columns = (self) => [{
 },
 {
   title: formatMessage({ id: 'trs.height' }),
-  dataIndex: 'block_height',
+  dataIndex: 'height',
   sorter: false,
   width: '8%',
   render: (text, record, index) => { return <Link to={"/blocks/" + text} target="_blank">{text}</Link> }

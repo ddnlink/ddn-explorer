@@ -127,7 +127,7 @@ class BlockDetail extends Component {
               <tr>
                 <td className={styles["col_one"]}>{formatMessage({ id: "block.totalForged" })}</td>
                 <td className={styles["col_two"]}>
-                  {data.blocks[0].totalForged / 100000000} {Cnf.coinName}
+                  {data.blocks[0].total_forged / 100000000} {Cnf.coinName}
                 </td>
               </tr>
             </tbody>

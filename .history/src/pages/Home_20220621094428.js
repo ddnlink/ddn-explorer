@@ -199,7 +199,7 @@ class Home extends Component {
     this.getTimeData();
     this.getPeers();
     this.getAobs();
-    // this.getCurveData(); //获取一周内的交易记录
+    // this.getCurveData(); //获取一周内的剩余记录
     // this.getPercentByType(); // 获取存证类型占比图
     // this.generateBackImg()
   }

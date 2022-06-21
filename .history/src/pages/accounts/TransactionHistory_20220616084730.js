@@ -74,7 +74,7 @@ const columns = self => [
   },
   {
     title: formatMessage({ id: "trs.height" }),
-    dataIndex: "block_height",
+    dataIndex: "height",
     sorter: false,
     width: "9%",
     render: text => (

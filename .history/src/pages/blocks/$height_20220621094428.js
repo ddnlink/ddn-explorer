@@ -132,7 +132,7 @@ class BlockDetail extends Component {
               </tr>
             </tbody>
           </table>
-          {/* <Card title='交易列表' style={{marginTop:"20px"}}>
+          {/* <Card title='剩余列表' style={{marginTop:"20px"}}>
 
         </Card> */}
         </Card>

@@ -68,7 +68,7 @@ class TransactionDetial extends Component {
             <div className={styles["content_d"]}>
               <span className={styles["col_one"]}>{formatMessage({ id: "trs.blockid" })}</span>
               <span className={styles["col_two"]}>
-                {data.transaction.block_id}
+                {data.transaction.blockId}
               </span>
             </div>
             <div className={styles["content_d"]}>

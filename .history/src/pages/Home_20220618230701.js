@@ -77,8 +77,8 @@ const transColumns = self => [
     render: text => `${text / 100000000.0}`
   },
   {
-    title: formatMessage({ id: "trs.height" }),
-    dataIndex: "block_height",
+    title: formatMessage({ id: "trs.block_height" }),
+    dataIndex: "height",
     sorter: false,
     width: "9%",
     render: text => (
@@ -123,7 +123,7 @@ const blockColumns = self => [
   },
   {
     title: formatMessage({ id: "block.numberOfTransactions" }),
-    dataIndex: "number_of_transactions",
+    dataIndex: "numberOfTransactions",
     sorter: false,
     width: "8%"
   },

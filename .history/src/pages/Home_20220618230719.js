@@ -123,7 +123,7 @@ const blockColumns = self => [
   },
   {
     title: formatMessage({ id: "block.numberOfTransactions" }),
-    dataIndex: "number_of_transactions",
+    dataIndex: "numberOfTransactions",
     sorter: false,
     width: "8%"
   },

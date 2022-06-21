@@ -31,7 +31,7 @@ const config = {
     nethash: "0ab796cd",
     beginEpochTime: new Date(Date.UTC(2017, 10, 20, 12, 20, 20, 20)), // 请修改为与节点一致的对应时间
     peer: {
-      port: 8000,
+      port: 8001,
       address: "47.94.144.216" // "localhost" // 120.77.211.219 网速慢
     },
   }

@@ -51,7 +51,7 @@ class AccountInfo extends Component {
                 account: {
                   address: data.account.address,
                   balance: item.balanceShow * 100000000,
-                  unconfirmed_balance: 0,
+                  unconfirmedBalance: 0,
                   publicKey: data.account.publicKey,
                   lockHeight: data.account.lockHeight,
                 }
@@ -154,7 +154,7 @@ class AccountInfo extends Component {
                 <tr>
                   <td className={styles["col_one"]}>{formatMessage({ id: 'account.unconfirmedBalance' })}</td>
                   <td className={styles["col_two"]}>
-                    <span className={styles["unit"]}>{data.account.unconfirmed_balance}</span>
+                    <span className={styles["unit"]}>{data.account.unconfirmedBalance}</span>
                   </td>
                 </tr>
                 <tr>
@@ -205,7 +205,7 @@ class AccountInfo extends Component {
                       <tr>
                         <td className={styles["col_one"]}>unconfirmedBalance</td>
                         <td className={styles["col_two"]} id={styles["copy"]}>
-                          <span>{this.state.data.account.unconfirmed_balance ? this.state.data.account.unconfirmed_balance / 100000000 : 0}</span>
+                          <span>{this.state.data.account.unconfirmedBalance ? this.state.data.account.unconfirmedBalance / 100000000 : 0}</span>
                           <span className={styles["unit"]}>{unit}</span>
                         </td>
                       </tr>
@@ -226,7 +226,7 @@ class AccountInfo extends Component {
                       <tr>
                         <td className={styles["col_one"]}>lockHeight</td>
                         <td className={styles["col_two"]}>
-                          <span className={styles["unit"]}>{this.state.data.account.lock_height}</span>
+                          <span className={styles["unit"]}>{this.state.data.account.lockHeight}</span>
                         </td>
                       </tr>
                     </tbody>

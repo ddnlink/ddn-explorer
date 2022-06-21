@@ -226,7 +226,7 @@ class AccountInfo extends Component {
                       <tr>
                         <td className={styles["col_one"]}>lockHeight</td>
                         <td className={styles["col_two"]}>
-                          <span className={styles["unit"]}>{this.state.data.account.lock_height}</span>
+                          <span className={styles["unit"]}>{this.state.data.account.lockHeight}</span>
                         </td>
                       </tr>
                     </tbody>

@@ -268,9 +268,9 @@ class AppHeader extends Component {
               <Menu.Item key="3" className={styles.Menus_Item}>
                 <NavLink to="/transactions" >{formatMessage({ id: "menu.trs" })}</NavLink>
               </Menu.Item>
-              {/* <Menu.Item key="4" className={styles.Menus_Item}>
+              <Menu.Item key="4" className={styles.Menus_Item}>
                 <NavLink to="/assets" >{formatMessage({ id: "menu.evidence" })}</NavLink>
-              </Menu.Item> */}
+              </Menu.Item>
                <Menu.Item key="7" className={styles.Menus_Item}>
                 <NavLink to="/peers">{formatMessage({ id: "menu.peer" })}</NavLink>
               </Menu.Item> 
@@ -282,15 +282,15 @@ class AppHeader extends Component {
               <Menu.Item key="6" className={styles['Menus_Item']}>
                 <NavLink to="/delegates">{formatMessage({ id: "menu.delegate" })}</NavLink>
               </Menu.Item>
-              {/* <Menu.Item key="8" className={styles.Menus_Item}>
+              <Menu.Item key="8" className={styles.Menus_Item}>
                 <NavLink to="/aobs">
                   数字{formatMessage({ id: "menu.aob" })}
                 </NavLink>
-              </Menu.Item>  */}
+              </Menu.Item> 
 
-              {/* <Menu.Item key="15">交易记录</Menu.Item> */}
+              {/* <Menu.Item key="15">剩余记录</Menu.Item> */}
             </Menu>
-            {/* <Menu.Item key="17">关联交易</Menu.Item> */}
+            {/* <Menu.Item key="17">关联剩余</Menu.Item> */}
           </Col>
           <Col span={7}>
             <div className={styles.search_wrap}>

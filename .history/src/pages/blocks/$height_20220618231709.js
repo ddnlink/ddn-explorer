@@ -109,19 +109,19 @@ class BlockDetail extends Component {
               <tr>
                 <td className={styles["col_one"]}>{formatMessage({ id: "block.generatorPublicKey" })}</td>
                 <td className={styles["col_two"]}>
-                  {data.blocks[0].generator_public_key}
+                  {data.blocks[0].generator_publicKey}
                 </td>
               </tr>
               <tr>
                 <td className={styles["col_one"]}>{formatMessage({ id: "block.generatorId" })}</td>
                 <td className={styles["col_two"]}>
-                  {data.blocks[0].generator_id}
+                  {data.blocks[0].generatorId}
                 </td>
               </tr>
               <tr>
                 <td className={styles["col_one"]}>{formatMessage({ id: "block.blockSignature" })}</td>
                 <td className={styles["col_two"]}>
-                  {data.blocks[0].block_signature}
+                  {data.blocks[0].blockSignature}
                 </td>
               </tr>
               <tr>

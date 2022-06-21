@@ -76,7 +76,7 @@ class BlockDetail extends Component {
                 </td>
                 <td className={styles["col_two"]}>
                   <Link to={`/blocks/${data.blocks[0].height - 1}`} target='_blank'>
-                    {data.blocks[0].previous_block}
+                    {data.blocks[0].previousBlock}
                   </Link>
                 </td>
               </tr>
@@ -91,37 +91,37 @@ class BlockDetail extends Component {
               <tr>
                 <td className={styles["col_one"]}>{formatMessage({ id: "block.numberOfTransactions" })}</td>
                 <td className={styles["col_two"]}>
-                  {data.blocks[0].number_of_transactions}
+                  {data.blocks[0].numberOfTransactions}
                 </td>
               </tr>
               <tr>
                 <td className={styles["col_one"]}>{formatMessage({ id: "block.payloadLength" })}</td>
                 <td className={styles["col_two"]}>
-                  {data.blocks[0].payload_length}
+                  {data.blocks[0].payloadLength}
                 </td>
               </tr>
               <tr>
                 <td className={styles["col_one"]}>{formatMessage({ id: "block.payloadHash" })}</td>
                 <td className={styles["col_two"]}>
-                  {data.blocks[0].payload_hash}
+                  {data.blocks[0].payloadHash}
                 </td>
               </tr>
               <tr>
                 <td className={styles["col_one"]}>{formatMessage({ id: "block.generatorPublicKey" })}</td>
                 <td className={styles["col_two"]}>
-                  {data.blocks[0].generator_public_key}
+                  {data.blocks[0].generatorPublicKey}
                 </td>
               </tr>
               <tr>
                 <td className={styles["col_one"]}>{formatMessage({ id: "block.generatorId" })}</td>
                 <td className={styles["col_two"]}>
-                  {data.blocks[0].generator_id}
+                  {data.blocks[0].generatorId}
                 </td>
               </tr>
               <tr>
                 <td className={styles["col_one"]}>{formatMessage({ id: "block.blockSignature" })}</td>
                 <td className={styles["col_two"]}>
-                  {data.blocks[0].block_signature}
+                  {data.blocks[0].blockSignature}
                 </td>
               </tr>
               <tr>

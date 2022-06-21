@@ -145,7 +145,7 @@ class TransactionDetial extends Component {
           </div>
           {data.transaction.asset.article &&
             <div className={styles["footer"]}>
-              <div className={styles["left"]}>交易内容</div>
+              <div className={styles["left"]}>剩余内容</div>
               <div className={styles["right"]}>
                 <div className={styles["right_content"]}>
                   <span className={styles["col_one"]}>文件名称:</span>
