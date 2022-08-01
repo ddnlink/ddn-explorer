@@ -404,11 +404,11 @@ class Home extends Component {
               <div className={styles['ptitle']}>{formatMessage({ id: 'home.transfers' })}</div>
               <div className={styles['number']}>{block.account}</div>
             </div>
-            <div className={styles['pannel']}>
+            {/* <div className={styles['pannel']}>
               <Icon className={styles['icon']} type="user" />
               <div className={styles['ptitle']}>{formatMessage({ id: 'home.tokenAmount' })}</div>
               <div className={styles['number']}>{global.status.supply / 100000000}</div>
-            </div>
+            </div> */}
             <div className={styles.pannel}>
               <div className='icon-wrap'>
                 <Icon className={styles['icon']} type="audit" />

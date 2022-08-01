@@ -3,7 +3,7 @@
  */
 const config = {
   // 当前环境设置，建议在 .ddnrc.[env].js 其中 env = local、prod 等
-  currentNet: 'testnet',
+  currentNet: 'mainnet',
 
   // 关于浏览器基本配置
   name: 'DDN 区块链浏览器',
@@ -18,21 +18,21 @@ const config = {
   },
 
   mainnet: {
-    nethash: "b11fa2f2",
-    beginEpochTime: new Date(Date.UTC(2017, 11, 20, 4, 0, 0, 0)),
+    nethash: "m66gcvle",
+    beginEpochTime: new Date(Date.UTC(2017, 10, 20, 12, 20, 20, 20)),
     peer: {
       port: 8000,
-      address: "47.94.144.216"
+      address: "117.78.28.81"
     }
   },
 
   // testnet.ddn.link
   testnet: {
-    nethash: "0ab796cd",
+    nethash: "m66gcvle",
     beginEpochTime: new Date(Date.UTC(2017, 10, 20, 12, 20, 20, 20)), // 请修改为与节点一致的对应时间
     peer: {
       port: 8000,
-      address: "47.94.144.216" // "localhost" // 120.77.211.219 网速慢
+      address: "117.78.28.81" // "localhost" // 120.77.211.219 网速慢
     },
   }
 
