@@ -97,7 +97,7 @@ class Assets extends React.Component {
 				data: result.data.list[0],
 				address: result.data.address
 			});
-			var QRCode = require('qrcode');
+			var QRCode = require('qrcode.react');
 			var qrUrl = 'http://testnet.ebookchain.org/transactions/' + result.data.list[0].transactionId
 			QRCode.toDataURL(qrUrl, function (err, imgUrl) {
 				document.getElementById("imgQrCode").src = imgUrl;
