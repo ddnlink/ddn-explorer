@@ -268,9 +268,9 @@ class AppHeader extends Component {
               <Menu.Item key="3" className={styles.Menus_Item}>
                 <NavLink to="/transactions" >{formatMessage({ id: "menu.trs" })}</NavLink>
               </Menu.Item>
-              {/* <Menu.Item key="4" className={styles.Menus_Item}>
+              <Menu.Item key="4" className={styles.Menus_Item}>
                 <NavLink to="/assets" >{formatMessage({ id: "menu.evidence" })}</NavLink>
-              </Menu.Item> */}
+              </Menu.Item>
                <Menu.Item key="7" className={styles.Menus_Item}>
                 <NavLink to="/peers">{formatMessage({ id: "menu.peer" })}</NavLink>
               </Menu.Item> 

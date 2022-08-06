@@ -9,6 +9,7 @@ export default {
       dva: true,
       dynamicImport: { webpackChunkName: true },
       title: 'DDN Explore',
+      // links: [{ rel: 'icon', href: '<%= PUBLIC_PATH %>/favicon.ico' }],
       dll: false,
       locale: {
         enable: true,
@@ -25,5 +26,8 @@ export default {
       },
     }],
   ],
-  theme: './src/theme.js'
+  theme: './src/theme.js',
+ 
+
+
 }

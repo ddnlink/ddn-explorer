@@ -8,7 +8,9 @@ import { formatMessage } from 'umi-plugin-locale';
 import styles from './index.less';
 import utils_slots from "../../utils/slots";
 import { message } from 'antd'
+import QRCode from 'qrcode.react'
 import { connect } from 'dva';
+import config from '../../config'
 function getSizeStr(size) {
 	var sizeStr = "";
 	if (size < 1024) {
@@ -53,7 +55,8 @@ class Assets extends React.Component {
 	}
 
 	componentWillMount() {
-		document.title = 'Ebooker Ident';
+    console.log(window.location.host)
+		// document.title = 'Ebooker Ident';
 	}
 
 	componentDidMount() {
@@ -62,7 +65,7 @@ class Assets extends React.Component {
 
 	_loadDetailInfo = async () => {
 		var params = this.props.match.params.id;
-		// console.log('ipid: ' + ipid)
+		console.log('ipid: ' + params)
 		/*	var url = `http://47.92.0.84:8001/api/evidence/list/${ipid}`
 			let self = this;
 			const response = await fetch(url, {
@@ -76,7 +79,7 @@ class Assets extends React.Component {
 		this.props.dispatch({
 			type: 'assert/getCertificate',
 			payload: {
-				...params
+				hash:params
 			},
 			callback: (res) => {
 				console.log('certificate',res)
@@ -142,6 +145,16 @@ class Assets extends React.Component {
 		});
 	}
 
+  creatQrcode(){
+   return QRCode.toDataURL('I am a pony!')
+    .then(url => {
+      console.log(url)
+    })
+    .catch(err => {
+      console.error(err)
+    })
+  }
+
 	render() {
 		// const { data, address } = this.state;
 		const { certificate } = this.props
@@ -179,12 +192,13 @@ class Assets extends React.Component {
 
 							<div style={{ paddingRight: '130px', marginTop: '30px' }}>
 								<div style={{ float: 'left', paddingTop: "30px" }}>
-									<div className={styles["cert-item-lab"]} style={{ marginBottom: '15px', fontSize: "16px", color: "#666", }}>{formatMessage({ id: "assets.ipidNumber" })}:</div>
-									<div className={styles["cert-item-data"]} style={{ fontSize: "16px", fontFamily: "arial" }}>{certificate.ipid}</div>
+									<div className={styles["cert-item-lab"]} style={{ marginBottom: '15px', fontSize: "16px", color: "#666", }}>{formatMessage({ id: "assets.tags" })}:</div>
+									<div className={styles["cert-item-data"]} style={{ fontSize: "16px", fontFamily: "arial" }}>{certificate.tags}</div>
 									{/* <div className="cert-item-lab" style={{marginBottom: '15px'}}>区块链网络高度 </div>
                       <div className="cert-item-data">{certificate.blockHeight}</div> */}
 								</div>
-								<img id="imgQrCode" style={{ float: 'right', width: '120px', height: '120px' }} />
+               <QRCode value={window.location.host+'/assets/'+certificate.hash} style={{ float: 'right', width: '120px', height: '120px' }}></QRCode>
+								{/* <img id="imgQrCode" s /> */}
 							</div>
 
 							<div style={{ clear: 'both', paddingTop: '40px', marginLeft: '98px' }}>
@@ -210,8 +224,8 @@ class Assets extends React.Component {
 							<div style={{ width: '250px' }}>
 								<div style={{ boxShadow: '0px 2px 4px #dddddd', padding: '20px' }}>
 									<div style={{ fontSize: '18px', color: '#000' }}>{formatMessage({ id: "assets.identifyInfo" })}</div>
-									<div style={{ fontSize: '12px', color: '#999999', lineHeight: '21px', marginTop: '15px' }}>{formatMessage({ id: "assets.ipidNumber" })}:</div>
-									<div style={{ fontSize: '12px', color: '#666666', lineHeight: '21px', marginBottom: '5px', wordWrap: 'break-word' }}>{certificate.ipid}</div>
+									<div style={{ fontSize: '12px', color: '#999999', lineHeight: '21px', marginTop: '15px' }}>{formatMessage({ id: "assets.contentHash" })}:</div>
+									<div style={{ fontSize: '12px', color: '#666666', lineHeight: '21px', marginBottom: '5px', wordWrap: 'break-word' }}>{certificate.hash}</div>
 									<hr style={{ background: '#eeeeee', margin: '0px', padding: '0px' }} />
 									<div style={{ fontSize: '12px', color: '#999999', lineHeight: '21px', marginTop: '15px' }}>{formatMessage({ id: "assets.title" })}:</div>
 									<div style={{ fontSize: '12px', color: '#666666', lineHeight: '21px', marginBottom: '5px', wordWrap: "break-word" }}>{certificate.title}&nbsp;&nbsp;&nbsp;{sizeStr}</div>
@@ -229,7 +243,7 @@ class Assets extends React.Component {
 									</div>
 									<hr style={{ background: '#eeeeee', margin: '0px', padding: '0px' }} />
 									<div style={{ fontSize: '12px', color: '#999999', lineHeight: '21px', marginTop: '15px' }}>{formatMessage({ id: "assets.fileLink" })}:</div>
-									<div style={{ fontSize: '12px', color: '#666666', lineHeight: '21px', marginBottom: '5px', wordWrap: 'break-word' }}><a href={certificate.url} target="_blank">{certificate.url}</a></div>
+									<div style={{ fontSize: '12px', color: '#666666', lineHeight: '21px', marginBottom: '5px', wordWrap: 'break-word' }}><a href={certificate.source_address} target="_blank">{certificate.source_address}</a></div>
 									<div style={{ textAlign: 'center' }}>
 										<button style={{ background: '#044a84', color: 'white', border: 'none', borderRadius: '2px', marginTop: '15px', width: '124px', lineHeight: '32px' }} onClick={this._downloadCertImage}>{formatMessage({ id: "assets.downloadDcert" })}</button>
 									</div>

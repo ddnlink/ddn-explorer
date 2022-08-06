@@ -171,15 +171,16 @@ export default {
     'detail.content': '内容',
 
     'assets.title': '标题',
-    'assets.author': '作者',
+    'assets.author': '存证人',
     'assets.publishTime': '存证时间',
-    'assets.contentHash': '内容哈希',
+    'assets.contentHash': '哈希',
     'assets.size': '大小',
-    'assets.ipidNumber': '版权ID',
-    'assets.copyrightBelongs': '版权归属地址',
+    'assets.ipidNumber': 'ID',
+    'assets.copyrightBelongs': '所有者',
     'assets.transId': '交换ID',
     'assets.identifyInfo': '存证信息',
     'assets.fileLink': '链接',
+    'assets.tags': '标签',
     'assets.downloadDcert': '下载证书',
     'date': "YYYY年MMMDD HH:mm:ss"
 }
