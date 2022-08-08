@@ -142,7 +142,7 @@ class Assets extends React.Component {
 				var triggerDownload = $("<a>").attr("href", url).attr("download", fileName).appendTo("body");
 				triggerDownload[0].click();
 				triggerDownload.remove();
-				// copyDom.remove();
+				copyDom.remove();
 			}
 		});
 	}

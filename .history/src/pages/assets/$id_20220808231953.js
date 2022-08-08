@@ -110,13 +110,13 @@ class Assets extends React.Component {
 	}
 
 	_downloadCertImage() {
-		// var targetDom = $("#certInfo");
-		// var copyDom = targetDom.clone();
-		// copyDom.width(targetDom.width() + "px");
-		// copyDom.height(targetDom.height() + "px");
-		// $('body').append(copyDom);
-		// console.log("$('body')", $('body'))
-		// console.log('************', copyDom)
+		var targetDom = $("#certInfo");
+		var copyDom = targetDom.clone();
+		copyDom.width(targetDom.width() + "px");
+		copyDom.height(targetDom.height() + "px");
+		$('body').append(copyDom);
+		console.log("$('body')", $('body'))
+		console.log('************', copyDom)
     window.pageYoffset = 0;
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
@@ -142,7 +142,7 @@ class Assets extends React.Component {
 				var triggerDownload = $("<a>").attr("href", url).attr("download", fileName).appendTo("body");
 				triggerDownload[0].click();
 				triggerDownload.remove();
-				// copyDom.remove();
+				copyDom.remove();
 			}
 		});
 	}
