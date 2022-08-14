@@ -1,3 +1,4 @@
+import styles from './aobInfo.less';
 import React, { Component } from 'react';
 import { Table, message, Card, Icon } from 'antd';
 import 'whatwg-fetch';
@@ -8,7 +9,6 @@ import { connect } from 'dva';
 import Cnf from '../../config';
 import utils_slots from '../../utils/slots';
 import LimitText from '../../component/LimitText';
-import styles from './index.less';
 
 const columns = self => [
   {
@@ -26,7 +26,7 @@ const columns = self => [
   },
   {
     title: i18n.formatMessage({ id: 'block.numberOfTransactions' }),
-    dataIndex: 'number_of_transactions',
+    dataIndex: 'numberOfTransactions',
     sorter: false,
     width: '9%',
   },
@@ -47,7 +47,7 @@ const columns = self => [
   },
   {
     title: i18n.formatMessage({ id: 'block.totalAmount' }) + `(${Cnf.coinName})`,
-    dataIndex: 'total_amount',
+    dataIndex: 'totalAmount',
     sorter: false,
     width: '12%',
     render: text => {
@@ -56,7 +56,7 @@ const columns = self => [
   },
   {
     title: i18n.formatMessage({ id: 'block.totalFee' }) + `(${Cnf.coinName})`,
-    dataIndex: 'total_fee',
+    dataIndex: 'totalFee',
     sorter: false,
     width: '12%',
     render: text => `${text / 100000000.0}`,
@@ -64,7 +64,7 @@ const columns = self => [
 
   {
     title: i18n.formatMessage({ id: 'block.generatorId' }),
-    dataIndex: 'generator_id',
+    dataIndex: 'generatorId',
     ellipsis: true,
     sorter: false,
     width: '17%',
@@ -78,10 +78,14 @@ const columns = self => [
       `${moment(utils_slots.getRealTime(Number(text))).format('YYYY-MM-DD HH:mm:ss')}`,
   },
 ];
-@connect(({ block }) => ({
+@connect(({ block, aob }) => ({
   block,
+  aob,
 }))
-class BlockView extends Component {
+class AobInfo extends Component {
+  constructor(...args) {
+    super(...args);
+  }
   state = {
     loading: false,
     searchText: '',
@@ -89,6 +93,7 @@ class BlockView extends Component {
 
   componentDidMount() {
     this.getBlocks({ offset: 0, limit: 10, orderBy: 'height:desc' });
+    console.log('传入的值是：', this.props.location.query.documentQuery);
   }
 
   handleTableChange = (pagination, filters, sorter) => {
@@ -122,9 +127,71 @@ class BlockView extends Component {
     const { block } = this.props;
     const data = block.data.latestBlocks.blocks;
     const pagination = block.data.pagination;
+
     return (
       <div className={styles.pageWrap}>
-        <Card>
+        <Card
+          title={
+            <div className={styles.cardText}>
+              <Icon className={styles['icon']} type="audit" />
+              资产详情
+            </div>
+          }
+        >
+          <table>
+            <tbody className={styles.aobTable}>
+              <tr>
+                <td className={styles['col_one']}>资产名称</td>
+                <td className={styles['col_two']}>{this.props.location.query.documentQuery}</td>
+              </tr>
+              <tr>
+                <td className={styles['col_one']}>持币账户</td>
+                <td className={styles['col_two']}>
+                  8efwfr734jhkfjoow773523jffew043k4nf4fnnnnkdnfnrenrf34312nf
+                </td>
+              </tr>
+              <tr>
+                <td className={styles['col_one']}>发行商</td>
+                <td className={styles['col_two']}>DDN区块链中国区</td>
+              </tr>
+              <tr>
+                <td className={styles['col_one']}>发行上限</td>
+                <td className={styles['col_two']}>100000000000000000000000</td>
+              </tr>
+              <tr>
+                <td className={styles['col_one']}>已发行量</td>
+                <td className={styles['col_two']}>50000000000000000</td>
+              </tr>
+              <tr>
+                <td className={styles['col_one']}>精度</td>
+                <td className={styles['col_two']}>19.2</td>
+              </tr>
+              <tr>
+                <td className={styles['col_one']}>发行时间</td>
+                <td className={styles['col_two']}>2020-02-29 1083812124</td>
+              </tr>
+              <tr>
+                <td className={styles['col_one']}>发行商地址</td>
+                <td className={styles['col_two']}>
+                  98wrgjmohpttphjmbvjon315n514fwghrwrh6gdfhgjhjty67652345ghhhtr2463fqerghtrw676143n5m123lm413l2mofjerfgerwg039514858136jnowgnwenr45hiogngnwnfef
+                </td>
+              </tr>
+              <tr>
+                <td className={styles['col_one']}>资产描述</td>
+                <td className={styles['col_two']}>轻资产</td>
+              </tr>
+            </tbody>
+          </table>
+        </Card>
+        <Card
+          style={{ marginTop: '20px' }}
+          title={
+            <div className={styles.cardText}>
+              <Icon className={styles['icon']} type="transaction" />
+              资产交易列表
+            </div>
+          }
+        >
           <Table
             columns={columns(this)}
             rowKey={record => record.height}
@@ -132,7 +199,12 @@ class BlockView extends Component {
             pagination={pagination}
             loading={this.state.loading}
             onChange={this.handleTableChange}
-            rowClassName={(record, index) => (index % 2 === 0 ? styles.tabRow : styles.tabRowB)}
+            rowClassName={(record, index) => {
+              if (index % 2 != 0) {
+                return styles.tabRowB;
+              }
+              return styles.tabRow;
+            }}
           />
         </Card>
       </div>
@@ -140,4 +212,4 @@ class BlockView extends Component {
   }
 }
 
-export default BlockView;
+export default AobInfo;

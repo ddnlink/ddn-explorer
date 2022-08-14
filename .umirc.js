@@ -1,33 +1,23 @@
-
 // ref: https://umijs.org/config/
 export default {
-  treeShaking: true,
-  plugins: [
-    // ref: https://umijs.org/plugin/umi-plugin-react.html
-    ['umi-plugin-react', {
-      antd: true,
-      dva: true,
-      dynamicImport: { webpackChunkName: true },
-      title: 'DDN Explore',
-      // links: [{ rel: 'icon', href: '<%= PUBLIC_PATH %>/favicon.ico' }],
-      dll: false,
-      locale: {
-        enable: true,
-        default: 'en-US',
-      },
-      routes: {
-        exclude: [
-          /models\//,
-          /services\//,
-          /model\.(t|j)sx?$/,
-          /service\.(t|j)sx?$/,
-          /components\//,
-        ],
-      },
-    }],
-  ],
-  theme: './src/theme.js',
- 
-
-
-}
+  antd: {},
+  dva: {},
+  title: 'DDN Explore',
+  dynamicImport: {},
+  locale: {
+    default: 'en-US',
+    antd: true,
+  },
+  theme: {
+    'logo-bg-color': '#013A6A',
+    'primary-color': '#5bc5f4',
+    'light-primary-color': '#5bc5f4',
+    'transparent-primary-color': '#5bc5f44a',
+    'dark-primary-color': '#013A6A',
+    'card-actions-background': '#f5f8fa',
+    'font-size-base': '16px',
+    'font-size-secondary': '14px',
+    'text-color': 'rgba(0, 0, 0, 0.65)',
+    'text-color-secondary': 'rgba(0, 0, 0, .45)',
+  },
+};
