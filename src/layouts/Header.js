@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Row, Col, Button, Input, Layout, Menu, Select, Icon, Dropdown } from 'antd';
-import I18n, { i18n, setLocale, getLocale } from '@/utils/i18n';
+import { i18n, setLocale, getLocale } from '@/utils/i18n';
 import moment from 'moment';
 import styles from './css/Header.less';
 import config from '../config';
@@ -45,7 +45,7 @@ moment.locale('zh', {
     llll: 'YYYY年MMMD日ddddAh点mm分',
   },
   meridiemParse: /凌晨|早上|上午|中午|下午|晚上/,
-  meridiemHour: function(hour, meridiem) {
+  meridiemHour: function (hour, meridiem) {
     if (hour === 12) {
       hour = 0;
     }
@@ -58,7 +58,7 @@ moment.locale('zh', {
       return hour >= 11 ? hour : hour + 12;
     }
   },
-  meridiem: function(hour, minute, isLower) {
+  meridiem: function (hour, minute, isLower) {
     var hm = hour * 100 + minute;
     if (hm < 600) {
       return '凌晨';
@@ -75,22 +75,22 @@ moment.locale('zh', {
     }
   },
   calendar: {
-    sameDay: function() {
+    sameDay: function () {
       return this.minutes() === 0 ? '[今天]Ah[点整]' : '[今天]LT';
     },
-    nextDay: function() {
+    nextDay: function () {
       return this.minutes() === 0 ? '[明天]Ah[点整]' : '[明天]LT';
     },
-    lastDay: function() {
+    lastDay: function () {
       return this.minutes() === 0 ? '[昨天]Ah[点整]' : '[昨天]LT';
     },
-    nextWeek: function() {
+    nextWeek: function () {
       var startOfWeek, prefix;
       startOfWeek = moment().startOf('week');
       prefix = this.unix() - startOfWeek.unix() >= 7 * 24 * 3600 ? '[下]' : '[本]';
       return this.minutes() === 0 ? prefix + 'dddAh点整' : prefix + 'dddAh点mm';
     },
-    lastWeek: function() {
+    lastWeek: function () {
       var startOfWeek, prefix;
       startOfWeek = moment().startOf('week');
       prefix = this.unix() < startOfWeek.unix() ? '[上]' : '[本]';
@@ -99,7 +99,7 @@ moment.locale('zh', {
     sameElse: 'LL',
   },
   ordinalParse: /\d{1,2}(日|月|周)/,
-  ordinal: function(number, period) {
+  ordinal: function (number, period) {
     switch (period) {
       case 'd':
       case 'D':
@@ -168,11 +168,11 @@ class AppHeader extends Component {
     }
   };
 
-  switchLang = value => {
+  switchLang = (value) => {
     setLocale(value);
   };
 
-  handleClick = e => {
+  handleClick = (e) => {
     var e = e;
     this.props.dispatch({
       type: 'global/selectedMenu',
@@ -185,7 +185,7 @@ class AppHeader extends Component {
       // current: e.key
     });
   };
-  handleSearch = e => {
+  handleSearch = (e) => {
     let searchTxt = document.getElementById('searchTxt').value;
     searchTxt = searchTxt.trim();
     this.toSearch(searchTxt);
@@ -195,7 +195,7 @@ class AppHeader extends Component {
     searchTxt = searchTxt.trim();
     this.toSearch(searchTxt);
   };
-  toSearch = searchText => {
+  toSearch = (searchText) => {
     if (utils_crypto.isAddress(searchText)) {
       window.location.href = `/accounts/${searchText}`;
     } else if (/^([1-9][0-9]*)$/.test(searchText)) {
@@ -339,7 +339,6 @@ class AppHeader extends Component {
             </Dropdown>
           </Col>
         </Row>
-        <I18n />
       </Header>
 
       // </Layout>
