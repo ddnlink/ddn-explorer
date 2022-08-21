@@ -1,8 +1,7 @@
 import fetch from 'dva/fetch';
 import { notification } from 'antd';
-import router from "umi/router";
-import config from "../config";
-const {  apiUrl } = config;
+import config from '../config';
+const { apiUrl } = config;
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
   201: '新建或修改数据成功。',
@@ -43,8 +42,8 @@ function checkStatus(response) {
  * @return {object}           An object containing either "data" or "err"
  */
 export default function request(url, options) {
-  if(!url.startsWith('http')){
-    url = apiUrl+url;
+  if (!url.startsWith('http')) {
+    url = apiUrl + url;
   }
   const defaultOptions = {
     // credentials: 'include',
@@ -55,7 +54,7 @@ export default function request(url, options) {
       newOptions.headers = {
         Accept: 'application/json',
         'Content-Type': 'application/json; charset=utf-8',
-        'Authorization': sessionStorage.getItem('dpay-token'),
+        Authorization: sessionStorage.getItem('dpay-token'),
         ...newOptions.headers,
       };
       newOptions.body = JSON.stringify(newOptions.body);
@@ -63,7 +62,7 @@ export default function request(url, options) {
       // newOptions.body is FormData
       newOptions.headers = {
         Accept: 'application/json',
-        'Authorization': sessionStorage.getItem('dpay-token'),
+        Authorization: sessionStorage.getItem('dpay-token'),
         ...newOptions.headers,
       };
     }

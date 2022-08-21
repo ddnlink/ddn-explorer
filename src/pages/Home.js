@@ -3,7 +3,7 @@ import qs from 'qs';
 import { Link } from 'react-router-dom';
 import { Table, message, Input, Select, Row, Col, Card, Icon, Empty } from 'antd';
 import { connect } from 'dva';
-import { formatMessage } from 'umi-plugin-locale';
+import { i18n } from '@/utils/i18n';
 import GeoPattern from 'geopattern';
 import moment from 'moment';
 import Cnf from '../config';
@@ -12,7 +12,7 @@ import utils_slots from '../utils/slots';
 import LimitText from '../component/LimitText';
 import Curved from '../component/Curve';
 import CountDown from '../component/CountDown';
-import HeightCount from '../component/HeightCount'
+import HeightCount from '../component/HeightCount';
 // import Donut from '../component/Donut';
 // import Lizi from '../component/Lizi';
 let beginEpochTime = utils_slots.beginEpochTime();
@@ -20,156 +20,160 @@ let initTimestamp = beginEpochTime.valueOf();
 
 const transColumns = self => [
   {
-    title: formatMessage({ id: "trs.id" }),
-    dataIndex: "id",
+    title: i18n.formatMessage({ id: 'trs.id' }),
+    dataIndex: 'id',
     ellipsis: true,
     sorter: false,
-    width: "14%",
-    render: text => <LimitText title={text} link="/transactions/" />
+    width: '14%',
+    render: text => <LimitText title={text} link="/transactions/" />,
   },
   {
-    title: formatMessage({ id: "trs.type" }),
-    dataIndex: "type",
+    title: i18n.formatMessage({ id: 'trs.type' }),
+    dataIndex: 'type',
     sorter: false,
-    width: "9%",
-    render: text => formatMessage({ id: "types." + text })
+    width: '9%',
+    render: text => i18n.formatMessage({ id: 'types.' + text }),
   },
   {
-    title: formatMessage({ id: "trs.senderId" }),
-    dataIndex: "senderId",
+    title: i18n.formatMessage({ id: 'trs.senderId' }),
+    dataIndex: 'senderId',
     ellipsis: true,
     sorter: false,
-    width: "15%",
-    render: text => <LimitText link="/accounts/" title={text} target="_blank" />
+    width: '15%',
+    render: text => <LimitText link="/accounts/" title={text} target="_blank" />,
   },
   {
-    title: formatMessage({ id: "trs.recipientId" }),
-    dataIndex: "recipientId",
+    title: i18n.formatMessage({ id: 'trs.recipientId' }),
+    dataIndex: 'recipientId',
     ellipsis: true,
     sorter: false,
-    width: "15%",
-    render: (text) => {
+    width: '15%',
+    render: text => {
       let str = text;
       if (str) {
-        let arr = str.split("|");
+        let arr = str.split('|');
         return (
           <div>
-            {arr.map((item, index) => <div key={index}><LimitText target="_blank" title={item} link="/accounts/" /></div>)}
+            {arr.map((item, index) => (
+              <div key={index}>
+                <LimitText target="_blank" title={item} link="/accounts/" />
+              </div>
+            ))}
           </div>
-        )
+        );
       } else {
-        return (<span></span>)
+        return <span></span>;
       }
-    }
+    },
   },
   {
-    title: formatMessage({ id: "trs.amount" }) + `(${Cnf.coinName})`,
-    dataIndex: "amount",
+    title: i18n.formatMessage({ id: 'trs.amount' }) + `(${Cnf.coinName})`,
+    dataIndex: 'amount',
     sorter: false,
-    width: "12%",
-    render: text => `${text / 100000000.0}`
+    width: '12%',
+    render: text => `${text / 100000000.0}`,
   },
   {
-    title: formatMessage({ id: "trs.fee" }) + `(${Cnf.coinName})`,
-    dataIndex: "fee",
+    title: i18n.formatMessage({ id: 'trs.fee' }) + `(${Cnf.coinName})`,
+    dataIndex: 'fee',
     sorter: false,
-    width: "11%",
-    render: text => `${text / 100000000.0}`
+    width: '11%',
+    render: text => `${text / 100000000.0}`,
   },
   {
-    title: formatMessage({ id: "trs.height" }),
-    dataIndex: "block_height",
+    title: i18n.formatMessage({ id: 'trs.height' }),
+    dataIndex: 'block_height',
     sorter: false,
-    width: "9%",
+    width: '9%',
     render: text => (
-      <Link to={"/blocks/" + text} target="_blank">
+      <Link to={'/blocks/' + text} target="_blank">
         {text}
       </Link>
-    )
+    ),
   },
   {
-    title: formatMessage({ id: "trs.timestamp" }),
-    dataIndex: "timestamp",
-    width: "12%",
+    title: i18n.formatMessage({ id: 'trs.timestamp' }),
+    dataIndex: 'timestamp',
+    width: '12%',
     render: text => {
       let timeStamp = new Date().getTime();
       let leftTime = timeStamp - utils_slots.getRealTime(Number(text));
       return utils_slots.formatDuring(leftTime);
     },
-  }
+  },
 ];
 
 const blockColumns = self => [
   {
-    title: formatMessage({ id: "block.id" }),
-    dataIndex: "id",
+    title: i18n.formatMessage({ id: 'block.id' }),
+    dataIndex: 'id',
     ellipsis: true,
     sorter: false,
-    width: "15%",
-    render: text => <LimitText title={text} />
+    width: '15%',
+    render: text => <LimitText title={text} />,
   },
   {
-    title: formatMessage({ id: "block.height" }),
-    dataIndex: "height",
+    title: i18n.formatMessage({ id: 'block.height' }),
+    dataIndex: 'height',
     sorter: false,
-    width: "9%",
-    render: (text) => {
+    width: '9%',
+    render: text => {
       return (
-        <Link to={"/blocks/" + text} target="_blank">
+        <Link to={'/blocks/' + text} target="_blank">
           {text}
         </Link>
       );
-    }
+    },
   },
   {
-    title: formatMessage({ id: "block.numberOfTransactions" }),
-    dataIndex: "number_of_transactions",
+    title: i18n.formatMessage({ id: 'block.numberOfTransactions' }),
+    dataIndex: 'number_of_transactions',
     sorter: false,
-    width: "8%"
+    width: '8%',
   },
   {
-    title: formatMessage({ id: "block.reward" }) + `(${Cnf.coinName})`,
-    dataIndex: "reward",
+    title: i18n.formatMessage({ id: 'block.reward' }) + `(${Cnf.coinName})`,
+    dataIndex: 'reward',
     sorter: false,
-    width: "13%",
+    width: '13%',
     render: (text, record, index) => {
-      return Math.floor(Number(record.reward) / 100000000)
-    }
+      return Math.floor(Number(record.reward) / 100000000);
+    },
   },
   {
-    title: formatMessage({ id: "block.totalAmount" }) + `(${Cnf.coinName})`,
-    dataIndex: "total_amount",
+    title: i18n.formatMessage({ id: 'block.totalAmount' }) + `(${Cnf.coinName})`,
+    dataIndex: 'total_amount',
     sorter: false,
-    width: "12%",
+    width: '12%',
     render: text => {
-      return Math.floor(Number(text) / 100000000)
-    }
+      return Math.floor(Number(text) / 100000000);
+    },
   },
   {
-    title: formatMessage({ id: "block.totalFee" }) + `(${Cnf.coinName})`,
-    dataIndex: "total_fee",
+    title: i18n.formatMessage({ id: 'block.totalFee' }) + `(${Cnf.coinName})`,
+    dataIndex: 'total_fee',
     sorter: false,
-    width: "12%",
-    render: text => `${text / 100000000.0}`
+    width: '12%',
+    render: text => `${text / 100000000.0}`,
   },
   {
-    title: formatMessage({ id: "block.generatorId" }),
-    dataIndex: "generator_id",
+    title: i18n.formatMessage({ id: 'block.generatorId' }),
+    dataIndex: 'generator_id',
     ellipsis: true,
     sorter: false,
-    width: "16%",
-    render: text => <LimitText link="/accounts/" title={text} target="_blank" length={15} />
+    width: '16%',
+    render: text => <LimitText link="/accounts/" title={text} target="_blank" length={15} />,
   },
   {
-    title: formatMessage({ id: "block.timestamp" }),
-    dataIndex: "timestamp",
-    width: "12%",
+    title: i18n.formatMessage({ id: 'block.timestamp' }),
+    dataIndex: 'timestamp',
+    width: '12%',
     render: text => {
       let timeStamp = new Date().getTime();
       let leftTime = timeStamp - utils_slots.getRealTime(Number(text));
       return utils_slots.formatDuring(leftTime);
     },
-  }
+  },
 ];
 
 @connect(({ global, peers, block, transaction, aob }) => ({
@@ -179,7 +183,6 @@ const blockColumns = self => [
   peers,
   aob,
 }))
-
 class Home extends Component {
   state = {
     blockLoading: false,
@@ -228,7 +231,7 @@ class Home extends Component {
     });
     let self = this;
     this.timer && clearTimeout(this.timer);
-    this.timer = setTimeout(function () {
+    this.timer = setTimeout(function() {
       self.getStatus();
     }, 10000);
   };
@@ -326,7 +329,7 @@ class Home extends Component {
     });
     // let url = `http://127.0.0.1:8001/api/transactions/spell`
     // const response = await fetch(url, {
-    //   method: 'get', 
+    //   method: 'get',
     //   headers: {
     //     "Content-Type": "application/json"
     //   },
@@ -369,10 +372,13 @@ class Home extends Component {
     });
   };
   generateBackImg = () => {
-    const options = { color: '#ccc', generator: 'squares' }
-    const bgImgUrl = GeoPattern.generate('should derive the pattern from the hash', options).toDataUri()
-    this.setState({ backgroundImg: bgImgUrl })
-  }
+    const options = { color: '#ccc', generator: 'squares' };
+    const bgImgUrl = GeoPattern.generate(
+      'should derive the pattern from the hash',
+      options,
+    ).toDataUri();
+    this.setState({ backgroundImg: bgImgUrl });
+  };
   render() {
     const { tansLoading, blockLoading, duration, backgroundImg } = this.state;
     const { block, transaction, peers, global } = this.props;
@@ -391,7 +397,7 @@ class Home extends Component {
           </div>
           <div className={styles.height}>
             <div className={styles.heightTitle}>
-              {formatMessage({ id: 'home.height' })}
+              {i18n.formatMessage({ id: 'home.height' })}
               <CountDown timeCount={10} />
             </div>
             <HeightCount numbers={`${currentHeight}`} />
@@ -401,64 +407,65 @@ class Home extends Component {
           <div className={styles.subWrap}>
             <div className={styles['pannel']}>
               <Icon className={styles['icon']} type="user" />
-              <div className={styles['ptitle']}>{formatMessage({ id: 'home.transfers' })}</div>
+              <div className={styles['ptitle']}>{i18n.formatMessage({ id: 'home.transfers' })}</div>
               <div className={styles['number']}>{block.account}</div>
             </div>
             {/* <div className={styles['pannel']}>
               <Icon className={styles['icon']} type="user" />
-              <div className={styles['ptitle']}>{formatMessage({ id: 'home.tokenAmount' })}</div>
+              <div className={styles['ptitle']}>
+                {i18n.formatMessage({ id: 'home.tokenAmount' })}
+              </div>
               <div className={styles['number']}>{global.status.supply / 100000000}</div>
             </div> */}
             <div className={styles.pannel}>
-              <div className='icon-wrap'>
+              <div className="icon-wrap">
                 <Icon className={styles['icon']} type="audit" />
               </div>
 
               <div className={styles.ptitle}>
-                {formatMessage({ id: 'home.transaction_count' })}
+                {i18n.formatMessage({ id: 'home.transaction_count' })}
               </div>
               <span className={styles.number}>{transaction.data.latestTrans.count}</span>
             </div>
             <div className={styles['pannel']}>
               <Icon className={styles['icon']} type="history" />
-              <div className={styles['ptitle']}>{formatMessage({ id: 'home.run_time' })}</div>
+              <div className={styles['ptitle']}>{i18n.formatMessage({ id: 'home.run_time' })}</div>
               <div className={styles['number']}>
-                {duration} {formatMessage({ id: 'home.days' })}
+                {duration} {i18n.formatMessage({ id: 'home.days' })}
               </div>
             </div>
           </div>
         </div>
         <div className={styles.pageWrap}>
-          {curveData.length !== 0 && 
+          {curveData.length !== 0 && (
             <Card>
               <div className={styles.chartWrap}>
                 <div className={styles.Curved} style={{ textAlign: 'center' }}>
                   <div className={styles['title_main']}>
-                    {formatMessage({ id: 'home.aweek_title' })}
+                    {i18n.formatMessage({ id: 'home.aweek_title' })}
                   </div>
 
                   <div className={styles['text_secondary']} style={{ marginTop: '132px' }}>
-                    {formatMessage({ id: 'home.no_data' })}
+                    {i18n.formatMessage({ id: 'home.no_data' })}
                   </div>
                 </div>
               </div>
             </Card>
-          }
+          )}
 
           <div style={{ minHeight: '500px' }}>
-
-            <div className={styles['lastest']} >
+            <div className={styles['lastest']}>
               <Card
                 title={
                   <div className={styles.cardText}>
                     <Icon className={styles['icon']} type="transaction" />
-                    {formatMessage({ id: 'home.latest_transactions' })}
+                    {i18n.formatMessage({ id: 'home.latest_transactions' })}
                   </div>
                 }
                 extra={
-                  <div className={styles['moreText']} >
+                  <div className={styles['moreText']}>
                     <Link onClick={this.more.bind(this, '3')} to="/transactions">
-                      查看{formatMessage({ id: 'home.more' })}
+                      查看{i18n.formatMessage({ id: 'home.more' })}
                     </Link>
                     <Icon style={{ marginTop: '1px' }} type="right" />
                   </div>
@@ -476,25 +483,24 @@ class Home extends Component {
                       return styles.tabRow;
                     }
                     return styles.tabRowB;
-                  }
-                  }
+                  }}
                   style={{ minHeight: '294px' }}
                 />
               </Card>
             </div>
 
-            <div className={styles['lastest']} id="ddd" >
+            <div className={styles['lastest']} id="ddd">
               <Card
                 title={
                   <div className={styles.cardText}>
                     <Icon className={styles['icon']} type="codepen" />
-                    {formatMessage({ id: 'home.latest_blocks' })}
+                    {i18n.formatMessage({ id: 'home.latest_blocks' })}
                   </div>
                 }
                 extra={
-                  <div className={styles['moreText']} >
+                  <div className={styles['moreText']}>
                     <Link onClick={this.more.bind(this, '2')} to="/blocks">
-                      查看{formatMessage({ id: 'home.more' })}
+                      查看{i18n.formatMessage({ id: 'home.more' })}
                     </Link>
                     <Icon style={{ marginTop: '1px' }} type="right" />
                   </div>
@@ -509,17 +515,15 @@ class Home extends Component {
                   loading={blockLoading}
                   rowClassName={(record, index) => {
                     if (index % 2 == 0) {
-                      console.log("Index的值：" + { index });
+                      console.log('Index的值：' + { index });
                       return styles.tabRow;
                     }
                     return styles.tabRowB;
-                  }
-                  }
+                  }}
                   style={{ minHeight: '294px' }}
                 />
               </Card>
             </div>
-
           </div>
           {/* <div
             className={styles['lastest']}
@@ -538,7 +542,6 @@ class Home extends Component {
             </div>
           </div> */}
         </div>
-
       </div>
     );
   }
