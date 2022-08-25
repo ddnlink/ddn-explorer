@@ -21,6 +21,6 @@ export default {
     'text-color-secondary': 'rgba(0, 0, 0, .45)',
   },
   define: {
-    'process.env.request_url': 'http://49.4.8.154:8001',
+    'process.env.request_url': 'http://117.78.28.81:8000',
   },
 };

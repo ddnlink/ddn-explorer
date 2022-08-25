@@ -43,7 +43,7 @@ function checkStatus(response) {
  */
 export default function request(url, options) {
   if (!url.startsWith('http')) {
-    url = apiUrl + url;
+    url = process.env.request_url + url;
   }
   const defaultOptions = {
     // credentials: 'include',

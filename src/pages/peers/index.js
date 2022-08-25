@@ -8,7 +8,7 @@ import styles from './index.less';
 const columns = self => [
   {
     title: i18n.formatMessage({ id: 'peer.ip' }),
-    dataIndex: 'ip',
+    dataIndex: 'host',
     sorter: false,
     width: '15%',
     render: text => {
@@ -27,19 +27,20 @@ const columns = self => [
   },
   {
     title: i18n.formatMessage({ id: 'peer.state' }),
-    dataIndex: 'state',
+    dataIndex: 'status',
     sorter: false,
     width: '15%',
+    render:(text)=>text==2?"正常":"锁定"
   },
   {
     title: i18n.formatMessage({ id: 'peer.os' }),
-    dataIndex: 'os',
+    dataIndex: 'family',
     sorter: false,
     width: '10%',
   },
   {
     title: i18n.formatMessage({ id: 'peer.version' }),
-    dataIndex: 'version',
+    dataIndex: 'id',
     width: '10%',
   },
 ];
@@ -80,7 +81,6 @@ class PeerView extends Component {
   };
   render() {
     const { peers } = this.props;
-    console.log('节点数据', peers);
     const data = peers.peersData.peers.peers;
     const pagination = peers.peersData.pagination;
     return (

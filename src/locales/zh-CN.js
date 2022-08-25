@@ -136,8 +136,8 @@ export default {
     'peer.ip': "IP",
     'peer.port': "端口号",
     'peer.state': "状态",
-    'peer.os': "操作系统",
-    'peer.version': "版本",
+    'peer.os': "通信协议",
+    'peer.version': "ID",
 
 
     'account.address': '地址',

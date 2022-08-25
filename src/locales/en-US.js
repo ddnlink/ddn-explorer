@@ -125,8 +125,8 @@ export default {
   'peer.ip': 'IP',
   'peer.port': 'Port',
   'peer.state': 'State',
-  'peer.os': 'OS',
-  'peer.version': 'Version',
+  'peer.os': 'Protocol',
+  'peer.version': 'Id',
 
   'account.address': 'Address',
   'account.percent': 'Percent',
