@@ -246,7 +246,7 @@ class AppFooter extends Component {
             {localStorage.getItem('tokenName') === 'EOK' && (
               <div>区块链备案: 京网信备11010519864491550014号</div>
             )}
-            Copyright © {appinfo ? appinfo.Ccpyright : '2018 Powered by DDN FOUNDATION'}
+            Copyright ©2018 Powered by DDN FOUNDATION
           </div>
         </div>
       </Footer>
