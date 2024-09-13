@@ -1,7 +1,8 @@
 import fetch from 'dva/fetch';
 import { notification } from 'antd';
 import config from '../config';
-const { apiUrl } = config;
+const { peerAddress } = config;
+
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
   201: '新建或修改数据成功。',
@@ -43,17 +44,28 @@ function checkStatus(response) {
  */
 export default function request(url, options) {
   if (!url.startsWith('http')) {
-    url = process.env.request_url + url;
+    url = peerAddress + url;
+    // url = process.env.request_url + url;
   }
+
+  console.log('url: ', url)
+
   const defaultOptions = {
     // credentials: 'include',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json; charset=utf-8',
+    },
+    method: 'GET',
   };
+  
   const newOptions = { ...defaultOptions, ...options };
+
   if (newOptions.method === 'POST' || newOptions.method === 'PUT') {
     if (!(newOptions.body instanceof FormData)) {
       newOptions.headers = {
-        Accept: 'application/json',
-        'Content-Type': 'application/json; charset=utf-8',
+        // Accept: 'application/json',
+        
         Authorization: sessionStorage.getItem('dpay-token'),
         ...newOptions.headers,
       };
@@ -61,7 +73,7 @@ export default function request(url, options) {
     } else {
       // newOptions.body is FormData
       newOptions.headers = {
-        Accept: 'application/json',
+        // Accept: 'application/json',
         Authorization: sessionStorage.getItem('dpay-token'),
         ...newOptions.headers,
       };
@@ -70,18 +82,21 @@ export default function request(url, options) {
   return fetch(url, newOptions)
     .then(checkStatus)
     .then(response => {
+      console.log('response: ', response)
+
       if (newOptions.method === 'DELETE' || response.status === 204) {
         return response.text();
       }
       return response.json();
     })
     .catch(e => {
-      const dispatch = window.g_app._store.dispatch;
+      console.log('error: ', JSON.stringify(e))
+      // const dispatch = window.g_app._store.dispatch;
       const status = e.name;
       if (status === 401) {
-        dispatch({
-          type: 'login/logout',
-        });
+        // dispatch({
+        //   type: 'login/logout',
+        // });
         return;
       }
       // if (status === 403) {

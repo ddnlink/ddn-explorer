@@ -53,6 +53,7 @@ export default {
   'block.timestamp': 'Date',
   'block.block_detail': 'Block Detail',
   'block.no_detail': 'This Block is not exist',
+  'block.transactions': "Tran",
 
   'trs.id': 'Trs ID',
   'trs.type': 'Type',
