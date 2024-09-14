@@ -1,0 +1,2955 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "DDN Explorer API",
+    "version": "1.0.0",
+    "description": "详细文档请访问 https://openapi.apifox.cn/"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8000/"
+    }
+  ],
+  "paths": {
+    "/api/currentUser": {
+      "get": {
+        "tags": [
+          "api"
+        ],
+        "description": "获取当前的用户",
+        "operationId": "currentUser",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CurrentUser"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-swagger-router-controller": "api"
+    },
+    "/api/login/captcha": {
+      "post": {
+        "description": "发送验证码",
+        "operationId": "getFakeCaptcha",
+        "tags": [
+          "login"
+        ],
+        "parameters": [
+          {
+            "name": "phone",
+            "in": "query",
+            "description": "手机号",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FakeCaptcha"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/login/outLogin": {
+      "post": {
+        "description": "登录接口",
+        "operationId": "outLogin",
+        "tags": [
+          "login"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-swagger-router-controller": "api"
+    },
+    "/api/login/account": {
+      "post": {
+        "tags": [
+          "login"
+        ],
+        "description": "登录接口",
+        "operationId": "login",
+        "requestBody": {
+          "description": "登录系统",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginParams"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      },
+      "x-swagger-router-controller": "api"
+    },
+    "/api/notices": {
+      "summary": "getNotices",
+      "description": "NoticeIconItem",
+      "get": {
+        "tags": [
+          "api"
+        ],
+        "operationId": "getNotices",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NoticeIconList"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/network": {
+      "get": {
+        "summary": "Get network information",
+        "operationId": "getNetwork",
+        "tags": [
+          "network"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NetworkResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "请求错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/blocks/getStatus": {
+      "get": {
+        "tags": [
+          "block"
+        ],
+        "summary": "获取系统状态",
+        "description": "获取当前系统的状态信息",
+        "operationId": "getStatus",
+        "responses": {
+          "200": {
+            "description": "成功获取状态信息",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "请求错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "服务器错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/blocks": {
+      "get": {
+        "tags": [
+          "block"
+        ],
+        "summary": "获取区块列表",
+        "description": "获取规则列表",
+        "operationId": "getBlocksList",
+        "parameters": [
+          {
+            "name": "current",
+            "in": "query",
+            "description": "当前的页码",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "页面的容量",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlockList"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/blocks/full": {
+      "get": {
+        "tags": [
+          "block"
+        ],
+        "summary": "获取指定区块的详细信息",
+        "description": "根据区块ID或高度获取区块的详细信息,包括交易信息",
+        "operationId": "getBlockByIdOrHeight",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "区块ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "height",
+            "in": "query",
+            "description": "区块高度",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功获取区块详情",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlockResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "请求错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/accounts/count": {
+      "get": {
+        "tags": [
+          "account"
+        ],
+        "summary": "查询账户总数",
+        "description": "获取系统中的账户总数",
+        "operationId": "getAccountSum",
+        "responses": {
+          "200": {
+            "description": "成功获取账户总数",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountSumResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "请求错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/accounts/top": {
+      "get": {
+        "tags": [
+          "account"
+        ],
+        "summary": "获取账户列表",
+        "description": "获取系统中的账户列表,默认按余额排序",
+        "operationId": "getAccountList",
+        "parameters": [
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "分页偏移量",
+            "schema": {
+              "type": "integer",
+              "default": 0
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "每页数量",
+            "schema": {
+              "type": "integer",
+              "default": 20
+            }
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "description": "排序字段",
+            "schema": {
+              "type": "string",
+              "default": "balance:desc"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功获取账户列表",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountList"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "请求错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/accounts": {
+      "get": {
+        "summary": "获取账户详情",
+        "tags": [
+          "account"
+        ],
+        "operationId": "getAccountDetail",
+        "parameters": [
+          {
+            "name": "address",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功获取账户详情",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountDetailResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/peers": {
+      "get": {
+        "tags": [
+          "peer"
+        ],
+        "summary": "获取节点列表",
+        "description": "获取系统中的节点列表",
+        "operationId": "getPeersList",
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "description": "节点IP地址",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功获取节点列表",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PeersListResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "请求错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/transactions": {
+      "get": {
+        "tags": [
+          "transaction"
+        ],
+        "summary": "获取最新交易",
+        "description": "获取系统中的最新交易列表",
+        "operationId": "getLatestTrans",
+        "parameters": [
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "偏移量",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "限制数量",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "description": "排序字段",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功获取最新交易",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionListResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "请求错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/transactions/get": {
+      "get": {
+        "tags": [
+          "transaction"
+        ],
+        "summary": "获取交易详情",
+        "operationId": "getTransactionDetail",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功获取交易详情",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionDetailResponse"
+                }
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "请求错误",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ErrorResponse"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/aob/assets": {
+      "get": {
+        "tags": [
+          "aob"
+        ],
+        "summary": "获取AOB列表",
+        "description": "获取系统中的AOB（资产）列表",
+        "operationId": "getAobsList",
+        "responses": {
+          "200": {
+            "description": "成功获取AOB列表",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AobListResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "请求错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/evidences/all": {
+      "get": {
+        "tags": [
+          "evidence"
+        ],
+        "summary": "获取所有证据列表",
+        "description": "获取系统中所有的证据列表",
+        "operationId": "getEvidenceList",
+        "parameters": [
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "分页偏移量",
+            "schema": {
+              "type": "integer",
+              "default": 0
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "每页数量",
+            "schema": {
+              "type": "integer",
+              "default": 20
+            }
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "description": "排序字段",
+            "schema": {
+              "type": "string",
+              "default": "timestamp:desc"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功获取证据列表",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EvidenceList"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "请求错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/evidence/certificate": {
+      "get": {
+        "tags": [
+          "evidence"
+        ],
+        "summary": "Get certificate information",
+        "operationId": "getCertificate",
+        "parameters": [
+          {
+            "name": "hash",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CertificateResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "请求错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/delegates": {
+      "get": {
+        "tags": [
+          "delegate"
+        ],
+        "summary": "获取受托人列表",
+        "description": "获取系统中的受托人列表",
+        "operationId": "getDelegatesList",
+        "parameters": [
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "分页偏移量",
+            "schema": {
+              "type": "integer",
+              "default": 0
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "每页数量",
+            "schema": {
+              "type": "integer",
+              "default": 20
+            }
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "description": "排序字段",
+            "schema": {
+              "type": "string",
+              "default": "rate:asc"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功获取受托人列表",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DelegateList"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "请求错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/swagger": {
+      "x-swagger-pipe": "swagger_raw"
+    }
+  },
+  "components": {
+    "schemas": {
+      "CurrentUser": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "avatar": {
+            "type": "string"
+          },
+          "userid": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "signature": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "group": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "key": {
+                  "type": "string"
+                },
+                "label": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "notifyCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "unreadCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "country": {
+            "type": "string"
+          },
+          "access": {
+            "type": "string"
+          },
+          "geographic": {
+            "type": "object",
+            "properties": {
+              "province": {
+                "type": "object",
+                "properties": {
+                  "label": {
+                    "type": "string"
+                  },
+                  "key": {
+                    "type": "string"
+                  }
+                }
+              },
+              "city": {
+                "type": "object",
+                "properties": {
+                  "label": {
+                    "type": "string"
+                  },
+                  "key": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "address": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          }
+        }
+      },
+      "LoginResult": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "currentAuthority": {
+            "type": "string"
+          }
+        }
+      },
+      "PageParams": {
+        "type": "object",
+        "properties": {
+          "current": {
+            "type": "number"
+          },
+          "pageSize": {
+            "type": "number"
+          }
+        }
+      },
+      "RuleListItem": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "disabled": {
+            "type": "boolean"
+          },
+          "href": {
+            "type": "string"
+          },
+          "avatar": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "owner": {
+            "type": "string"
+          },
+          "desc": {
+            "type": "string"
+          },
+          "callNo": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "datetime"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "datetime"
+          },
+          "progress": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "RuleList": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RuleListItem"
+            }
+          },
+          "total": {
+            "type": "integer",
+            "description": "列表的内容总数",
+            "format": "int32"
+          },
+          "success": {
+            "type": "boolean"
+          }
+        }
+      },
+      "FakeCaptcha": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "LoginParams": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "autoLogin": {
+            "type": "boolean"
+          },
+          "type": {
+            "type": "string"
+          }
+        }
+      },
+      "ErrorResponse": {
+        "required": [
+          "errorCode"
+        ],
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "type": "string",
+            "description": "业务约定的错误码"
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "业务上的错误信息"
+          },
+          "success": {
+            "type": "boolean",
+            "description": "业务上的请求是否成功"
+          }
+        }
+      },
+      "NoticeIconList": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NoticeIconItem"
+            }
+          },
+          "total": {
+            "type": "integer",
+            "description": "列表的内容总数",
+            "format": "int32"
+          },
+          "success": {
+            "type": "boolean"
+          }
+        }
+      },
+      "NoticeIconItemType": {
+        "title": "NoticeIconItemType",
+        "description": "已读未读列表的枚举",
+        "type": "string",
+        "properties": {},
+        "enum": [
+          "notification",
+          "message",
+          "event"
+        ]
+      },
+      "NoticeIconItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "extra": {
+            "type": "string",
+            "format": "any"
+          },
+          "key": {
+            "type": "string"
+          },
+          "read": {
+            "type": "boolean"
+          },
+          "avatar": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "datetime": {
+            "type": "string",
+            "format": "date"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "NetworkResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Indicates if the request was successful"
+          },
+          "nethash": {
+            "type": "string",
+            "description": "Network hash"
+          },
+          "tokenName": {
+            "type": "string",
+            "description": "Name of the token"
+          },
+          "tokenPrefix": {
+            "type": "string",
+            "description": "Prefix used for the token"
+          },
+          "beginDate": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Start date of the network"
+          }
+        },
+        "required": [
+          "success",
+          "nethash",
+          "tokenName",
+          "tokenPrefix",
+          "beginDate"
+        ]
+      },
+      "BlockList": {
+        "type": "object",
+        "properties": {
+          "blocks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Block"
+            }
+          },
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "TransactionList": {
+        "type": "object",
+        "properties": {
+          "transactions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Transaction"
+            }
+          },
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "AssetList": {
+        "type": "object",
+        "properties": {
+          "assets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Asset"
+            }
+          },
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "AssetTransferList": {
+        "type": "object",
+        "properties": {
+          "assetTransfers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AssetTransfer"
+            }
+          },
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "AssetSignatureList": {
+        "type": "object",
+        "properties": {
+          "assetSignatures": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AssetSignature"
+            }
+          },
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "DelegateList": {
+        "type": "object",
+        "properties": {
+          "delegates": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Delegate"
+            }
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "AssetVoteList": {
+        "type": "object",
+        "properties": {
+          "assetVotes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AssetVote"
+            }
+          },
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "AssetMultisignatureList": {
+        "type": "object",
+        "properties": {
+          "assetMultisignatures": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AssetMultisignature"
+            }
+          },
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "AssetDAppList": {
+        "type": "object",
+        "properties": {
+          "assetDApps": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AssetDApp"
+            }
+          },
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "AssetInTransferList": {
+        "type": "object",
+        "properties": {
+          "assetInTransfers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AssetInTransfer"
+            }
+          },
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "AssetOutTransferList": {
+        "type": "object",
+        "properties": {
+          "assetOutTransfers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AssetOutTransfer"
+            }
+          },
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "AssetAOBIssuerList": {
+        "type": "object",
+        "properties": {
+          "assetAOBIssuers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AssetAOBIssuer"
+            }
+          },
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "AssetAOBAssetList": {
+        "type": "object",
+        "properties": {
+          "assetAOBAssets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AssetAOBAsset"
+            }
+          },
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "AssetAOBFlagsList": {
+        "type": "object",
+        "properties": {
+          "assetAOBFlags": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AssetAOBFlags"
+            }
+          },
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "AssetAOBAclList": {
+        "type": "object",
+        "properties": {
+          "assetAOBAcls": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AssetAOBAcl"
+            }
+          },
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "AssetAOBIssueList": {
+        "type": "object",
+        "properties": {
+          "assetAOBIssues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AssetAOBIssue"
+            }
+          },
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "AssetAOBTransferList": {
+        "type": "object",
+        "properties": {
+          "assetAOBTransfers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AssetAOBTransfer"
+            }
+          },
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "AssetUserinfoList": {
+        "type": "object",
+        "properties": {
+          "assetUserinfos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AssetUserinfo"
+            }
+          },
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "EvidenceList": {
+        "type": "object",
+        "properties": {
+          "assetEvidences": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Evidence"
+            }
+          },
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "AssetContractList": {
+        "type": "object",
+        "properties": {
+          "assetContracts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AssetContract"
+            }
+          },
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "BlockProposeList": {
+        "type": "object",
+        "properties": {
+          "blockProposes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BlockPropose"
+            }
+          },
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "BlockVotesList": {
+        "type": "object",
+        "properties": {
+          "blockVotes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BlockVotes"
+            }
+          },
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "BlockVoteSignatureList": {
+        "type": "object",
+        "properties": {
+          "blockVoteSignatures": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BlockVoteSignature"
+            }
+          },
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "DaoOrgList": {
+        "type": "object",
+        "properties": {
+          "daoOrgs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DaoOrg"
+            }
+          },
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "DaoExchangeList": {
+        "type": "object",
+        "properties": {
+          "daoExchanges": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DaoExchange"
+            }
+          },
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "DaoConfirmationList": {
+        "type": "object",
+        "properties": {
+          "daoConfirmations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DaoConfirmation"
+            }
+          },
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "DaoContributionList": {
+        "type": "object",
+        "properties": {
+          "daoContributions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DaoContribution"
+            }
+          },
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "Block": {
+        "type": "object",
+        "required": [
+          "version",
+          "timestamp",
+          "total_amount",
+          "total_fee",
+          "reward",
+          "number_of_transactions",
+          "payload_length",
+          "payload_hash",
+          "generator_public_key"
+        ],
+        "properties": {
+          "version": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "timestamp": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "total_amount": {
+            "type": "string"
+          },
+          "total_fee": {
+            "type": "string"
+          },
+          "reward": {
+            "type": "string"
+          },
+          "number_of_transactions": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "payload_length": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "payload_hash": {
+            "type": "string",
+            "format": "byte"
+          },
+          "generator_public_key": {
+            "type": "string",
+            "format": "byte"
+          },
+          "block_signature": {
+            "type": "string",
+            "format": "byte"
+          },
+          "previous_block": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "height": {
+            "type": "string"
+          },
+          "transactions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Transaction"
+            }
+          }
+        }
+      },
+      "Transaction": {
+        "type": "object",
+        "required": [
+          "type",
+          "timestamp",
+          "senderPublicKey",
+          "signature",
+          "asset"
+        ],
+        "properties": {
+          "type": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "timestamp": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nethash": {
+            "type": "string"
+          },
+          "senderPublicKey": {
+            "type": "string",
+            "format": "byte"
+          },
+          "signature": {
+            "type": "string",
+            "format": "byte"
+          },
+          "recipientId": {
+            "type": "string"
+          },
+          "senderId": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "string"
+          },
+          "fee": {
+            "type": "string"
+          },
+          "requester_public_key": {
+            "type": "string",
+            "format": "byte"
+          },
+          "sign_signature": {
+            "type": "string",
+            "format": "byte"
+          },
+          "signatures": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "id": {
+            "type": "string"
+          },
+          "block_height": {
+            "type": "string"
+          },
+          "block_id": {
+            "type": "string"
+          },
+          "asset": {
+            "$ref": "#/components/schemas/Asset"
+          },
+          "args": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "Asset": {
+        "type": "object",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/AssetTransfer"
+          },
+          {
+            "$ref": "#/components/schemas/AssetSignature"
+          },
+          {
+            "$ref": "#/components/schemas/Delegate"
+          },
+          {
+            "$ref": "#/components/schemas/AssetVote"
+          },
+          {
+            "$ref": "#/components/schemas/AssetMultisignature"
+          },
+          {
+            "$ref": "#/components/schemas/AssetDApp"
+          },
+          {
+            "$ref": "#/components/schemas/AssetInTransfer"
+          },
+          {
+            "$ref": "#/components/schemas/AssetOutTransfer"
+          },
+          {
+            "$ref": "#/components/schemas/AssetAOBIssuer"
+          },
+          {
+            "$ref": "#/components/schemas/AssetAOBAsset"
+          },
+          {
+            "$ref": "#/components/schemas/AssetAOBFlags"
+          },
+          {
+            "$ref": "#/components/schemas/AssetAOBAcl"
+          },
+          {
+            "$ref": "#/components/schemas/AssetAOBIssue"
+          },
+          {
+            "$ref": "#/components/schemas/AssetAOBTransfer"
+          },
+          {
+            "$ref": "#/components/schemas/AssetUserinfo"
+          },
+          {
+            "$ref": "#/components/schemas/Evidence"
+          },
+          {
+            "$ref": "#/components/schemas/DaoOrg"
+          },
+          {
+            "$ref": "#/components/schemas/DaoExchange"
+          },
+          {
+            "$ref": "#/components/schemas/DaoContribution"
+          },
+          {
+            "$ref": "#/components/schemas/DaoConfirmation"
+          },
+          {
+            "$ref": "#/components/schemas/AssetContract"
+          }
+        ]
+      },
+      "AssetTransfer": {
+        "type": "object"
+      },
+      "AssetSignature": {
+        "type": "object",
+        "required": [
+          "publicKey"
+        ],
+        "properties": {
+          "publicKey": {
+            "type": "string",
+            "format": "byte"
+          }
+        }
+      },
+      "Delegate": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "publicKey": {
+            "type": "string"
+          },
+          "vote": {
+            "type": "string"
+          },
+          "producedblocks": {
+            "type": "integer"
+          },
+          "missedblocks": {
+            "type": "integer"
+          },
+          "rate": {
+            "type": "integer"
+          },
+          "approval": {
+            "type": "number",
+            "format": "float"
+          },
+          "productivity": {
+            "type": "number",
+            "format": "float"
+          },
+          "forged": {
+            "type": "string"
+          }
+        }
+      },
+      "AssetVote": {
+        "type": "object",
+        "properties": {
+          "votes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "AssetMultisignature": {
+        "type": "object",
+        "required": [
+          "min",
+          "lifetime",
+          "keysgroup"
+        ],
+        "properties": {
+          "min": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "lifetime": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "keysgroup": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "AssetDApp": {
+        "type": "object",
+        "required": [
+          "category",
+          "name",
+          "type",
+          "link",
+          "unlock_delegates"
+        ],
+        "properties": {
+          "category": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "link": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "string"
+          },
+          "icon": {
+            "type": "string"
+          },
+          "delegates": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "unlock_delegates": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "AssetInTransfer": {
+        "type": "object",
+        "required": [
+          "dapp_id"
+        ],
+        "properties": {
+          "dapp_id": {
+            "type": "string"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "string"
+          }
+        }
+      },
+      "AssetOutTransfer": {
+        "type": "object",
+        "required": [
+          "dapp_id",
+          "transaction_id"
+        ],
+        "properties": {
+          "dapp_id": {
+            "type": "string"
+          },
+          "transaction_id": {
+            "type": "string"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "string"
+          }
+        }
+      },
+      "AssetAOBIssuer": {
+        "type": "object",
+        "required": [
+          "name",
+          "desc"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "desc": {
+            "type": "string"
+          }
+        }
+      },
+      "AssetAOBAsset": {
+        "type": "object",
+        "required": [
+          "name",
+          "desc",
+          "maximum",
+          "precision"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "desc": {
+            "type": "string"
+          },
+          "maximum": {
+            "type": "string"
+          },
+          "precision": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "strategy": {
+            "type": "string"
+          },
+          "allow_writeoff": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "allow_whitelist": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "allow_blacklist": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "AssetAOBFlags": {
+        "type": "object",
+        "required": [
+          "currency",
+          "flag_type",
+          "flag"
+        ],
+        "properties": {
+          "currency": {
+            "type": "string"
+          },
+          "flag_type": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "flag": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "AssetAOBAcl": {
+        "type": "object",
+        "required": [
+          "currency",
+          "operator",
+          "flag",
+          "list"
+        ],
+        "properties": {
+          "currency": {
+            "type": "string"
+          },
+          "operator": {
+            "type": "string"
+          },
+          "flag": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "list": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "AssetAOBIssue": {
+        "type": "object",
+        "required": [
+          "currency",
+          "amount"
+        ],
+        "properties": {
+          "currency": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "string"
+          }
+        }
+      },
+      "AssetAOBTransfer": {
+        "type": "object",
+        "required": [
+          "currency",
+          "amount"
+        ],
+        "properties": {
+          "currency": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "string"
+          }
+        }
+      },
+      "AssetUserinfo": {
+        "type": "object",
+        "required": [
+          "username"
+        ],
+        "properties": {
+          "username": {
+            "type": "string"
+          }
+        }
+      },
+      "Evidence": {
+        "type": "object",
+        "required": [
+          "ipid",
+          "title",
+          "hash",
+          "tags",
+          "author",
+          "url",
+          "type"
+        ],
+        "properties": {
+          "ipid": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "hash": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "string"
+          },
+          "author": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "size": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "transactionId": {
+            "type": "string"
+          },
+          "blockId": {
+            "type": "string"
+          },
+          "confirmations": {
+            "type": "integer"
+          }
+        }
+      },
+      "CertificateResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "list": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Certificate"
+                }
+              },
+              "address": {
+                "type": "string"
+              }
+            }
+          },
+          "error": {
+            "type": "string"
+          }
+        }
+      },
+      "Certificate": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "hash": {
+            "type": "string"
+          },
+          "size": {
+            "type": "number"
+          },
+          "tags": {
+            "type": "string"
+          },
+          "author": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "number"
+          },
+          "source_address": {
+            "type": "string"
+          },
+          "transaction_id": {
+            "type": "string"
+          }
+        }
+      },
+      "AssetContract": {
+        "type": "object",
+        "required": [
+          "name",
+          "owner",
+          "desc",
+          "version",
+          "code"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "gas_limit": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "owner": {
+            "type": "string"
+          },
+          "desc": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          }
+        }
+      },
+      "BlockPropose": {
+        "type": "object",
+        "required": [
+          "height",
+          "id",
+          "timestamp",
+          "generator_public_key",
+          "address",
+          "hash",
+          "signature"
+        ],
+        "properties": {
+          "height": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "generator_public_key": {
+            "type": "string",
+            "format": "byte"
+          },
+          "address": {
+            "type": "string"
+          },
+          "hash": {
+            "type": "string",
+            "format": "byte"
+          },
+          "signature": {
+            "type": "string",
+            "format": "byte"
+          }
+        }
+      },
+      "BlockVotes": {
+        "type": "object",
+        "required": [
+          "height",
+          "id",
+          "signatures"
+        ],
+        "properties": {
+          "height": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "signatures": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BlockVoteSignature"
+            }
+          }
+        }
+      },
+      "BlockVoteSignature": {
+        "type": "object",
+        "required": [
+          "key",
+          "sig"
+        ],
+        "properties": {
+          "key": {
+            "type": "string",
+            "format": "byte"
+          },
+          "sig": {
+            "type": "string",
+            "format": "byte"
+          }
+        }
+      },
+      "DaoOrg": {
+        "type": "object",
+        "required": [
+          "org_id",
+          "state"
+        ],
+        "properties": {
+          "address": {
+            "type": "string"
+          },
+          "org_id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "state": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "DaoExchange": {
+        "type": "object",
+        "required": [
+          "org_id",
+          "exchange_trs_id",
+          "sender_address",
+          "received_address",
+          "price",
+          "state"
+        ],
+        "properties": {
+          "org_id": {
+            "type": "string"
+          },
+          "exchange_trs_id": {
+            "type": "string"
+          },
+          "sender_address": {
+            "type": "string"
+          },
+          "received_address": {
+            "type": "string"
+          },
+          "price": {
+            "type": "string"
+          },
+          "state": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "DaoConfirmation": {
+        "type": "object",
+        "required": [
+          "received_address",
+          "sender_address",
+          "contribution_trs_id",
+          "state"
+        ],
+        "properties": {
+          "received_address": {
+            "type": "string"
+          },
+          "sender_address": {
+            "type": "string"
+          },
+          "contribution_trs_id": {
+            "type": "string"
+          },
+          "state": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "url": {
+            "type": "string"
+          }
+        }
+      },
+      "DaoContribution": {
+        "type": "object",
+        "required": [
+          "title",
+          "received_address",
+          "sender_address",
+          "url"
+        ],
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "received_address": {
+            "type": "string"
+          },
+          "sender_address": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "price": {
+            "type": "string"
+          }
+        }
+      },
+      "StatusResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "height": {
+            "type": "integer",
+            "description": "当前区块高度"
+          },
+          "reward": {
+            "type": "integer",
+            "description": "奖励"
+          },
+          "supply": {
+            "type": "integer",
+            "description": "供给"
+          },
+          "version": {
+            "type": "string",
+            "description": "系统版本"
+          },
+          "milestone": {
+            "type": "string",
+            "description": "里程碑版本"
+          },
+          "consensus": {
+            "type": "integer",
+            "description": "当前共识参与人数"
+          },
+          "datetime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "系统当前时间"
+          },
+          "lastBlock": {
+            "$ref": "#/components/schemas/Block"
+          }
+        }
+      },
+      "AccountSumResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "count": {
+            "type": "integer",
+            "description": "账户总数"
+          }
+        }
+      },
+      "AccountDetailResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "account": {
+            "$ref": "#/components/schemas/Account"
+          },
+          "error": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "Account": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string"
+          },
+          "balance": {
+            "type": "string"
+          },
+          "unconfirmedBalance": {
+            "type": "string"
+          },
+          "publicKey": {
+            "type": "string"
+          },
+          "secondPublicKey": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "isDelegate": {
+            "type": "boolean"
+          },
+          "vote": {
+            "type": "string"
+          },
+          "producedblocks": {
+            "type": "integer"
+          },
+          "missedblocks": {
+            "type": "integer"
+          },
+          "rate": {
+            "type": "integer"
+          },
+          "approval": {
+            "type": "number",
+            "format": "float"
+          },
+          "productivity": {
+            "type": "number",
+            "format": "float"
+          }
+        }
+      },
+      "AccountList": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "accounts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Account"
+            }
+          },
+          "count": {
+            "type": "integer",
+            "description": "账户总数"
+          },
+          "error": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "PeersListResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "peers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Peer"
+            }
+          },
+          "totalCount": {
+            "type": "integer",
+            "description": "节点总数"
+          },
+          "error": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "TransactionListResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "transactions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Transaction"
+            }
+          },
+          "count": {
+            "type": "integer",
+            "description": "交易总数"
+          },
+          "error": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "TransactionDetailResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "transaction": {
+            "$ref": "#/components/schemas/Transaction"
+          },
+          "error": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "CurveDataResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "date": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "count": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      },
+      "AobListResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "aobs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Aob"
+            }
+          },
+          "count": {
+            "type": "integer",
+            "description": "AOB总数"
+          }
+        }
+      },
+      "Peer": {
+        "type": "object",
+        "properties": {
+          "ip": {
+            "type": "string"
+          },
+          "port": {
+            "type": "integer"
+          },
+          "state": {
+            "type": "integer"
+          },
+          "os": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          }
+        }
+      },
+      "Aob": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "maximum": {
+            "type": "string"
+          },
+          "precision": {
+            "type": "integer"
+          },
+          "quantity": {
+            "type": "string"
+          }
+        }
+      },
+      "BlockResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "block": {
+            "$ref": "#/components/schemas/Block"
+          },
+          "error": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
