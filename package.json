@@ -41,7 +41,6 @@
     "copy-to-clipboard": "^3.3.3",
     "d3": "^7.9.0",
     "dayjs": "^1.11.13",
-    "dva": "^2.4.1",
     "geopattern": "^1.2.3",
     "html2canvas": "^1.4.1",
     "qrcode": "^1.5.4",
@@ -53,6 +52,7 @@
     "@types/react": "^18.0.33",
     "@types/react-dom": "^18.0.11",
     "@umijs/max-plugin-openapi": "^2.0.3",
+    "cz-conventional-changelog": "^3.3.0",
     "husky": "^9",
     "lint-staged": "^13.2.0",
     "prettier": "^2.8.7",
@@ -60,6 +60,11 @@
     "prettier-plugin-packagejson": "^2.4.3",
     "typescript": "^5.0.3"
   },
-  "license": "AGPL 3.0",
-  "packageManager": "yarn@1.22.22"
+  "license": "AGPL-3.0-or-later",
+  "packageManager": "yarn@1.22.22",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
 }
