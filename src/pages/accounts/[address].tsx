@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, request } from 'umi';
 import { message, Card, Radio } from 'antd';
-import { i18n } from '@/utils/i18n';
 import services from '@/services/ddn-explorer';
 import styles from './address.less';
 import TransactionHistory from './TransactionHistory';
 import AccountInfo from './AccountInfo';
-import Cnf from '@/config';
 import { useModel } from '@umijs/max';
 
 const tabList = [
@@ -41,7 +39,7 @@ const AccountDetail: React.FC = () => {
     setLoading(true);
     try {
       const res = await services.account.getAccountDetail({ address });
-      console.log('获取账户详情结果:', res);
+      // console.log('获取账户详情结果:', res);
 
       if (res.success) {
         setAccountDetail(res.account);

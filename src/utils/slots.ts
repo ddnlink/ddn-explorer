@@ -1,5 +1,3 @@
-import config from '../config';
-
 /**
  * 将 ISO 8601 格式的日期字符串转换为 Date.UTC 格式的日期对象
  * @param isoDateString ISO 8601 格式的日期字符串
@@ -18,58 +16,58 @@ function convertISOToUTCDate(isoDateString: string): Date {
   ));
 }
 
-function getEpochTime(time) {
+function getEpochTime(time: number, beginDate: string) {
   if (time === undefined) {
     time = new Date().getTime();
   }
-  var d = beginEpochTime();
-  var t = d.getTime();
+  const d = beginEpochTime(beginDate);
+  const t = d.getTime();
   return Math.floor((time - t) / 1000);
 }
 
-function beginEpochTime(beginDate) {
+function beginEpochTime(beginDate: string) {
   return convertISOToUTCDate(beginDate);
 }
 
-var interval = 10,
+const interval = 10,
   delegates = 101;
 
-function getTime(time) {
-  return getEpochTime(time);
+function getTime(time: number, beginDate: string) {
+  return getEpochTime(time, beginDate);
 }
 
-function getRealTime(epochTime) {
+function getRealTime(epochTime: number, beginDate: string) {
   if (epochTime === undefined) {
-    epochTime = getTime();
+    epochTime = getTime(0, beginDate);
   }
-  var d = beginEpochTime();
-  var t = Math.floor(d.getTime() / 1000) * 1000;
+  const d = beginEpochTime(beginDate);
+  const t = Math.floor(d.getTime() / 1000) * 1000;
   return t + epochTime * 1000;
 }
 
-function getSlotNumber(epochTime) {
+function getSlotNumber(epochTime: number, beginDate: string) {
   if (epochTime === undefined) {
-    epochTime = getTime();
+    epochTime = getTime(0, beginDate);
   }
 
   return Math.floor(epochTime / interval);
 }
 
-function getSlotTime(slot) {
+function getSlotTime(slot: number) {
   return slot * interval;
 }
 
-function getNextSlot() {
-  var slot = getSlotNumber();
+function getNextSlot(epochTime: number, beginDate: string) {
+  const slot = getSlotNumber(epochTime, beginDate);
 
   return slot + 1;
 }
 
-function getLastSlot(nextSlot) {
+function getLastSlot(nextSlot: number) {
   return nextSlot + delegates;
 }
 
-const limitLength = (value, len) => {
+const limitLength = (value: string, len: number) => {
   let valueText = value;
   let length = len || 8;
   if (typeof valueText !== 'string') return '……';
@@ -81,11 +79,11 @@ const limitLength = (value, len) => {
     return valueText;
   }
 };
-const formatDuring = mss => {
-  var days = parseInt(mss / (1000 * 60 * 60 * 24));
-  var hours = parseInt((mss % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = parseInt((mss % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds =  parseInt((mss % (1000 * 60)) / 1000);
+const formatDuring = (mss: number) => {
+  const days = parseInt(mss / (1000 * 60 * 60 * 24));
+  const hours = parseInt((mss % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = parseInt((mss % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds =  parseInt((mss % (1000 * 60)) / 1000);
 
   let daysStr = days === 0 ? '' : days + ' 天 ';
   let hoursStr = hours === 0 ? '' : hours + ' 小时 ';

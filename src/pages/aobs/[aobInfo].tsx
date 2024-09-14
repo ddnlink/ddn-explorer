@@ -14,7 +14,6 @@ import { useParams, useIntl } from 'umi';
 import { Table, message, Card } from 'antd';
 import dayjs from 'dayjs';
 import { useModel } from '@umijs/max';
-import { i18n } from '@/utils/i18n';
 import { AuditOutlined, TransactionOutlined } from '@ant-design/icons';
 import LimitText from '@/components/LimitText';
 import services from '@/services/ddn-explorer';
@@ -39,7 +38,7 @@ const AobInfo: React.FC = () => {
     try {
       const res = await services.aob.getAobInfo({ name: aobInfo });
       if (res.success) {
-        setAobData(res.asset);
+        setAobData(res.asset || {});
       } else {
         message.error(res.error);
       }
@@ -56,10 +55,10 @@ const AobInfo: React.FC = () => {
     try {
       const res = await services.block.getBlocksList(params);
       if (res.success) {
-        setBlocks(res.blocks);
+        setBlocks(res.blocks || []);
         setPagination(prev => ({
           ...prev,
-          total: res.count,
+          total: res.count || 0,
         }));
       } else {
         message.error(res.error);
@@ -146,7 +145,7 @@ const AobInfo: React.FC = () => {
       key: 'timestamp',
       width: '18%',
       render: (text: string) =>
-        dayjs(utils_slots.getRealTime(Number(text))).format('YYYY-MM-DD HH:mm:ss'),
+        dayjs(utils_slots.getRealTime(Number(text), initialState?.beginDate || '')).format('YYYY-MM-DD HH:mm:ss'),
     },
   ];
 
@@ -193,7 +192,7 @@ const AobInfo: React.FC = () => {
             <tr>
               <td className={styles.col_one}>发行时间</td>
               <td className={styles.col_two}>
-                {dayjs(utils_slots.getRealTime(Number(aobData.timestamp))).format('YYYY-MM-DD HH:mm:ss')}
+                {dayjs(utils_slots.getRealTime(Number(aobData.timestamp), initialState?.beginDate || '')).format('YYYY-MM-DD HH:mm:ss')}
               </td>
             </tr>
             <tr>

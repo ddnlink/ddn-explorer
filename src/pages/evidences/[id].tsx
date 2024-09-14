@@ -10,7 +10,7 @@
  */
 
 import React, { useState, useEffect, useCallback } from 'react';
-import { useParams, useIntl } from 'umi';
+import { useParams } from 'umi';
 import { message } from 'antd';
 import html2canvas from 'html2canvas';
 import $ from 'jquery';
@@ -20,7 +20,8 @@ import { Link } from 'umi';
 import services from '@/services/ddn-explorer';
 import utils_slots from '@/utils/slots';
 import styles from './Assets.less';
-import i18n from '@/utils/i18n';
+import { i18n } from '@/utils/i18n';
+import { useModel } from '@umijs/max';
 
 const getSizeStr = (size: number) => {
   if (size < 1024) return `${size}Bytes`;
@@ -35,11 +36,11 @@ const getSizeStr = (size: number) => {
 };
 
 const Assets: React.FC = () => {
+  const { initialState } = useModel('@@initialState');
   const [certificate, setCertificate] = useState<any>(null);
   const [address, setAddress] = useState('');
 
   const { id } = useParams<{ id: string }>();
-  const intl = useIntl();
 
   const getCertificate = useCallback(async () => {
     try {
@@ -87,8 +88,8 @@ const Assets: React.FC = () => {
   if (!certificate) {
     return (
       <div style={{ textAlign: 'center', fontSize: '18px', paddingTop: '100px' }}>
-        {intl.formatMessage({ id: 'assets.notExist' })}
-        <a href="javascript:window.location.reload();">{intl.formatMessage({ id: 'assets.refresh' })}</a>
+        {i18n.formatMessage({ id: 'assets.notExist' })}
+        <a href="javascript:window.location.reload();">{i18n.formatMessage({ id: 'assets.refresh' })}</a>
       </div>
     );
   }
@@ -166,8 +167,7 @@ const Assets: React.FC = () => {
                   className={styles['inline-div']}
                   style={{ marginLeft: '8px', color: '#666' }}
                 >
-                  {/* {I18n.l(utils_slots.getRealTime(Number(certificate.timestamp)), { dateFormat: "date"})} */}
-                  {dayjs(utils_slots.getRealTime(Number(certificate.timestamp))).format(
+                  {dayjs(utils_slots.getRealTime(Number(certificate.timestamp), initialState?.beginDate || '')).format(
                     'YYYY-MM-DD HH:mm:ss',
                   )}
                 </span>
@@ -302,8 +302,7 @@ const Assets: React.FC = () => {
                   marginBottom: '5px',
                 }}
               >
-                {/* {I18n.l(utils_slots.getRealTime(Number(certificate.timestamp)), { dateFormat: "date"})} */}
-                {dayjs(utils_slots.getRealTime(Number(certificate.timestamp))).format(
+                {dayjs(utils_slots.getRealTime(Number(certificate.timestamp), initialState?.beginDate || '')).format(
                   'YYYY-MM-DD HH:mm:ss',
                 )}
               </div>

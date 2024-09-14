@@ -44,7 +44,7 @@ const Home: React.FC = () => {
     }, []);
 
     const getTimeData = () => {
-        let beginEpochTime = utils_slots.beginEpochTime(initialState?.beginDate);
+        let beginEpochTime = utils_slots.beginEpochTime(initialState?.beginDate || '');
         let duration = dayjs().diff(beginEpochTime, 'days');
         setDuration(duration);
     };
@@ -121,6 +121,7 @@ const Home: React.FC = () => {
         ).toDataUri();
         setBackgroundImg(bgImgUrl);
     };
+
     const transColumns = () => [
         {
             title: i18n.formatMessage({ id: 'trs.id' }),
@@ -200,7 +201,7 @@ const Home: React.FC = () => {
             width: '12%',
             render: text => {
                 let timeStamp = new Date().getTime();
-                let leftTime = timeStamp - utils_slots.getRealTime(Number(text));
+                let leftTime = timeStamp - utils_slots.getRealTime(Number(text), initialState?.beginDate || '');
                 return utils_slots.formatDuring(leftTime);
             },
         },
@@ -273,7 +274,7 @@ const Home: React.FC = () => {
             width: '12%',
             render: text => {
                 let timeStamp = new Date().getTime();
-                let leftTime = timeStamp - utils_slots.getRealTime(Number(text));
+                let leftTime = timeStamp - utils_slots.getRealTime(Number(text), initialState?.beginDate || '');
                 return utils_slots.formatDuring(leftTime);
             },
         },

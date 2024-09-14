@@ -1,13 +1,12 @@
 import React from 'react';
 import { Table } from 'antd';
 import { Link } from 'umi';
+import { useModel } from '@umijs/max';
 import { i18n } from '@/utils/i18n';
 import LimitText from '@/components/LimitText';
 import dayjs from 'dayjs';
-import Cnf from '@/config';
 import utils_slots from '@/utils/slots';
 import styles from './index.less';
-import { useModel } from '@umijs/max';
 
 interface TransactionTableProps {
   transactions: any[];
@@ -96,7 +95,7 @@ const TransactionTable: React.FC<TransactionTableProps> = ({
       key: 'timestamp',
       width: '14%',
       render: (text: string) =>
-        dayjs(utils_slots.getRealTime(Number(text))).format('YYYY-MM-DD HH:mm:ss'),
+        dayjs(utils_slots.getRealTime(Number(text), initialState?.beginDate || '')).format('YYYY-MM-DD HH:mm:ss'),
     },
   ];
 

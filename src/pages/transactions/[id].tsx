@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'umi';
 import { message, Card } from 'antd';
+import { useModel } from '@umijs/max';
 import { TransactionOutlined } from '@ant-design/icons';
 import { i18n } from '@/utils/i18n';
 import utils_slots from '@/utils/slots';
 import services from '@/services/ddn-explorer';
 import styles from './id.less';
 import dayjs from 'dayjs';
-import Cnf from '@/config';
-import { useModel } from '@umijs/max';
 
 const TransactionDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -119,7 +118,7 @@ const TransactionDetail: React.FC = () => {
               {i18n.formatMessage({ id: 'trs.timestamp' })}
             </span>
             <span className={styles['col_two']}>
-              {dayjs(utils_slots.getRealTime(Number(trs.timestamp))).format(
+              {dayjs(utils_slots.getRealTime(Number(trs.timestamp), initialState?.beginDate || '')).format(
                 'YYYY-MM-DD HH:mm:ss',
               )}
             </span>

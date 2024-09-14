@@ -3,12 +3,12 @@ import React, { useState, useEffect } from 'react';
 import { Table, message, Card } from 'antd';
 import 'whatwg-fetch';
 import { Link } from 'react-router-dom';
+import { useModel } from '@umijs/max';
 import dayjs from 'dayjs';
 import { i18n } from '@/utils/i18n';
 import utils_slots from '@/utils/slots';
 import LimitText from '@/components/LimitText';
 import styles from './index.less';
-import { useModel } from '@umijs/max';
 
 const BlockView = () => {
     const [loading, setLoading] = useState(false);
@@ -115,7 +115,7 @@ const BlockView = () => {
             dataIndex: 'timestamp',
             width: '18%',
             render: text =>
-                `${dayjs(utils_slots.getRealTime(Number(text))).format('YYYY-MM-DD HH:mm:ss')}`,
+                `${dayjs(utils_slots.getRealTime(Number(text), initialState?.beginDate || '')).format('YYYY-MM-DD HH:mm:ss')}`,
         },
     ];
 

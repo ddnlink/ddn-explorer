@@ -10,15 +10,18 @@
  */
 
 import React, { useState, useEffect, useCallback } from 'react';
-import { useIntl, Link } from 'umi';
+import { Link } from 'umi';
+import { useModel } from '@umijs/max';
 import { Table, Card, message } from 'antd';
 import dayjs from 'dayjs';
+import { i18n } from '@/utils/i18n';
 import LimitText from '@/components/LimitText';
 import services from '@/services/ddn-explorer';
 import utils_slots from '@/utils/slots';
 import styles from './AobView.less';
 
 const AobView: React.FC = () => {
+  const { initialState } = useModel('@@initialState');
   const [loading, setLoading] = useState(false);
   const [aobList, setAobList] = useState<any[]>([]);
   const [pagination, setPagination] = useState({
@@ -26,8 +29,6 @@ const AobView: React.FC = () => {
     pageSize: 10,
     total: 0,
   });
-
-  const intl = useIntl();
 
   const getAobsList = useCallback(async (params = {}) => {
     setLoading(true);
@@ -65,7 +66,7 @@ const AobView: React.FC = () => {
 
   const columns = [
     {
-      title: intl.formatMessage({ id: '资产名称' }),
+      title: i18n.formatMessage({ id: '资产名称' }),
       dataIndex: 'name',
       key: 'name',
       width: '18%',
@@ -74,13 +75,13 @@ const AobView: React.FC = () => {
       ),
     },
     {
-      title: intl.formatMessage({ id: '积分发行商' }),
+      title: i18n.formatMessage({ id: '积分发行商' }),
       dataIndex: 'issuer_name',
       key: 'issuer_name',
       width: '17%',
     },
     {
-      title: intl.formatMessage({ id: '积分总量' }),
+      title: i18n.formatMessage({ id: '积分总量' }),
       dataIndex: 'maximum',
       key: 'maximum',
       width: '18%',
@@ -89,7 +90,7 @@ const AobView: React.FC = () => {
       ),
     },
     {
-      title: intl.formatMessage({ id: '已释放量' }),
+      title: i18n.formatMessage({ id: '已释放量' }),
       dataIndex: 'quantity',
       key: 'quantity',
       width: '17%',
@@ -98,18 +99,18 @@ const AobView: React.FC = () => {
       ),
     },
     {
-      title: intl.formatMessage({ id: '精度' }),
+      title: i18n.formatMessage({ id: '精度' }),
       dataIndex: 'precision',
       key: 'precision',
       width: '16%',
     },
     {
-      title: intl.formatMessage({ id: '释放时间' }),
+      title: i18n.formatMessage({ id: '释放时间' }),
       dataIndex: 'timestamp',
       key: 'timestamp',
       width: '14%',
       render: (text: string) =>
-        dayjs(utils_slots.getRealTime(Number(text))).format('YYYY-MM-DD HH:mm:ss'),
+        dayjs(utils_slots.getRealTime(Number(text), initialState?.beginDate || '')).format('YYYY-MM-DD HH:mm:ss'),
     },
   ];
 

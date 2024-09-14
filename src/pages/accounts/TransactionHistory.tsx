@@ -4,7 +4,6 @@ import { useRequest, Link } from 'umi';
 import services from '@/services/ddn-explorer';
 
 import { i18n } from '@/utils/i18n';
-import Cnf from '@/config';
 import utils_slots from '@/utils/slots';
 import LimitText from '@/components/LimitText';
 import styles from './TransactionHistory.less';
@@ -169,7 +168,7 @@ const TransactionHistory: React.FC<TransactionHistoryProps> = ({ address, curRol
       width: '12%',
       render: (text: string) => {
         const timeStamp = new Date().getTime();
-        const leftTime = timeStamp - utils_slots.getRealTime(Number(text));
+        const leftTime = timeStamp - utils_slots.getRealTime(Number(text), initialState?.beginDate || '');
         return utils_slots.formatDuring(leftTime);
       },
     },

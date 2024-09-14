@@ -23,13 +23,13 @@ const TransactionView: React.FC = () => {
     try {
       const res = await services.transaction.getLatestTrans(params);
       if (res.success) {
-        setTransactions(res.transactions);
+        setTransactions(res.transactions || []);
         setPagination({
           ...pagination,
-          total: res.count,
+          total: res.count || 0,
         });
       } else {
-        message.error(res.error);
+        message.error(res.error || '获取交易列表失败');
       }
     } catch (error) {
       console.error('获取交易列表失败:', error);

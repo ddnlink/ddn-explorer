@@ -3,6 +3,7 @@ import { useParams } from 'umi';
 import { message, Card, Table } from 'antd';
 import dayjs from 'dayjs';
 import { Link } from 'react-router-dom';
+import { useModel } from '@umijs/max';
 import { i18n } from '@/utils/i18n';
 import utils_slots from '@/utils/slots';
 import services from '@/services/ddn-explorer';
@@ -10,7 +11,6 @@ import styles from './height.less';
 import { CodepenOutlined } from '@ant-design/icons';
 import LimitText from '@/components/LimitText';
 import TransactionTable from '@/components/TransactionTable';
-import { useModel } from '@umijs/max';
 
 const BlockDetail: React.FC = () => {
   const { initialState } = useModel('@@initialState');
@@ -73,7 +73,7 @@ const BlockDetail: React.FC = () => {
               </Link>
             );
           case 'timestamp':
-            return dayjs(utils_slots.getRealTime(Number(text))).format('YYYY-MM-DD HH:mm:ss');
+            return dayjs(utils_slots.getRealTime(Number(text), initialState?.beginDate || '')).format('YYYY-MM-DD HH:mm:ss');
           case 'totalForged':
             return `${Number(text) / 100000000} ${initialState?.tokenName}`;
           default:
@@ -182,7 +182,7 @@ const BlockDetail: React.FC = () => {
       title: i18n.formatMessage({ id: 'trs.timestamp' }),
       dataIndex: 'timestamp',
       width: '14%',
-      render: text => dayjs(utils_slots.getRealTime(Number(text))).format('YYYY-MM-DD HH:mm:ss'),
+      render: text => dayjs(utils_slots.getRealTime(Number(text), initialState?.beginDate || '')).format('YYYY-MM-DD HH:mm:ss'),
     },
   ];
 
