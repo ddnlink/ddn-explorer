@@ -45,7 +45,8 @@
     "html2canvas": "^1.4.1",
     "qrcode": "^1.5.4",
     "qs": "^6.13.0",
-    "react-flip-numbers": "^3.0.8"
+    "react-flip-numbers": "^3.0.8",
+    "whatwg-fetch": "^3.6.20"
   },
   "devDependencies": {
     "@types/qrcode": "^1.5.5",

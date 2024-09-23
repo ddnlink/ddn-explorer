@@ -30,7 +30,7 @@ $ yarn build
 
 ## 项目架构
 
-```
+```bash
 ├── dist/                          // 默认的 build 输出目录
 ├── docs/                          // forks from dist and deploy to github.com
 ├── mock/                          // mock 文件所在目录，基于 express

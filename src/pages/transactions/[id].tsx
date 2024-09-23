@@ -61,7 +61,7 @@ const TransactionDetail: React.FC = () => {
           </div>
         }
       >
-         {asset && (
+         {asset && asset.aobTransfer && (
           <div className={styles['footer']}>
             <div className={styles['left']}>智能资产</div>
             <div className={styles['right']}>

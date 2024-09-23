@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { message, Card } from 'antd';
-import { i18n } from '@/utils/i18n';
 import services from '@/services/ddn-explorer';
 import TransactionTable from '@/components/TransactionTable';
 import styles from './index.less';
@@ -15,17 +14,23 @@ const TransactionView: React.FC = () => {
   });
 
   useEffect(() => {
-    getTransactions({ offset: 0, limit: 10, orderBy: 't_timestamp:desc' });
+    getTransactions(pagination);
   }, []);
 
-  const getTransactions = async (params: any) => {
+  const getTransactions = async (newPagination: any) => {
+    const params = {
+      offset: (newPagination.current - 1) * newPagination.pageSize,
+      limit: newPagination.pageSize,
+      orderBy: 't_timestamp:desc',
+    }
+
     setLoading(true);
     try {
       const res = await services.transaction.getLatestTrans(params);
       if (res.success) {
         setTransactions(res.transactions || []);
         setPagination({
-          ...pagination,
+          ...newPagination,
           total: res.count || 0,
         });
       } else {
@@ -39,13 +44,11 @@ const TransactionView: React.FC = () => {
     }
   };
 
-  const handleTableChange = (newPagination: any, filters: any, sorter: any) => {
-    getTransactions({
-      offset: (newPagination.current - 1) * newPagination.pageSize,
-      limit: newPagination.pageSize,
-      orderBy: 't_timestamp:desc',
-    });
+  const handleTableChange = async (newPagination: any) => {
+    await getTransactions(newPagination);
   };
+
+  console.log('pagination:', pagination);
 
   return (
     <div className={styles.pageWrap}>
